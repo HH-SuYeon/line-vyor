@@ -1,0 +1,90 @@
+/* 폰트
+로고&서브메뉴 Playfair Display, Didot
+본문 Libre Baskerville
+메인사진 폰트 "Cormorant Garamond", serif
+
+컬러
+Black : #1A1A1A
+배경 Cream White : #F5F3EE 
+메뉴 #EEEAE2 */
+
+
+/* product.css 맨 위에 */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap');
+
+
+*{margin: 0; padding: 0; text-decoration: none; list-style: none; box-sizing: border-box;}
+body{width: 100vw; height: 100vh; overflow-x: hidden; background-color: #F5F3EE;}
+
+/* 1 Page */
+.product_main{
+    /* background-color: aqua; */
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+    .product_video{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+    }
+    .product_mainTxt{
+        /* background-color: green; */
+        width: 90%;
+        z-index: 1;
+        position: absolute;
+        bottom: 125px;
+        color: white;
+    }
+        .product_mainTxt h1{
+            font-size: 188px;
+            font-weight: 100;
+            font-family: "Cormorant Garamond", serif;
+            letter-spacing: -0.1rem;
+        }
+        .product_mainTxt p{
+            font-size: 22px;
+        }
+
+/* 메뉴 */
+    .product_menus{
+        background-color: #EEEAE2;
+        width: 100%;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+        .product_menus div{
+            /* background-color: antiquewhite; */
+            padding: 0 40px;
+            font-size: 16px;
+            color: #333333;
+        }
+            .product_menus div:nth-child(1){
+                color: #000000;
+                font-weight: 500;
+            }
+            .product_menus div:nth-child(2){
+                border-left: 1px solid #1A1A1A;
+                border-right: 1px solid #1A1A1A;
+            }
+            .product_menus div:nth-child(3){
+                border-right: 1px solid #1A1A1A;
+            }
+
+/* 2 Page */
+.product_page2{
+    background-color: yellowgreen;
+    width: 100%; 
+    height: 130%;
+    position: relative;
+}
+    .product_p2Inbox{
+        background-color: tomato;
+        width: 90%;
+        height: 85%;
+    }

@@ -1,0 +1,136 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background-color: #f5f3ee;
+}
+
+/* 섹션1 */
+#brand {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+}
+
+#brand video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.brandText {
+    position: absolute;
+    bottom: 10vh;
+    left: 5vw;
+    z-index: 1;
+    /* background-color: darkgoldenrod; */
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.brandText h1 {
+    color: #fff;
+    font-size: 130px;
+    font-weight: bold;
+}
+
+.brandText p {
+    color: #fff;
+    font-size: 20px;
+    margin-top: -80px;
+}
+
+/* 섹션2 */
+
+#brand_2 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* overflow: hidden; */
+    /* background-color: antiquewhite; */
+    display: flex;
+    flex-wrap: wrap;
+    /* align-content: flex-start; 줄 사이 여백 없이 위로 붙임 */
+    gap: 0;
+    justify-content: center;
+}
+
+.brandLeftbox_1 {
+    width: 40%;
+    height: 400px;
+    /* background-color: pink; */
+    display: flex;
+    align-items: center;
+    color: #1a1a1a;
+}
+
+.brandRightbox_1 {
+    width: 50%;
+    height: 400px;
+    /* background-color: skyblue; */
+}
+
+.brandLeftbox_1 h1 {
+    font-size: 70px;
+    font-weight: lighter;
+}
+
+.brandRightbox_1 p {
+    color: #333;
+    padding-top: 220px;
+    font-size: 20px;
+}
+
+.brandLeftbox_2 {
+    width: 40%;
+    height: 800px;
+    /* background-color: lightgrey; */
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+    padding-top: 175px;
+}
+
+.brandRightbox_2 {
+    width: 50%;
+    height: 800px;
+    /* background-color: lightcoral; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 175px;
+}
+
+.brandRightbox_2 div {
+    display: flex;
+    gap: 60px;
+}
+
+.brandRightbox_2 img {
+    width: 23.5vw;
+    object-fit: cover;
+    display: block;
+}
+
+/* 섹션3 */
+#brand_3 {
+    width: 100%;
+    height: 100vh;
+    margin-top: 15%;
+}
+
+.brandLeftbox_3 {
+    width: 45%;
+    background-color: aqua;
+}
+
+.brandLeftbox_3 img {
+    width: 45vw;
+}
