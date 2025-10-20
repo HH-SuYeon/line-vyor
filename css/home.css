@@ -1,1 +1,495 @@
-home.css
+/* ========== RESET ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans KR", "Pretendard", sans-serif;
+  color: #111;
+  background: #fff;
+}
+
+/* ========== HEADER ========== */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 60px;
+  background: transparent;
+  transition: all 0.4s ease;
+  z-index: 2000;
+}
+.logo img {
+  width: 110px;
+  height: auto;
+  display: block;
+  transition: all 0.4s ease;
+}
+#header img,
+#header a {
+  transition: all 0.4s ease;
+}
+#header a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+#header.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+}
+#header.scrolled a {
+  color: #000;
+}
+#header .logo img {
+  width: 110px;
+  height: auto;
+  display: block;
+}
+/* 메뉴 패널 */
+.menu {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.menu.active {
+  right: 0;
+}
+
+/* 메뉴 리스트 */
+.menu ul {
+  display: flex;
+  gap: 50px;
+  list-style: none;
+}
+
+.menu ul li {
+  margin: 25px 0;
+}
+
+.menu ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+#header.scrolled .menu ul li a {
+  color: #000;
+}
+
+.menu ul li a:hover {
+  opacity: 0.7;
+}
+
+/* 햄버거 아이콘 */
+.menu-icon {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+}
+.menu-icon span {
+  width: 24px;
+  height: 2px;
+  background: #fff;
+  transition: background 0.3s ease;
+}
+#header.scrolled .menu-icon span {
+  background: #000;
+}
+
+/* ========== HERO SECTION ========== */
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+#hero video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+/* ========== INTRO SECTION ========== */
+#intro {
+  position: relative;
+  width: 100%;
+  min-height: 120vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f7f6f3;
+  overflow: hidden;
+}
+
+.intro-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 1400px;
+  gap: 60px;
+  position: relative;
+  z-index: 3;
+}
+
+/* 왼쪽 큰 텍스트 */
+body {
+  font-family: "Noto Sans KR", "Pretendard", sans-serif;
+  color: #111;
+  background: #fff;
+}
+
+.intro-left h2,
+.view-more {
+  font-family: "Playfair Display", serif !important;
+}
+.intro-left h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 4.5rem;
+  line-height: 1.15;
+  font-weight: 500;
+  letter-spacing: -0.5px;
+  color: #1a1a1a;
+}
+/* 오른쪽 텍스트 */
+.intro-right {
+  width: 45%;
+}
+
+.intro-right p {
+  font-family: "Noto Sans KR", "Pretendard", sans-serif;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #333;
+}
+.intro-left.fade-item {
+  transition-delay: 0.2s;
+}
+.intro-right.fade-item {
+  transition-delay: 0.6s;
+}
+
+view-more {
+  display: inline-flex; /* 🔹 텍스트와 화살표를 같은 라인으로 */
+  align-items: center;
+  gap: 10px;
+  margin-top: 40px;
+  font-size: 1.05rem;
+  ont-family: "Playfair Display", serif;
+  color: #111;
+  text-decoration: none;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 4px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+.view-more span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #111;
+  border-radius: 50%; /* 🔹 원형 */
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+.view-more:hover {
+  color: #888;
+  border-color: #888;
+}
+.view-more:hover span {
+  border-color: #1a1a1a;
+  color: #fff;
+  background: #111;
+}
+/* ========== 배경 도형 ========== */
+.bg-shape {
+  position: absolute;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  animation: adeFloat 10s ease-in-out infinite alternate;
+  opacity: 0.7;
+  z-index: 1;
+}
+
+.shape-left {
+  width: 1200px;
+  height: 1200px;
+  top: -200px;
+  left: -500px;
+  animation-delay: 0.5s;
+}
+
+.shape-right {
+  width: 800px;
+  height: 800px;
+  bottom: -300px;
+  right: -300px;
+  animation-delay: 1.5s;
+}
+@keyframes fadeFloat {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) scale(1.03);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    opacity: 0.3;
+  }
+}
+
+/* ========== FADE-IN SCROLL EFFECT (재등장 가능) ========== */
+.fade-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.fade-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ✨ Keyframes */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeRight {
+  0% {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ========== PRODUCT PREVIEW SECTION ========== */
+#preview {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+}
+#preview video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+#preview .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+#preview .preview-text {
+  position: relative;
+  z-index: 2;
+}
+#preview h2 {
+  font-size: 2.8rem;
+  margin-bottom: 12px;
+}
+#preview p {
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+}
+
+/* ========== R&D SECTION ========== */
+#rnd-preview {
+  position: relative;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  color: #fff;
+}
+#rnd-preview video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+#rnd-preview::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+.rnd-text {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+.rnd-text h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+.rnd-text p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  background: #111;
+  color: #aaa;
+  text-align: center;
+  padding: 40px 0;
+  font-size: 0.9rem;
+}
+
+/* ========== FADE-IN SCROLL EFFECT ========== */
+.fade-item {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1.2s ease;
+}
+.fade-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== SCROLL INDICATOR (TEXT + BAR) ========== */
+#scrollIndicator {
+  position: fixed;
+  right: 60px;
+  bottom: 0;
+  display: flex;
+  align-items: flex-start;
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+#scrollIndicator.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scrollText {
+  position: relative;
+  right: 8px;
+  font-size: 16px;
+  font-family: serif;
+  writing-mode: vertical-rl;
+  color: #fff;
+  transform: rotate(180deg);
+}
+
+.scrollBar {
+  position: relative;
+  width: 3px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+}
+.scrollBar::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(to bottom, transparent, #fff, transparent);
+  animation: scrollFlow 3.5s ease-in-out infinite;
+}
+@keyframes scrollFlow {
+  0% {
+    top: -100%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    top: 100%;
+    opacity: 1;
+  }
+  100% {
+    top: 120%;
+    opacity: 0;
+  }
+}
+
+/* ========== ARROWS ========== */
+.arrows {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 60px;
+  z-index: 30;
+  color: #eee;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+.arrows.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.leftArrow,
+.rightArrow {
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+}
+.leftArrow {
+  left: 0;
+}
+.rightArrow {
+  right: 0;
+}

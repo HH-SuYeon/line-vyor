@@ -1,11 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    home.html
-</body>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vyor Clone | Home</title>
+    <link rel="stylesheet" href="../css/home.css" />
+  </head>
+
+  <body>
+    <!-- ================= HERO SECTION ================= -->
+    <section id="hero" class="fade-section">
+      <video autoplay muted loop playsinline>
+        <source src="../img/main/main_video.mp4" type="video/mp4" />
+      </video>
+
+      <!-- Scroll Indicator -->
+      <div id="scrollIndicator">
+        <span class="scrollText">SCROLL</span>
+        <span class="scrollBar"></span>
+      </div>
+
+      <!-- Navigation Arrows -->
+      <div class="arrows">
+        <span class="leftArrow"><</span>
+        <span class="rightArrow">></span>
+      </div>
+    </section>
+
+    <!-- ================= INTRO SECTION ================= -->
+    <section id="intro">
+      <div class="intro-inner fade-item">
+        <div class="intro-left">
+          <h2>Your Signature,<br />Your VYOR.</h2>
+        </div>
+        <div class="intro-right">
+          <p>
+            VYOR의 “Watered Soil”은 바쁜 도시 속에서도 사계절의 균형과 자연의
+            호흡을 느낄 수 있도록 설계된 향입니다.<br /><br />
+            촉촉한 흙내음과 자연의 깊은 고요함으로 대지의 숨결과 도시의 잔상을
+            함께 담은 “Watered Soil”은 단순한 향을 넘어 내면의 평화와 몰입의
+            순간, 존재의 본질로 이끄는 감각의 여정을 시작하게 합니다.<br /><br />
+            VYOR은 당신의 본질을 깨우고, 자연스럽고 우아한 아름다움이 피어나는
+            순간을 함께합니다.
+          </p>
+          <a href="#" class="view-more">view more <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- Background Shapes -->
+      <div class="bg-shape shape-left"></div>
+      <div class="bg-shape shape-right"></div>
+    </section>
+
+    <!-- ================= PRODUCT PREVIEW SECTION ================= -->
+    <section id="preview" class="fade-section">
+      <div class="overlay"></div>
+      <video autoplay muted loop playsinline>
+        <source src="../img/main/sec3_video.mp4" type="video/mp4" />
+      </video>
+      <div class="preview-text fade-item">
+        <h2>Our Products</h2>
+        <p>Essential skincare line designed for balance and purity.</p>
+        <a href="#" class="btn white">Explore More</a>
+      </div>
+    </section>
+
+    <!-- ================= R&D SECTION ================= -->
+    <section id="rnd-preview" class="fade-section">
+      <video autoplay muted loop playsinline>
+        <source src="../img/main/sec4_video.mp4" type="video/mp4" />
+      </video>
+      <div class="rnd-text fade-item">
+        <h2>Science of Purity</h2>
+        <p>비오르는 과학적 연구를 통해 자연의 순수함을 완성합니다.</p>
+      </div>
+    </section>
+    <script src="../js/home.js"></script>
+  </body>
 </html>
