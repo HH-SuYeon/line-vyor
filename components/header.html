@@ -1,68 +1,128 @@
 <!-- header.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>header</title>
-</head>
-<body>
-  <header>
-    <div id="navWrap">
-      <div class="logo">
-        <a href="index.html"><img src="./img/etc/logo/logo1.png" alt="VYOR 로고"></a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>header</title>
+  </head>
+  <body>
+    <header>
+      <div id="navWrap">
+        <div class="logo">
+          <a href="index.html"
+            ><img src="/img/etc/logo/logo1.png" alt="VYOR 로고"
+          /></a>
+        </div>
+        <nav>
+          <ul class="inner" id="gnb">
+            <li data-panel="p1">
+              <a href="#" data-page="brand">BRAND</a>
+              <div class="submenuBox">
+                <div class="panel" id="p1">
+                  <ul class="sub_nav">
+                    <li><a href="#" data-page="brand">브랜드소개</a></li>
+                    <li><a href="#" data-page="brand_bi">BI소개</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li data-panel="p2">
+              <a href="#" data-page="products">PRODUCTS</a>
+              <div class="submenuBox">
+                <div class="panel" id="p2">
+                  <ul class="sub_nav">
+                    <li><a href="#" data-page="products">전체보기</a></li>
+                    <li><a href="#" data-page="products_body">바디라인</a></li>
+                    <li><a href="#" data-page="products_hair">헤어라인</a></li>
+                    <li>
+                      <a href="#" data-page="products_facial">페이셜라인</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+
+            <li data-panel="p3">
+              <a href="#" data-page="rndTechnology">R&D</a>
+              <div class="submenuBox">
+                <div class="panel" id="p3">
+                  <ul class="sub_nav">
+                    <li><a href="#" data-page="rndTecnology">테크놀로지</a></li>
+                    <li><a href="#" data-page="rndResearch">연구분야</a></li>
+                    <li><a href="#" data-page="rndProduction">생산시설</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li data-panel="p4">
+              <a href="#" data-page="press">PRESS</a>
+              <div class="submenuBox">
+                <div class="panel" id="p4">
+                  <ul class="sub_nav">
+                    <li><a href="#" data-page="press">PRESS</a></li>
+                    <li><a href="#" data-page="press_news">NEWS</a></li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+            <li data-panel="p5">
+              <a href="#" data-page="contact">CONTACT</a>
+              <div class="submenuBox">
+                <div class="panel" id="p5">
+                  <ul class="sub_nav">
+                    <li><a href="#" data-page="contact">CONTACT</a></li>
+                    <li>
+                      <a href="#" data-page="contact_address">DIRECTIONS</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <div class="nav_icon">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
       </div>
-      <nav>
-        <ul class="inner" id="gnb">
-          <li data-panel="p1" data-page="brand.html"><a href="#">BRAND</a></li>
-          <li data-panel="p2" data-page="product.html"><a href="#">PRODUCTS</a></li>
-          <li data-panel="p3" data-page="rnd.html"><a href="#">R&D</a></li>
-          <li data-panel="p4" data-page="press.html"><a href="#">PRESS</a></li>
-          <li data-panel="p5" data-page="contact.html"><a href="#">CONTACT</a></li>
-        </ul>
-      </nav>
-      <div class="nav_icon">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-      </div>
-    </div>
-  </header>
-  <!-- 서브메뉴 : 가로 한줄 -->
-  <div class="submenuBox" id="submenuBox">
+    </header>
+    <!-- 서브메뉴 : 가로 한줄 -->
+    <!-- <div class="submenuBox" id="submenuBox">
     <div class="panel" id="p1">
       <ul class="sub_nav" >
-        <li><a data-page="brand.html">브랜드소개</a></li>
-        <li><a data-page="brand_bi.html">BI소개</a></li>
+        <li><a href="#" data-page="brand">브랜드소개</a></li>
+        <li><a href="#" data-page="brand_bi">BI소개</a></li>
       </ul>
     </div>  
     <div class="panel" id="p2">
       <ul class="sub_nav">
-        <li><a data-page="product.html">전체보기</a></li>
-        <li><a data-page="product_body.html">바디라인</a></li>
-        <li><a data-page="product_hair.html">헤어라인</a></li>
-        <li><a data-page="product_facial.html">페이셜라인</a></li>
+        <li><a href="#" data-page="products">전체보기</a></li>
+        <li><a href="#" data-page="products_body">바디라인</a></li>
+        <li><a href="#" data-page="products_hair">헤어라인</a></li>
+        <li><a href="#" data-page="products_facial">페이셜라인</a></li>
       </ul>
     </div>  
     <div class="panel" id="p3">
       <ul class="sub_nav">
-        <li><a data-page="rnd.html">테크놀로지</a></li>
-        <li><a data-page="rndResearch.html">연구분야</a></li>
-        <li><a data-page="rndProduction.html">생산시설</a></li>
+        <li><a href="#" data-page="rndTecnology">테크놀로지</a></li>
+        <li><a href="#" data-page="rndResearch">연구분야</a></li>
+        <li><a href="#" data-page="rndProduction">생산시설</a></li>
       </ul>
     </div>  
     <div class="panel" id="p4">
       <ul class="sub_nav">
-        <li><a data-page="press.html">PRESS</a></li>
-        <li><a data-page="press_news.html">NEWS</a></li>
+        <li><a href="#" data-page="press">PRESS</a></li>
+        <li><a href="#" data-page="press_news">NEWS</a></li>
       </ul>
     </div>
     <div class="panel" id="p5">
       <ul class="sub_nav">
-        <li><a data-page="contact.html">CONTACT</a></li>
-        <li><a data-page="contact_address.html">DIRECTIONS</a></li>
+        <li><a href="#" data-page="contact">CONTACT</a></li>
+        <li><a href="#" data-page="contact_address">DIRECTIONS</a></li>
       </ul>
     </div>
-  </div>
-</body>
+  </div> -->
+  </body>
 </html>

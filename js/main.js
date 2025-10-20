@@ -11,13 +11,12 @@ $(document).ready(function () {
 
   // ========== [2] 페이지 로드 함수 ==========
   function loadPage(pageName) {
-
     const url = `pages/${pageName}.html`;
-console.log(url)
+    console.log(url);
     // 메인 페이드아웃 → 내용 교체 → 페이드인
     main.fadeOut(200, function () {
       main.load(url, function (response, status) {
-console.log(status)
+        console.log(status);
         if (status === "success") {
           currentPage = pageName;
           console.log(`✅ ${pageName}.html 로드 완료`);
@@ -54,7 +53,7 @@ console.log(status)
       const container = $(containerSelector);
       container.empty();
 
-      data.forEach(item => {
+      data.forEach((item) => {
         const card = $(`
           <div class="card">
             <img src="${item.image}" alt="${item.title}">
@@ -74,36 +73,39 @@ console.log(status)
   // ========== [5] 스크롤 이벤트 (애니메이션 트리거) ==========
   function animateOnScroll(selector) {
     const elements = $(selector);
-    $(window).on("scroll", function () {
-      const scrollTop = $(window).scrollTop();
-      const windowHeight = $(window).height();
+    $(window)
+      .on("scroll", function () {
+        const scrollTop = $(window).scrollTop();
+        const windowHeight = $(window).height();
 
-      elements.each(function () {
-        const offsetTop = $(this).offset().top;
-        if (scrollTop + windowHeight - 100 > offsetTop) {
-          $(this).addClass("visible"); // CSS로 애니메이션 처리
-        }
-      });
-    }).trigger("scroll");
+        elements.each(function () {
+          const offsetTop = $(this).offset().top;
+          if (scrollTop + windowHeight - 100 > offsetTop) {
+            $(this).addClass("visible"); // CSS로 애니메이션 처리
+          }
+        });
+      })
+      .trigger("scroll");
   }
 
   // ========== [6] 페이지별 기능 초기화 ==========
   function initPageFeatures(page) {
-    if (page === "home") {
-      loadJsonData("json/products.json", "#home-list");
-    } 
-    else if (page === "product") {
+    if (page === "home") {  
+      $.getScript("js/home.js");
+       loadJsonData("json/products.json", "#home-list");
+    }else if (page === "product") {
       loadJsonData("json/products.json", "#gallery");
-    } 
-    else if (page === "brand") {
+    }else if (page === "brand") {
       $(".fade-item").each(function (i) {
-        $(this).delay(150 * i).fadeIn(300);
+        $(this)
+          .delay(150 * i)
+          .fadeIn(300);
       });
     }
   }
 
   // ========== [7] 첫 페이지 로드 ==========
   const startPage = location.hash.replace("#", "") || "home";
-console.log(startPage)
+  console.log(startPage);
   loadPage(startPage);
 });
