@@ -11,107 +11,7 @@ body {
   background: #fff;
 }
 
-/* ========== HEADER ========== */
-#header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 0 60px;
-  background: transparent;
-  transition: all 0.4s ease;
-  z-index: 2000;
-}
-.logo img {
-  width: 110px;
-  height: auto;
-  display: block;
-  transition: all 0.4s ease;
-}
-#header img,
-#header a {
-  transition: all 0.4s ease;
-}
-#header a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 500;
-  letter-spacing: 1px;
-}
-
-#header.scrolled {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(6px);
-}
-#header.scrolled a {
-  color: #000;
-}
-#header .logo img {
-  width: 110px;
-  height: auto;
-  display: block;
-}
-/* 메뉴 패널 */
-.menu {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.menu.active {
-  right: 0;
-}
-
-/* 메뉴 리스트 */
-.menu ul {
-  display: flex;
-  gap: 50px;
-  list-style: none;
-}
-
-.menu ul li {
-  margin: 25px 0;
-}
-
-.menu ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-#header.scrolled .menu ul li a {
-  color: #000;
-}
-
-.menu ul li a:hover {
-  opacity: 0.7;
-}
-
-/* 햄버거 아이콘 */
-.menu-icon {
-  margin-left: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
-}
-.menu-icon span {
-  width: 24px;
-  height: 2px;
-  background: #fff;
-  transition: background 0.3s ease;
-}
-#header.scrolled .menu-icon span {
-  background: #000;
-}
-
-/* ========== HERO SECTION ========== */
+/* ================= HERO SECTION ================= */
 #hero {
   position: relative;
   width: 100%;
@@ -127,7 +27,8 @@ body {
   object-fit: cover;
   z-index: -1;
 }
-/* ========== INTRO SECTION ========== */
+
+/* ================= INTRO SECTION ================= */
 #intro {
   position: relative;
   width: 100%;
@@ -150,56 +51,35 @@ body {
   z-index: 3;
 }
 
-/* 왼쪽 큰 텍스트 */
-body {
-  font-family: "Noto Sans KR", "Pretendard", sans-serif;
-  color: #111;
-  background: #fff;
-}
-
 .intro-left h2,
 .view-more {
-  font-family: "Playfair Display", serif !important;
+  font-family: "Cormorant", serif;
 }
 .intro-left h2 {
-  font-family: "Playfair Display", serif;
   font-size: 4.5rem;
   line-height: 1.15;
   font-weight: 500;
-  letter-spacing: -0.5px;
   color: #1a1a1a;
 }
-/* 오른쪽 텍스트 */
 .intro-right {
   width: 45%;
 }
-
 .intro-right p {
-  font-family: "Noto Sans KR", "Pretendard", sans-serif;
   font-size: 1rem;
   line-height: 1.9;
   color: #333;
 }
-.intro-left.fade-item {
-  transition-delay: 0.2s;
-}
-.intro-right.fade-item {
-  transition-delay: 0.6s;
-}
-
-view-more {
-  display: inline-flex; /* 🔹 텍스트와 화살표를 같은 라인으로 */
+.view-more {
+  display: inline-flex;
   align-items: center;
   gap: 10px;
   margin-top: 40px;
   font-size: 1.05rem;
-  ont-family: "Playfair Display", serif;
   color: #111;
   text-decoration: none;
   border-bottom: 1px solid #1a1a1a;
   padding-bottom: 4px;
   transition: all 0.3s ease;
-  letter-spacing: 0.5px;
 }
 .view-more span {
   display: inline-flex;
@@ -208,7 +88,7 @@ view-more {
   width: 32px;
   height: 32px;
   border: 1px solid #111;
-  border-radius: 50%; /* 🔹 원형 */
+  border-radius: 50%;
   font-size: 1rem;
   transition: all 0.3s ease;
 }
@@ -221,30 +101,27 @@ view-more {
   color: #fff;
   background: #111;
 }
-/* ========== 배경 도형 ========== */
+
+/* ================= 배경 도형 ================= */
 .bg-shape {
   position: absolute;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  animation: adeFloat 10s ease-in-out infinite alternate;
+  animation: fadeFloat 10s ease-in-out infinite alternate;
   opacity: 0.7;
   z-index: 1;
 }
-
 .shape-left {
   width: 1200px;
   height: 1200px;
   top: -200px;
   left: -500px;
-  animation-delay: 0.5s;
 }
-
 .shape-right {
   width: 800px;
   height: 800px;
   bottom: -300px;
   right: -300px;
-  animation-delay: 1.5s;
 }
 @keyframes fadeFloat {
   0% {
@@ -261,51 +138,7 @@ view-more {
   }
 }
 
-/* ========== FADE-IN SCROLL EFFECT (재등장 가능) ========== */
-.fade-item {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 1s ease;
-}
-
-.fade-item.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ✨ Keyframes */
-@keyframes fadeUp {
-  0% {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeRight {
-  0% {
-    opacity: 0;
-    transform: translateX(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* ========== PRODUCT PREVIEW SECTION ========== */
+/* ================= PRODUCT PREVIEW SECTION ================= */
 #preview {
   position: relative;
   height: 100vh;
@@ -343,7 +176,7 @@ view-more {
   margin-bottom: 25px;
 }
 
-/* ========== R&D SECTION ========== */
+/* ================= R&D SECTION ================= */
 #rnd-preview {
   position: relative;
   height: 90vh;
@@ -383,27 +216,7 @@ view-more {
   line-height: 1.7;
 }
 
-/* ========== FOOTER ========== */
-footer {
-  background: #111;
-  color: #aaa;
-  text-align: center;
-  padding: 40px 0;
-  font-size: 0.9rem;
-}
-
-/* ========== FADE-IN SCROLL EFFECT ========== */
-.fade-item {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 1.2s ease;
-}
-.fade-item.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ========== SCROLL INDICATOR (TEXT + BAR) ========== */
+/* ================= Scroll Indicator ================= */
 #scrollIndicator {
   position: fixed;
   right: 60px;
@@ -418,19 +231,14 @@ footer {
   opacity: 0;
   pointer-events: none;
 }
-
 .scrollText {
-  position: relative;
   right: 8px;
   font-size: 16px;
-  font-family: serif;
   writing-mode: vertical-rl;
   color: #fff;
   transform: rotate(180deg);
 }
-
 .scrollBar {
-  position: relative;
   width: 3px;
   height: 200px;
   background: rgba(255, 255, 255, 0.25);
@@ -464,7 +272,7 @@ footer {
   }
 }
 
-/* ========== ARROWS ========== */
+/* ================= Arrows ================= */
 .arrows {
   position: fixed;
   bottom: 40px;
@@ -492,4 +300,15 @@ footer {
 }
 .rightArrow {
   right: 0;
+}
+
+/* ================= Fade-in Animation ================= */
+.fade-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+.fade-item.active {
+  opacity: 1;
+  transform: translateY(0);
 }
