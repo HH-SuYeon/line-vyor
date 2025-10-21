@@ -1,34 +1,48 @@
 $(document).ready(function () {
   // ========== [1] 기본 세팅 ==========
-  const main = $("#content");
+  const content = $("#content");
   const header = $("#header");
   const footer = $("#footer");
   let currentPage = "home"; // 기본 페이지 이름
 
-  // 공통 헤더·푸터 로드
-  // header.load("components/header.html");
-  // footer.load("components/footer.html");
+  // 공통 헤더 로드
+  header.load("/components/header.html", function() {
+    $.getScript("/js/header_gpt2.js")
+      .done(function() {
+        console.log("header.js loaded!");
+        if(typeof initHeader === "function") initHeader();
+      });
+  });
+
+  loadPage("home");
 
   // ========== [2] 페이지 로드 함수 ==========
   function loadPage(pageName) {
-
-    const url = `pages/${pageName}.html`;
-console.log(url)
-    // 메인 페이드아웃 → 내용 교체 → 페이드인
-    main.fadeOut(200, function () {
-      main.load(url, function (response, status) {
-console.log(status)
-        if (status === "success") {
-          currentPage = pageName;
-          console.log(`✅ ${pageName}.html 로드 완료`);
-
-          initPageFeatures(pageName); // 페이지별 기능 초기화
-          main.fadeIn(300);
-        } else {
-          main.html("<p>⚠️ 페이지를 불러올 수 없습니다.</p>").fadeIn(300);
-        }
+    // content.addClass("transition-out");
+    setTimeout(() => {
+      content.load(`/pages/${pageName}.html`, function() {
+        // content.removeClass("transition-out");
+        updateHeader(pageName);
       });
-    });
+    }, 300);
+  }
+
+  // 페이지별 헤더 / 푸터 처리
+  function updateHeader(pageName) {
+    const navIcon = header.find(".nav_icon");
+    const gnb = header.find(".gnb");
+
+    if (pageName === "sitemap") {
+      footer.hide();
+      gnb.addClass("hide_inner");
+      header.addClass("hide_header");
+      navIcon.addClass("on");
+    } else {
+      footer.show();
+      gnb.removeClass("hide_inner");
+      header.removeClass("hide_header");
+      navIcon.removeClass("on");
+    }
   }
 
   // ========== [3] 내비게이션 클릭 처리 ==========
@@ -40,6 +54,11 @@ console.log(status)
       history.pushState({ page }, "", `#${page}`); // SPA용 주소 표시
     }
   });
+
+  // header.js에서 보낸 커스텀 이벤트 받기
+  $(document).on("navigateTo", function(e, pageName) {
+    loadPage(pageName);
+  })
 
   // 뒤로가기 / 앞으로가기 처리
   window.onpopstate = function (event) {
@@ -91,11 +110,9 @@ console.log(status)
   function initPageFeatures(page) {
     if (page === "home") {
       loadJsonData("json/products.json", "#home-list");
-    } 
-    else if (page === "product") {
+    }else if (page === "product") {
       loadJsonData("json/products.json", "#gallery");
-    } 
-    else if (page === "brand") {
+    }else if (page === "brand") {
       $(".fade-item").each(function (i) {
         $(this).delay(150 * i).fadeIn(300);
       });
@@ -103,7 +120,6 @@ console.log(status)
   }
 
   // ========== [7] 첫 페이지 로드 ==========
-  const startPage = location.hash.replace("#", "") || "home";
-console.log(startPage)
-  loadPage(startPage);
+//   const startPage = location.hash.replace("#", "") || "home";
+//   loadPage(startPage);
 });
