@@ -32,7 +32,7 @@ body {
 #intro {
   position: relative;
   width: 100%;
-  min-height: 120vh;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -105,24 +105,54 @@ body {
 /* ================= 배경 도형 ================= */
 .bg-shape {
   position: absolute;
-  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  animation: fadeFloat 10s ease-in-out infinite alternate;
-  opacity: 0.7;
   z-index: 1;
 }
+
+/* 왼쪽 큰 원형 라인 */
 .shape-left {
-  width: 1200px;
-  height: 1200px;
-  top: -200px;
-  left: -500px;
+  width: 1050px;
+  height: 1100px;
+  top: -110px;
+  left: -80px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
 }
+
+/* 오른쪽 사선 + 세로선 */
 .shape-right {
-  width: 800px;
-  height: 800px;
-  bottom: -300px;
-  right: -300px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
 }
+
+/* 오른쪽 안에 선 2개: 세로선 + 사선 */
+.shape-right::before,
+.shape-right::after {
+  content: "";
+  position: absolute;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* 세로선 */
+.shape-right::before {
+  width: 1px;
+  height: 100%;
+  right: 350px; /* 화면 안쪽으로 위치 */
+  top: 0;
+}
+
+/* 사선 */
+.shape-right::after {
+  width: 1px;
+  height: 100%;
+  right: 0;
+  top: 0;
+  transform: rotate(-45deg); /* 대각선 */
+  transform-origin: top right;
+}
+
 @keyframes fadeFloat {
   0% {
     transform: translateY(0) scale(1);
