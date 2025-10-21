@@ -113,10 +113,16 @@ body{width: 100vw; height: 100vh; overflow-x: hidden; background-color: #F5F3EE;
             position: absolute;
             left: 48.1%; top: 58%;
             font-size: 38.5px;
-            font-weight: lighter;
+            font-weight: 100;
             font-family: "Cormorant Garamond", serif;
             letter-spacing: -0.2rem;
             color: 000000;
+            background: linear-gradient(to right,
+                white 32.5%,       /* 왼쪽 글씨 색 */
+                black 32.5%        /* 오른쪽 글씨 색 */
+            );
+            -webkit-background-clip: text;
+            color: transparent; /* 글씨를 투명하게 */
         }
         .product_p2txt2{
             position: absolute;
@@ -127,6 +133,7 @@ body{width: 100vw; height: 100vh; overflow-x: hidden; background-color: #F5F3EE;
                 margin-bottom: 30px;
                 font-weight: 500;
                 color: #000000;
+                
             }
             .product_p2txt2 p{
                 font-size: 17px;
@@ -223,3 +230,6 @@ body{width: 100vw; height: 100vh; overflow-x: hidden; background-color: #F5F3EE;
             font-size: 20px;
             border-bottom: 2px solid #000000;
         }
+
+
+
