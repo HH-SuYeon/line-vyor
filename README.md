@@ -1,6 +1,7 @@
 # 🌐 vyor project
 
 > **팀명:** 베끼기장인
+> 
 > **프로젝트명:** vyor project  
 > **구성원:** 총 4명 (팀장 1명 + 팀원 3명)  
 > **기술 스택:** HTML, CSS, JavaScript  
