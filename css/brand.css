@@ -1,3 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
+
+.cormorant-garamond {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 188px;
+    font-weight: 100;
+    letter-spacing: -0.1rem;
+}
+
 html,
 body {
     height: 100%;
@@ -38,6 +47,10 @@ body {
     color: #fff;
     font-size: 130px;
     font-weight: bold;
+    font-size: 188px;
+    font-weight: 300;
+    font-family: "Cormorant Garamond", serif;
+    letter-spacing: -0.1rem;
 }
 
 .brandText p {
@@ -56,7 +69,7 @@ body {
     /* background-color: antiquewhite; */
     display: flex;
     flex-wrap: wrap;
-    /* align-content: flex-start; 줄 사이 여백 없이 위로 붙임 */
+    /* align-content: flex-start;  */
     gap: 0;
     justify-content: center;
 }
@@ -67,24 +80,27 @@ body {
     /* background-color: pink; */
     display: flex;
     align-items: center;
-    color: #1a1a1a;
+    color: #000;
+    font-family: "Cormorant Garamond", serif;
+    padding-top: 50px;
 }
 
 .brandRightbox_1 {
     width: 50%;
     height: 400px;
     /* background-color: skyblue; */
+    padding-top: 50px;
 }
 
 .brandLeftbox_1 h1 {
-    font-size: 70px;
+    font-size: 80px;
     font-weight: lighter;
 }
 
 .brandRightbox_1 p {
-    color: #333;
+    color: #838181;
     padding-top: 220px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .brandLeftbox_2 {
@@ -124,13 +140,32 @@ body {
     width: 100%;
     height: 100vh;
     margin-top: 15%;
+    display: flex;
 }
 
 .brandLeftbox_3 {
-    width: 45%;
-    background-color: aqua;
+    width: 50%;
+    margin-top: 15vw;
+    /* background-color: aqua; */
 }
 
 .brandLeftbox_3 img {
-    width: 45vw;
+    width: 47vw;
+}
+
+.brandRightbox_3 {
+    width: 45%;
+    background-color: #838181;
+    margin-top: 15vw;
+}
+
+.BR3_inbox {
+    width: 100%;
+    height: 45%;
+    background-color: rgb(83, 83, 211);
+}
+
+.BR3_inTxt div {
+    display: flex;
+    justify-content: space-between;
 }
