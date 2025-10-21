@@ -6,12 +6,16 @@
     font-weight: 100;
     letter-spacing: -0.1rem;
 }
+ul {
+    list-style: none;
+}
 
 html,
 body {
     height: 100%;
     margin: 0;
     background-color: #f5f3ee;
+    list-style: none;
 }
 
 /* 섹션1 */
@@ -113,6 +117,10 @@ body {
     text-align: left;
     padding-top: 175px;
 }
+.brandLeftbox_2 h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: lighter;
+}
 
 .brandRightbox_2 {
     width: 50%;
@@ -155,8 +163,12 @@ body {
 
 .brandRightbox_3 {
     width: 45%;
-    background-color: #838181;
+    height: 44vw;
+    /* background-color: #838181; */
     margin-top: 15vw;
+    display: flex;
+    align-items: center;
+    justify-items: center;
 }
 
 .BR3_inbox {
@@ -165,7 +177,68 @@ body {
     background-color: rgb(83, 83, 211);
 }
 
-.BR3_inTxt div {
+.front {
     display: flex;
-    justify-content: space-between;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 40px;
+}
+
+.brandRightbox_3 li {
+    width: 40.5vw;
+    height: 205px;
+    /* background-color: antiquewhite; */
+    border-top: 1px solid #ccc;
+}
+
+.front > .tit1 {
+    width: 100%;
+    height: 120px;
+    /* background-color: palegreen; */
+}
+
+.front > .tit2 {
+    width: 100%;
+    height: 120px;
+    font-size: 50px;
+    /* background-color: pink; */
+    text-align: right;
+}
+
+.hidden > .tit3 {
+    font-size: 20px;
+}
+
+.hidden .txt {
+    color: #838181;
+}
+
+/* 섹션4 */
+#brand_4 {
+    width: 100%;
+    height: 100vh;
+    margin-top: 15%;
+    display: flex;
+}
+
+.brandLeftbox_4 {
+    width: 50%;
+    height: 800px;
+    background-color: lightgrey;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    text-align: left;
+}
+.brandLeftbox_4 h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: lighter;
+}
+
+.brandRightbox_4 {
+    width: 50%;
+    height: 800px;
+    background-color: lightcoral;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
