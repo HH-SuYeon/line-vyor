@@ -30,16 +30,15 @@
     <script>
       $(document).ready(function () {
         $("#header").load("/components/header.html", function () {
-          // 1. jQuery로 header.js 불러오기
-          $.getScript("/js/header.js")
-            .done(function () {
-              //    console.log("header.js loaded!");
-              console.log("header.js loaded!");
-              initHeader();
-            })
-            .fail(function (jqxhr, settings, exception) {
-              console.error("header.js load failed", exception);
-            });
+         // 1. jQuery로 header.js 불러오기
+          // $.getScript("/js/header.js")
+          //   .done(function () {
+          //       console.log("header.js loaded!");
+          //     initHeader();
+          //   })
+          //   .fail(function (jqxhr, settings, exception) {
+          //     console.error("header.js load failed", exception);
+          //   });
         });
         $("#footer").load("/components/footer.html");
       });
