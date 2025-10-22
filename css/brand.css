@@ -37,7 +37,7 @@ body {
 
 .brandText {
     position: absolute;
-    bottom: 10vh;
+    bottom: 15vh;
     left: 5vw;
     z-index: 1;
     /* background-color: darkgoldenrod; */
@@ -60,7 +60,7 @@ body {
 .brandText p {
     color: #fff;
     font-size: 20px;
-    margin-top: -80px;
+    margin-top: -10px;
 }
 
 /* 섹션2 */
@@ -214,16 +214,23 @@ body {
 
 /* 섹션4 */
 #brand_4 {
+    position: relative;
     width: 100%;
     height: 100vh;
-    margin-top: 15%;
+    /* overflow: hidden; */
+    /* background-color: antiquewhite; */
     display: flex;
+    flex-wrap: wrap;
+    /* align-content: flex-start;  */
+    gap: 0;
+    justify-content: center;
+    margin-top: 20vw;
 }
 
 .brandLeftbox_4 {
-    width: 50%;
+    width: 40%;
     height: 800px;
-    background-color: lightgrey;
+    /* background-color: lightgrey; */
     flex-direction: column;
     display: flex;
     justify-content: center;
@@ -237,8 +244,168 @@ body {
 .brandRightbox_4 {
     width: 50%;
     height: 800px;
-    background-color: lightcoral;
+    /* background-color: lightcoral; */
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
+}
+
+.brandRightbox_4 > div img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.brand4_Text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    text-align: center;
+    color: #fff;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: lighter;
+    /* background-color: aqua; */
+    width: 43vw;
+    height: auto;
+    font-size: 36px;
+}
+
+/* 섹션5 */
+
+#brand_5 {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+
+.BR5_inbox {
+    /* background-color: pink; */
+    width: 90%;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-bottom: 1px solid #ccc;
+    font-size: 22px;
+}
+
+.BR5_inbox2 {
+    /* background-color: olive; */
+    width: 90%;
+    height: 200px;
+    display: flex;
+    /* flex-direction: column; */
+    border-bottom: 1px solid #ccc;
+
+    justify-content: left;
+    align-items: center;
+    gap: 200px;
+}
+
+.BR5_Ininbox1 {
+    width: 200px;
+    height: 150px;
+    /* background-color: antiquewhite; */
+    font-size: 18px;
+}
+
+.BR5_Ininbox2 {
+    width: 200px;
+    height: 150px;
+    /* background-color: antiquewhite; */
+    font-size: 18px;
+    color: #838181;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.BR5_inbox3 {
+    /* background-color: orange; */
+    width: 90%;
+    height: 280px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 200px;
+}
+
+.BR5_imgBox {
+    width: 200px;
+    height: auto;
+    /* background-color: antiquewhite; */
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.BR5_imgBox > .BR5_imgtxt {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    /* background-color: red; */
+    position: absolute;
+    top: 24vw;
+    left: 8vw;
+    color: #fff;
+}
+
+.BR5_Ininbox3 {
+    width: 200px;
+    height: 210px;
+    /* background-color: antiquewhite; */
+    font-size: 18px;
+    color: #838181;
+    /* display: flex;
+    align-items: center;
+    justify-content: flex-start; */
+}
+
+.BR5_Ininbox4 {
+    width: 880px;
+    height: 210px;
+    /* background-color: antiquewhite; */
+    font-size: 17px;
+    color: #838181;
+    /* display: flex;
+    align-items: center;
+    justify-content: flex-start; */
+}
+
+.BR5_inbox4 {
+    /* background-color: brown; */
+    width: 90%;
+    height: 280px;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 200px;
+}
+
+.BR5_imgBox {
+    width: 200px;
+    height: auto;
+    /* background-color: antiquewhite; */
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+
+.BR5_imgBox > .BR5_imgtxt2 {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    /* background-color: red; */
+    position: absolute;
+    top: 38vw;
+    left: 8vw;
+    color: #fff;
 }
