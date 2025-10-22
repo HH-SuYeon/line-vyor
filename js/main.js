@@ -6,15 +6,15 @@ $(document).ready(function () {
   let currentPage = "home"; // 기본 페이지 이름
 
   // 공통 헤더 로드
-  header.load("/components/header.html", function() {
-    $.getScript("/js/header_gpt2.js")
-      .done(function() {
-        console.log("header.js loaded!");
-        if(typeof initHeader === "function") initHeader();
-      });
-  });
+  // header.load("/components/header.html", function() {
+  //   $.getScript("/js/header.js")
+  //     .done(function() {
+  //       console.log("header.js loaded!");
+  //       if(typeof initHeader === "function") initHeader();
+  //     });
+  // });
 
-  loadPage("home");
+  // loadPage("home");
 
   // ========== [2] 페이지 로드 함수 ==========
   function loadPage(pageName) {
@@ -31,15 +31,6 @@ $(document).ready(function () {
   function updateHeader(pageName) {
     const navIcon = header.find(".nav_icon");
     const gnb = header.find(".gnb");
-    const url = `pages/${pageName}.html`;
-    console.log(url);
-    // 메인 페이드아웃 → 내용 교체 → 페이드인
-    //     main.fadeOut(200, function () {
-    //       main.load(url, function (response, status) {
-    //         console.log(status);
-    //         if (status === "success") {
-    //           currentPage = pageName;
-    //           console.log(`✅ ${pageName}.html 로드 완료`); 
 
     if (pageName === "sitemap") {
       footer.hide();
@@ -131,14 +122,8 @@ $(document).ready(function () {
       });
     }
   }
-  
-  
-  //     if (page === "home") {  
-  //       $.getScript("js/home.js");
-  //        loadJsonData("json/products.json", "#home-list");
-  //    }
 
   // ========== [7] 첫 페이지 로드 ==========
-  //   const startPage = location.hash.replace("#", "") || "home";
-  //   loadPage(startPage);
+    const startPage = location.hash.replace("#", "") || "home";
+    loadPage(startPage);
 });

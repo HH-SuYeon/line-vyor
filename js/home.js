@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ================= Scroll Indicator + Arrows + Header Control =================
 window.addEventListener("scroll", () => {
-  const home_header = document.getElementById("header");
+  // const home_header = document.getElementById("header");
   const home_scrollIndicator = document.getElementById("scrollIndicator"); //오른쪽 scroll표시부분
   const home_arrows = document.querySelector(".arrows");
   const home_hero = document.getElementById("hero"); //메인영상구간
@@ -52,11 +52,11 @@ window.addEventListener("scroll", () => {
   }
 
   // 스크롤 시 .dark_header 클래스 적용
-  if (window.scrollY > 150) {
-    home_header.classList.add("dark_header");
-  } else {
-    home_header.classList.remove("dark_header");
-  }
+//   if (window.scrollY > 150) {
+//     home_header.classList.add("dark_header");
+//   } else {
+//     home_header.classList.remove("dark_header");
+//   }
 });
 //getBoundingClientRect()로 각 섹션의 위치를 계산한 뒤,
 //hero의 top/bottom 값으로 “화면 안에 있는지”를 확인하고,
