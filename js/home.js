@@ -64,3 +64,17 @@ window.addEventListener("scroll", () => {
 //hero가 보이고 intro가 아직 안 올라왔을 때는
 //메인 영상 영역으로 판단해서 SCROLL 표시와 화살표를 보여주고,
 //그 이후엔 숨기기.
+
+// ================= PRODUCT GALLERY HOVER SCROLL =================
+const gallery = document.querySelector(".product-gallery");
+let scrollInterval;
+
+gallery.addEventListener("mouseenter", () => {
+  scrollInterval = setInterval(() => {
+    gallery.scrollLeft += 1; // 오른쪽으로 천천히 이동
+  }, 15);
+});
+
+gallery.addEventListener("mouseleave", () => {
+  clearInterval(scrollInterval);
+});
