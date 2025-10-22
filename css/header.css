@@ -17,9 +17,6 @@ header {
    color: #111 !important;
    transition: color 0.3s ease;
 }
-/* .dark_inner li a:hover {
-   color: #111;
-} */
 .dark_header .nav_icon > div {
    background-color: #111;
 }
@@ -41,15 +38,13 @@ nav .inner li a {font-weight: 500;color: #f5f3ee;font-size: 1.1rem;padding: 5px;
 
 /* -- Sub menu -- */
 .submenuBox {
-/* display: none !important; */
    position: absolute;
    left:0;
-   /* top: 110px; */
    top: 100%;
    width: 100vw;
    height: 0;
    overflow: hidden;
-   background-color: #EEEAE2;
+   background-color: #eeeae2;
    transition:height 0.3s ease;
    z-index: 9;
 }
@@ -63,7 +58,6 @@ nav .inner li a {font-weight: 500;color: #f5f3ee;font-size: 1.1rem;padding: 5px;
    position: absolute;
    top: 0;
    left: 0;
-   /* left: 50%;*/
    transform: translateX(-50%); 
    transition: all 0.3s ease;
 }
@@ -101,7 +95,16 @@ nav .inner li a {font-weight: 500;color: #f5f3ee;font-size: 1.1rem;padding: 5px;
 .nav_icon.on .line2 {opacity: 0;}
 .nav_icon.on .line3 {transform: rotate(-45deg) translateY(-15.5px);background-color: #111;}
 
-header.hide_header .logo img {
+header.hide_header {
+   background-color: transparent;
+}
+header.hide_header #navWrap .logo,
+header.hide_header .nav_icon {
+   opacity: 1;
+   pointer-events: "auto";
+   z-index: 2000;
+}
+header.hide_header #navWrap .logo img {
    content: url("/img/etc/logo/logo2.png");
    transition: all 0.3s;
 }
@@ -109,7 +112,4 @@ header.hide_header .logo img {
    /* display: none; */
    opacity: 0;
    pointer-events: none;
-   user-select: none;
-   transform: translateY(-10px);
-   transition: all 0.3s ease;
 } 
