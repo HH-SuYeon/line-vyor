@@ -1,31 +1,22 @@
+window.currentPage = "home"; // 기본 페이지 이름
 $(document).ready(function () {
-  // ========== [1] 기본 세팅 ==========
+  // 기본 세팅 
   const content = $("#content");
   const header = $("#header");
   const footer = $("#footer");
-  let currentPage = "home"; // 기본 페이지 이름
 
-  // 공통 헤더 로드
-  // header.load("/components/header.html", function() {
-  //   $.getScript("/js/header.js")
-  //     .done(function() {
-  //       console.log("header.js loaded!");
-  //       if(typeof initHeader === "function") initHeader();
-  //     });
-  // });
-
-  // loadPage("home");
-
-  // ========== [2] 페이지 로드 함수 ==========
+  // 페이지 로드 함수
   function loadPage(pageName) {
-    // content.addClass("transition-out");
+    window.currentPage = pageName;
     setTimeout(() => {
       content.load(`/pages/${pageName}.html`, function() {
-        // content.removeClass("transition-out");
         updateHeader(pageName);
       });
     }, 300);
   }
+
+  // 첫 페이지 로드
+  loadPage(window.currentPage);
 
   // 페이지별 헤더 / 푸터 처리
   function updateHeader(pageName) {
@@ -45,11 +36,11 @@ $(document).ready(function () {
     }
   }
 
-  // ========== [3] 내비게이션 클릭 처리 ==========
+  // 내비게이션 클릭 처리 
   $(document).on("click", "a[data-page]", function (e) {
     e.preventDefault();
     const page = $(this).data("page");
-    if (page && page !== currentPage) {
+    if (page && page !== window.currentPage) {
       loadPage(page);
       history.pushState({ page }, "", `#${page}`); // SPA용 주소 표시
     }
@@ -122,8 +113,4 @@ $(document).ready(function () {
       });
     }
   }
-
-  // ========== [7] 첫 페이지 로드 ==========
-    const startPage = location.hash.replace("#", "") || "home";
-    loadPage(startPage);
 });

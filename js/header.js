@@ -5,7 +5,7 @@ function initHeader() {
    const sub = $(".submenuBox");
 
    function showSub(pid, li) {
-      if(currentPage === "sitemap") return;
+      if(window.currentPage === "sitemap") return;
 
       const panel = $("#" + pid);
       const navWrap = $("#navWrap");
@@ -88,47 +88,24 @@ function initHeader() {
       if (!isOpen) {
       // sitemap 모드로 전환
       $(this).addClass("on");
-      currentPage = "sitemap";
+      window.currentPage = "sitemap";
 
-      // 헤더 스타일 업데이트
-      header.addClass("dark_header");
-      gnb.addClass("hide_inner").css({
-        opacity: 0,
-        pointerEvents: "none", // 완전 비활성화
-        userSelect: "none"
-      });
+      // GNB + 패널만 숨기고 로고/버튼은 항상 표시
+      // header.addClass("hide_header");
+      gnb.css({ opacity: 0, pointerEvents: "none" });
       sub.hide();
-
-      // 실제 페이지 전환 (SPA or 일반 이동)
-      if (window.isSPA) {
-        $(document).trigger("navigateTo", ["sitemap"]);
-      } else {
-        window.location.href = "/pages/sitemap.html";
-      }
+      $(document).trigger("navigateTo", ["sitemap"]);
 
     } else {
       // 홈 또는 이전 페이지로 복귀
       $(this).removeClass("on");
-      currentPage = "home";
+      window.currentPage = "home";
 
-      gnb.removeClass("hide_inner").css({
-        opacity: "",
-        pointerEvents: "",
-        userSelect: ""
-      });
-      updateHeaderState();
+      gnb.css({ opacity: 1, pointerEvents: "auto" });
+      sub.hide();
+      $(document).trigger("navigateTo", ["home"]);
+      // updateHeaderState();
 
-      // 페이지 복귀 (SPA or 일반)
-      if (window.isSPA) {
-        $(document).trigger("navigateTo", ["home"]);
-      } else {
-        // “이전 페이지”가 있으면 돌아가고, 없으면 home으로 이동
-        if (document.referrer) {
-          window.history.back();
-        } else {
-          window.location.href = "index.html";
-        }
-      }
     }
   });
 }
