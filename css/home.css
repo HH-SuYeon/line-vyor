@@ -10,18 +10,21 @@ body {
   color: #111;
   background: #fff;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 /* ================= HERO SECTION ================= */
 #hero {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  z-index: 0;
 }
 #hero video {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -31,6 +34,7 @@ body {
 /* ================= INTRO SECTION ================= */
 #intro {
   position: relative;
+  margin-top: 100vh;
   width: 100%;
   min-height: 80vh;
   display: flex;
@@ -38,6 +42,7 @@ body {
   justify-content: center;
   background: #f7f6f3;
   overflow: hidden;
+  z-index: 10;
 }
 
 .intro-inner {
@@ -48,7 +53,7 @@ body {
   max-width: 1400px;
   gap: 60px;
   position: relative;
-  z-index: 3;
+  z-index: 15;
 }
 
 .intro-left h2,
@@ -106,25 +111,18 @@ body {
 .bg-shape {
   position: absolute;
   border-radius: 50%;
-  z-index: 1;
+  z-index: 0;
+  pointer-events: none; /*클릭방지*/
 }
-
-/* 왼쪽 큰 원형 라인 */
-.shape-left {
-  width: 1050px;
-  height: 1100px;
-  top: -110px;
-  left: -80px;
-  border: 1px solid rgba(0, 0, 0, 0.18);
-}
-
-/* 오른쪽 사선 + 세로선 */
+/* 오른쪽 박스 사선 + 세로선 */
 .shape-right {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   right: 0;
+  overflow: visible;
+  z-index: 0;
 }
 
 /* 오른쪽 안에 선 2개: 세로선 + 사선 */
@@ -132,78 +130,177 @@ body {
 .shape-right::after {
   content: "";
   position: absolute;
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.18);
 }
-
 /* 세로선 */
 .shape-right::before {
   width: 1px;
   height: 100%;
-  right: 350px; /* 화면 안쪽으로 위치 */
+  right: 140px;
   top: 0;
 }
 
 /* 사선 */
 .shape-right::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 300%;
+  right: -100px;
+  top: -150px;
+  transform: rotate(-45deg); /* 대각선 */
+  background: rgba(0, 0, 0, 0.18);
+  transform-origin: top right;
+  z-index: 0;
+}
+/* 왼쪽 큰 원형 라인 */
+.shape-left {
+  width: 1050px;
+  height: 1100px;
+  top: -110px;
+  left: -80px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  z-index: 0;
+}
+.shape-left::before {
+  content: "";
+  position: absolute;
   width: 1px;
   height: 100%;
-  right: 0;
+  left: 1050px; /* 원에서 살짝 떨어진 위치 */
   top: 0;
-  transform: rotate(-45deg); /* 대각선 */
-  transform-origin: top right;
+  background: rgba(0, 0, 0, 0.08);
 }
 
-@keyframes fadeFloat {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0.3;
-  }
-  50% {
-    transform: translateY(-20px) scale(1.03);
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(0) scale(1);
-    opacity: 0.3;
-  }
-}
-
-/* ================= PRODUCT PREVIEW SECTION ================= */
-#preview {
-  position: relative;
-  height: 100vh;
+/* ================= PRODUCT SECTION ================= */
+#product {
+  width: 100%;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  text-align: center;
-  color: #fff;
-  overflow: hidden;
+  background: #fff;
+  padding: 120px 0;
 }
-#preview video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: 0;
+
+.product-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 85%;
+  max-width: 1400px;
+  gap: 80px;
 }
-#preview .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1;
+
+/* 왼쪽 텍스트 */
+.product-text {
+  flex: 0 0 35%;
 }
-#preview .preview-text {
-  position: relative;
-  z-index: 2;
+
+.product-text .subtitle {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: #555;
 }
-#preview h2 {
+
+.product-text h2 {
+  font-family: "Cormorant", serif;
   font-size: 2.8rem;
-  margin-bottom: 12px;
+  font-weight: 500;
+  margin: 20px 0;
 }
-#preview p {
+
+.product-text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+/* 오른쪽 제품 영역 */
+.product-gallery {
+  flex: 0 0 60%;
+  display: flex;
+  gap: 30px;
+  overflow-x: auto; /* 스크롤 활성화 */
+  scroll-behavior: smooth;
+  padding-bottom: 10px;
+}
+
+.product-gallery::-webkit-scrollbar {
+  height: 6px;
+}
+.product-gallery::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+/* 카드 */
+.card {
+  background: #f7f6f3;
+  padding: 20px;
+  min-width: 320px;
+  text-align: center;
+  transition: transform 0.4s ease;
+}
+
+.card img {
+  width: 100%;
+  height: 380px;
+  object-fit: contain;
+}
+
+.card h4 {
   font-size: 1.1rem;
-  margin-bottom: 25px;
+  margin: 16px 0 6px;
+}
+
+.card p {
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.card .price {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* hover 시 자연스럽게 확대 */
+.card:hover {
+  transform: translateY(-6px);
+}
+
+/* 왼쪽 view-more 버튼 */
+.view-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: #111;
+  text-decoration: none;
+  border-bottom: 1px solid #111;
+  padding-bottom: 4px;
+  transition: all 0.3s ease;
+}
+.view-more span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #111;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+.view-more:hover {
+  color: #888;
+  border-color: #888;
+}
+.view-more:hover span {
+  background: #111;
+  color: #fff;
 }
 
 /* ================= R&D SECTION ================= */
@@ -338,6 +435,121 @@ body {
   transform: translateY(40px);
   transition: all 1s ease;
 }
+.fade-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* ================= R&D SECTION ================= */
+#rnd {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f9f8f4;
+  overflow: hidden;
+}
+
+.rnd-inner {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 85%;
+  max-width: 1400px;
+}
+
+/* 왼쪽 영상 */
+.rnd-left {
+  flex: 1;
+  overflow: hidden;
+}
+
+.rnd-left video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 오른쪽 텍스트 */
+.rnd-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 80px;
+  color: #111;
+}
+
+.rnd-right .subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.rnd-right h2 {
+  font-family: "Cormorant", serif;
+  font-size: 2.8rem;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.rnd-right h4 {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.rnd-right p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.rnd-right .view-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: #111;
+  text-decoration: none;
+  border-bottom: 1px solid #111;
+  padding-bottom: 4px;
+  transition: all 0.3s ease;
+}
+
+.rnd-right .view-more span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #111;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.rnd-right .view-more:hover {
+  color: #888;
+  border-color: #888;
+}
+
+.rnd-right .view-more:hover span {
+  background: #111;
+  color: #fff;
+}
+
+/* fade-in (home.js에 Observer 존재하므로 자동 적용) */
+.fade-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
 .fade-item.active {
   opacity: 1;
   transform: translateY(0);
