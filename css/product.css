@@ -235,7 +235,7 @@ body{width: 100vw; height: 100vh; overflow-x: hidden; background-color: #F5F3EE;
 
 /* Products_body_lotion */
 .product_body_lotion{
-    background-color: aqua;
+    /* background-color: aqua; */
     width: 90%;
     height: 150%;
     margin: 0 auto;
@@ -243,18 +243,18 @@ body{width: 100vw; height: 100vh; overflow-x: hidden; background-color: #F5F3EE;
     align-items: center ;
 }
     .product_body_lotion_gridBox{
-        background-color: violet;
+        /* background-color: violet; */
         width: 100%;
         display: grid;
         grid-template-columns:50% auto;;
         gap: 150px;
     }
         .body_lotion_grid{
-            border: 2px solid #333;
+            /* border: 2px solid #333; */
         }
     
     .body_lotion_imgbox{
-        background-color: turquoise;
+        /* background-color: turquoise; */
         width: 100%;
         height: 100%;
         position: relative;
@@ -269,3 +269,81 @@ body{width: 100vw; height: 100vh; overflow-x: hidden; background-color: #F5F3EE;
     object-fit: contain; /* 비율 유지하면서 꽉 채우기 */
     display: block;
 }
+
+    .lotion_gridT1{
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 15px;
+    }
+        .lotion_gridT1 p{
+            font-size: 13px;
+            color: #333;
+        }
+        .lotion_gridT1 div{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 1px solid #111;
+        }
+    
+    .lotion_gridT2{
+        margin-bottom: 15px;
+        color: #666;
+    }
+        .gridT2_bar{
+            display: inline-block;
+            width: 1px;
+            height: 12px;
+            margin: 0 10px;
+            background-color: #888;
+        }
+        
+
+    .lotion_gridT3{
+        display: flex;
+        align-items: end;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+        .lotion_gridT3 h1{
+            font-size: 35px;
+            font-weight: 500;
+        }
+        .lotion_gridT3 p{
+            font-size: 17px;
+            font-weight: 500;
+            padding-bottom: 4px;
+            color: #666;
+        }
+    
+    .lotion_gridT4{
+        margin-bottom: 30px;
+    }
+        .lotion_gridT4 h1{
+            font-weight: 500;
+        }
+
+    .lotion_gridT5 div{
+        width: 100%;
+        height: 80px;
+        display: flex;
+        align-items: center;
+        font-size: 17px;
+        font-weight: 500;
+        border-bottom: 1px solid #bbb;
+    }
+        .lotion_gridT5 div:nth-child(1){
+            border-bottom: 2px solid #111;
+        }
+        .lotion_gridT5 a{
+            margin-top: 40px;
+            width: 100%;
+            height: 75px;
+            background-color: #333;
+            display: flex;              /* div처럼 flex 정렬 가능 */
+            justify-content: center;    /* 텍스트 가운데 정렬 */
+            align-items: center;
+            color: white;
+            font-size: 20px;
+        }

@@ -60,7 +60,7 @@ body {
 .brandText p {
     color: #fff;
     font-size: 20px;
-    margin-top: -10px;
+    margin-top: -1.5vw;
 }
 
 /* 섹션2 */
@@ -326,6 +326,7 @@ body {
     justify-content: flex-start;
 }
 
+/* 레몬,장미,나뭇가지 브랜드 하단 이미지 통합*/
 .BR5_inbox3 {
     /* background-color: orange; */
     width: 90%;
@@ -379,17 +380,6 @@ body {
     justify-content: flex-start; */
 }
 
-.BR5_inbox4 {
-    /* background-color: brown; */
-    width: 90%;
-    height: 280px;
-    border-bottom: 1px solid #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 200px;
-}
-
 .BR5_imgBox {
     width: 200px;
     height: auto;
@@ -408,4 +398,46 @@ body {
     top: 38vw;
     left: 8vw;
     color: #fff;
+}
+
+.BR5_imgBox > .BR5_imgtxt3 {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    /* background-color: red; */
+    position: absolute;
+    left: 8vw;
+    color: #fff;
+}
+
+/* 섹션6 */
+#brand_6 {
+    width: 100%;
+    height: 100vh;
+    /* background-color: aquamarine; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 이미지 스크롤 기능  */
+.BR6_imgBox {
+    background-image: url("../img/brand/m11_btmVisual_bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    width: 90%;
+    height: 600px;
+}
+
+.BR6_scr_log {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 23%;
+    height: auto;
+    /* background-color: antiquewhite; */
 }
