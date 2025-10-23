@@ -1,6 +1,6 @@
 window.currentPage = "home"; // 기본 페이지 이름
 $(document).ready(function () {
-  // 기본 세팅 
+  // 기본 세팅
   const content = $("#content");
   const header = $("#header");
   const footer = $("#footer");
@@ -9,8 +9,9 @@ $(document).ready(function () {
   function loadPage(pageName) {
     window.currentPage = pageName;
     setTimeout(() => {
-      content.load(`/pages/${pageName}.html`, function() {
+      content.load(`/pages/${pageName}.html`, function () {
         updateHeader(pageName);
+        $(document).trigger("loadPageComplete", [pageName]);
       });
     }, 300);
   }
@@ -36,7 +37,7 @@ $(document).ready(function () {
     }
   }
 
-  // 내비게이션 클릭 처리 
+  // 내비게이션 클릭 처리
   $(document).on("click", "a[data-page]", function (e) {
     e.preventDefault();
     const page = $(this).data("page");
@@ -47,11 +48,11 @@ $(document).ready(function () {
   });
 
   // header.js에서 보낸 커스텀 이벤트 받기
-  $(document).on("navigateTo", function(e, pageName) {
+  $(document).on("navigateTo", function (e, pageName) {
     loadPage(pageName);
-  })
+  });
 
-  // 뒤로가기 / 앞으로가기 처리
+  // 뒤로가기 / 앞으로 가기 처리
   window.onpopstate = function (event) {
     if (event.state && event.state.page) {
       loadPage(event.state.page);
@@ -103,9 +104,9 @@ $(document).ready(function () {
   function initPageFeatures(page) {
     if (page === "home") {
       loadJsonData("json/products.json", "#home-list");
-    }else if (page === "product") {
+    } else if (page === "product") {
       loadJsonData("json/products.json", "#gallery");
-    }else if (page === "brand") {
+    } else if (page === "brand") {
       $(".fade-item").each(function (i) {
         $(this)
           .delay(150 * i)
