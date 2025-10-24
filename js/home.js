@@ -1,12 +1,12 @@
 $(document).on("loadPageComplete", function (e, pageName) {
-  if (pageName !== "home") return; // home 페이지 아닐 땐 실행 안 함
+  if (pageName !== "home") return;
 
   const home_hero = document.getElementById("home_hero");
   const home_scrollIndicator = document.getElementById("home_scrollIndicator");
   const home_arrows = document.querySelector(".home_arrows");
   const home_intro = document.getElementById("home_intro");
 
-  //  IntersectionObserver (페이드인 효과)
+  // IntersectionObserver (페이드인 효과)
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -54,5 +54,19 @@ $(document).on("loadPageComplete", function (e, pageName) {
     });
   }
 
-  console.log("home.js initialized for HOME page");
+  // ✅ Contact 텍스트 효과
+  const fadeItems = document.querySelectorAll(".fade-item");
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        } else {
+          entry.target.classList.remove("show");
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+  fadeItems.forEach((item) => io.observe(item));
 });
