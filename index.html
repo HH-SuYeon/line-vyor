@@ -11,16 +11,10 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/home.css" />
-    <link rel="stylesheet" href="/css/rnd.css" />
-    <link rel="stylesheet" href="/css/sitemap.css" />
-    <link rel="stylesheet" href="/css/brand.css" />
-    <link rel="stylesheet" href="/css/product.css" />
-    <link rel="stylesheet" href="/css/contact.css" />
-    <link rel="stylesheet" href="/css/press.css" />
-    <link rel="stylesheet" href="/css/header.css" />
-    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <!-- <link rel="stylesheet" href="./css/home.css" /> -->
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
 
     <title>VYOR</title>
   </head>
@@ -30,25 +24,8 @@
     <footer id="footer"></footer>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/home.js"></script>
-    
-    <script>
-    $(document).ready(function() {
-        $("#header").load("/components/header.html", function() {
-        // 1. jQuery로 header.js 불러오기
-        $.getScript("/js/header.js")
-          .done(function(){ 
-          //    console.log("header.js loaded!");
-              console.log("header.js loaded!");
-              initHeader();
-          })
-          .fail(function (jqxhr, settings, exception) {
-            console.error("header.js load failed", exception);
-          });
-      });
-      $("#footer").load("/components/footer.html");
-    })
-  </script>
+    <script src="./js/main.js"></script>
+    <script src="./js/home.js"></script>
+
   </body>
 </html>

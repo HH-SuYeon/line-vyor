@@ -4,7 +4,6 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <script src="/js/rnd.js" defer></script>
    <title>R&D</title>
 </head>
 <body>
@@ -112,39 +111,5 @@
          </div>
       </div>
    </section>
-      
-   <!-- 2. fetch로 불러오기 (script 생성) -->
-   <!-- <script>
-      document.addEventListener("DOMContentLoaded", function() {
-      // Header 불러오기
-      fetch("/components/header.html")
-         .then(response => response.text())
-         .then(html => {
-            document.getElementById("header").innerHTML = html;
-
-            // header.js 불러오기
-            const script = document.createElement("script");
-            script.src = "/js/header.js";
-            script.onload = function() {
-            console.log("header.js loaded!");
-            initHeader(); // header 초기화 함수 실행
-            };
-            script.onerror = function() {
-            console.error("header.js load failed");
-            };
-            document.body.appendChild(script);
-         })
-         .catch(err => console.error("header.html load failed", err));
-
-      // Footer 불러오기
-      fetch("/components/footer.html")
-         .then(response => response.text())
-         .then(html => {
-            document.getElementById("footer").innerHTML = html;
-         })
-         .catch(err => console.error("footer.html load failed", err));
-      });
-   </script> -->
-   
 </body>
 </html>

@@ -3,7 +3,12 @@ function initHeader() {
    const header = $("#header");
    const gnb = $("#gnb");
    const sub = $(".submenuBox");
+   const navIcon = $(".nav_icon");
 
+   // currentPage는 전역으로 관리 (app.js에서 설정)
+   window.currentPage = window.currentPage || "home";
+
+   // 서브메뉴 나타내기
    function showSub(pid, li) {
       if(window.currentPage === "sitemap") return;
 
@@ -48,10 +53,10 @@ function initHeader() {
    updateHeaderState();
 
    // 스크롤 시 색상 변경
-   $(window).on("scroll", function() {updateHeaderState();});
+   $(window).off("scroll.header").on("scroll", function() {updateHeaderState();});
 
    // gnb 마우스 호버
-   gnb.on("mouseenter", "li", function() {
+   gnb.off("mouseenter").on("mouseenter", "li", function() {
       if (currentPage === "sitemap") return; // sitemap에서는 작동 X
 
       header.addClass("dark_header");
@@ -70,42 +75,27 @@ function initHeader() {
       }
    }
    // gnb 마우스 leave
-   header.on("mouseleave", function() {
+   header.off("mouseleave").on("mouseleave", function() {
       hideSub();
       resetHeaderChange()
    })
 
    // 서브메뉴에서 마우스 나가면 닫기
-   sub.on("mouseleave", function() {
+   sub.off("mouseleave").on("mouseleave", function() {
       hideSub();
       resetHeaderChange()
    });
 
-    // 햄버거 메뉴 클릭 (사이트맵 열기/닫기)
-   header.find(".nav_icon").off("click").on("click", function() {
-      const isOpen = $(this).hasClass("on");
-
-      if (!isOpen) {
-      // sitemap 모드로 전환
-      $(this).addClass("on");
-      window.currentPage = "sitemap";
-
-      // GNB + 패널만 숨기고 로고/버튼은 항상 표시
-      // header.addClass("hide_header");
-      gnb.css({ opacity: 0, pointerEvents: "none" });
-      sub.hide();
-      $(document).trigger("navigateTo", ["sitemap"]);
-
+   // 햄버거 버튼은 시각적 state만 처리
+  navIcon.off("click.header").on("click.header", function () {
+    $(this).toggleClass("on");
+    const isActive = $(this).hasClass("on");
+    if (isActive) {
+      // sitemap 열기 (SPA라면 해시 변경을 트리거)
+      location.hash = "sitemap";
     } else {
-      // 홈 또는 이전 페이지로 복귀
-      $(this).removeClass("on");
-      window.currentPage = "home";
-
-      gnb.css({ opacity: 1, pointerEvents: "auto" });
-      sub.hide();
-      $(document).trigger("navigateTo", ["home"]);
-      // updateHeaderState();
-
+      // 닫기 → home으로
+      location.hash = "home";
     }
   });
 }
