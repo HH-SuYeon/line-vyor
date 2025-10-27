@@ -6,6 +6,8 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="../css/product.css">
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+
 
 </head>
 <body>
@@ -22,22 +24,43 @@
 
 <!-- 메뉴 -->
     <div class="product_menus">
-        <div>전체보기</div>
-        <div class="product_menus_bold">바디라인</div>
-        <div>헤어라인</div>
-        <div>페이셜라인</div>
+        <a href="product.html">전체보기</a><span class="product_menusBar"></span>
+        <a href="product_body.html" class="product_menus_bold">바디라인</a><span class="product_menusBar"></span>
+        <a href="product_hair.html">헤어라인</a><span class="product_menusBar"></span>
+        <a href="product_facial.html">페이셜라인</a>
     </div>
 
 <!-- 1 page -->
-    <div class="product_body_lotion">
-        <div class="product_body_lotion_gridBox">
-            <div class="body_lotion_grid">
-                <div class="body_lotion_imgbox">
+    <div class="product_detail">
+        <div class="product_detail_gridBox">
+            <div class="product_detail_grid">
+                <div class="product_detail_imgbox">
                     <img src="../img/products/thum_img_body_lotion.jpg" alt="">
                 </div>
             </div>
-            <div class="body_lotion_grid">
-
+            <div class="product_detail_grid">
+                <a href="../pages/product_body.html" class="product_detail_gridT1">
+                    <p>view list</p>
+                    <div><img src="../img/etc/icon/btnMore_arr2.png" alt="arr2"></div>
+                </a>
+                <div class="product_detail_gridT2">
+                    <p>NMN<span class="gridT2_bar"></span>트라넥사믹애씨드<span class="gridT2_bar"></span>시어버터</p>
+                </div>
+                <div class="product_detail_gridT3">
+                    <h1>VYOR 바이오르 바디로션</h1>
+                    <p>500ml</p>
+                </div>
+                <div class="product_detail_gridT4">
+                    <h1>84,000원</h1>
+                </div>
+                <div class="product_detail_gridT5">
+                    <div>특징</div>
+                    <div>NMN이 피부를 활력 있게 가꿔주고 깊은 보습감 제공</div>
+                    <div>트라넥사믹애씨드로 피부톤 개선 및 미백 효과</div>
+                    <div>비건 시어버터로 풍부한 영양감 전달</div>
+                    <div>산뜻하고 빠르게 흡수되는 비건 로션</div>
+                    <a href="../pages/contact.html">제품 문의하기</a>
+                </div>
             </div>
         </div>
     </div>

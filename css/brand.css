@@ -37,7 +37,7 @@ body {
 
 .brandText {
     position: absolute;
-    bottom: 15vh;
+    bottom: 5vh;
     left: 5vw;
     z-index: 1;
     /* background-color: darkgoldenrod; */
@@ -54,13 +54,13 @@ body {
     font-size: 188px;
     font-weight: 300;
     font-family: "Cormorant Garamond", serif;
-    letter-spacing: -0.1rem;
 }
 
 .brandText p {
     color: #fff;
     font-size: 20px;
-    margin-top: -10px;
+    /* margin-top: 55px; */
+    margin-bottom: 100px;
 }
 
 /* 섹션2 */
@@ -102,7 +102,7 @@ body {
 }
 
 .brandRightbox_1 p {
-    color: #838181;
+    color: #666;
     padding-top: 220px;
     font-size: 18px;
 }
@@ -209,7 +209,7 @@ body {
 }
 
 .hidden .txt {
-    color: #838181;
+    color: #666;
 }
 
 /* 섹션4 */
@@ -229,7 +229,7 @@ body {
 
 .brandLeftbox_4 {
     width: 40%;
-    height: 800px;
+    height: 100%;
     /* background-color: lightgrey; */
     flex-direction: column;
     display: flex;
@@ -243,30 +243,38 @@ body {
 
 .brandRightbox_4 {
     width: 50%;
-    height: 800px;
+    height: auto;
     /* background-color: lightcoral; */
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    position: relative;
+}
+
+.brandRightbox_4 > div {
+    position: relative;
+    height: auto;
+    display: flex;
 }
 
 .brandRightbox_4 > div img {
-    max-width: 100%;
-    height: auto;
+    width: 47vw;
+    align-items: center;
+    object-fit: cover;
     display: block;
 }
 
 .brand4_Text {
     position: absolute;
-    top: 20%;
+    top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     color: #fff;
     font-family: "Cormorant Garamond", serif;
     font-weight: lighter;
     /* background-color: aqua; */
-    width: 43vw;
-    height: auto;
+    width: auto;
     font-size: 36px;
 }
 
@@ -303,7 +311,7 @@ body {
     /* flex-direction: column; */
     border-bottom: 1px solid #ccc;
 
-    justify-content: left;
+    justify-content: space-between;
     align-items: center;
     gap: 200px;
 }
@@ -320,12 +328,23 @@ body {
     height: 150px;
     /* background-color: antiquewhite; */
     font-size: 18px;
-    color: #838181;
-    display: flex;
+    color: #666;
+    /* display: flex;
     align-items: center;
+    justify-content: center; */
+}
+/* 빈박스 */
+.BR5_Ininbox00 {
+    width: 880px;
+    height: 210px;
+    /* background-color: antiquewhite; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
 }
 
+/* 레몬,장미,나뭇가지 브랜드 하단 이미지 통합*/
 .BR5_inbox3 {
     /* background-color: orange; */
     width: 90%;
@@ -333,11 +352,11 @@ body {
     border-bottom: 1px solid #ccc;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 200px;
+    justify-content: space-between;
 }
 
 .BR5_imgBox {
+    position: relative;
     width: 200px;
     height: auto;
     /* background-color: antiquewhite; */
@@ -346,15 +365,21 @@ body {
     align-items: center;
 }
 
-.BR5_imgBox > .BR5_imgtxt {
-    width: 100px;
-    height: auto;
-    text-align: center;
-    /* background-color: red; */
+.BR5_imgBox img {
+    width: 100%;
+    display: block;
+}
+
+.BR5_imgtxt,
+.BR5_imgtxt2,
+.BR5_imgtxt3 {
     position: absolute;
-    top: 24vw;
-    left: 8vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     color: #fff;
+    text-align: center;
+    font-size: 18px;
 }
 
 .BR5_Ininbox3 {
@@ -362,7 +387,7 @@ body {
     height: 210px;
     /* background-color: antiquewhite; */
     font-size: 18px;
-    color: #838181;
+    color: #666;
     /* display: flex;
     align-items: center;
     justify-content: flex-start; */
@@ -373,21 +398,11 @@ body {
     height: 210px;
     /* background-color: antiquewhite; */
     font-size: 17px;
-    color: #838181;
-    /* display: flex;
-    align-items: center;
-    justify-content: flex-start; */
-}
-
-.BR5_inbox4 {
-    /* background-color: brown; */
-    width: 90%;
-    height: 280px;
-    border-bottom: 1px solid #ccc;
+    color: #666;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: flex-start;
-    gap: 200px;
 }
 
 .BR5_imgBox {
@@ -399,13 +414,397 @@ body {
     align-items: center;
 }
 
-.BR5_imgBox > .BR5_imgtxt2 {
-    width: 100px;
-    height: auto;
-    text-align: center;
-    /* background-color: red; */
+/* 섹션6 */
+#brand_6 {
+    width: 100%;
+    height: 100vh;
+    /* background-color: aquamarine; */
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+
+/* 이미지 스크롤 기능  */
+.BR6_imgBox {
+    background-image: url("../img/brand/m11_btmVisual_bg.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    width: 90%;
+    height: 700px;
+}
+
+.BR6_scr_log {
     position: absolute;
-    top: 38vw;
-    left: 8vw;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 23%;
+    height: auto;
+    /* background-color: antiquewhite; */
+}
+
+/* -----BI시작 섹션1은 brand와동일 ----- */
+/* 섹션2 */
+#BI_2 {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Xbox {
+    width: 30%;
+    height: 100px;
+    /* background-color: aquamarine; */
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    padding: 30px;
+    padding-left: 150px;
+    font-size: 23px;
+}
+
+.BI2_Leftbox {
+    width: 50%;
+    height: auto;
+    /* background-color: antiquewhite; */
+}
+
+.BI2_Leftbox > img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.BI2_Rightbox {
+    width: 45%;
+    height: auto;
+    /* background-color: pink; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.BI2_Right_inBox1 {
+    width: 90%;
+    height: 300px;
+    /* background-color: aqua; */
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+/* 섹션 2,3 Logo Typeface */
+.BI_fontBox00 > h1 {
+    font-size: 55px;
+    font-weight: 600;
+}
+
+.BrBox {
+    width: 88%;
+    height: 50px;
+    /* background-color: blue; */
+    border-top: 1px solid #ccc;
+}
+
+.BI2_Right_inBox2 {
+    width: 88%;
+    height: 200px;
+    /* background-color: red; */
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.BI_RfontBox {
+    width: 100%;
+    height: auto;
+    /* background-color: aqua; */
+    /* padding: 30px; */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-left: 30px;
+}
+
+.BI_RfontBox > p {
+    align-self: flex-start;
+    margin: 0;
+    font-size: 13px;
+    /* background-color: antiquewhite; */
+    color: #666;
+}
+
+.BI_RfontBox > div {
+    font-size: 100px;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 650;
+    /* color: #000; */
+    /* background-color: antiquewhite; */
+}
+
+.BI2_Right_inBox3 {
+    width: 88%;
+    height: 200px;
+    /* background-color: tan; */
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+/* BI 섹션3 */
+#BI_3 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 160px;
+}
+
+.BI3_Leftbox {
+    width: 40%;
+    height: 100vh;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-left: 100px;
+    justify-content: center;
+}
+
+#BI_3 .BrBox {
+    width: 700px;
+}
+
+.BI3_Left_inBox {
+    width: 700px;
+    height: 350px;
+    /* background-color: red; */
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+
+    flex-direction: column;
+}
+
+.BI_LfontBox {
+    width: 100%;
+    height: auto;
+    /* background-color: aqua; */
+    /* padding: 30px; */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-left: 30px;
+}
+
+.BI_LfontBox > p {
+    align-self: flex-start;
+    margin: 0;
+    font-size: 13px;
+    /* background-color: antiquewhite; */
+    color: #666;
+}
+
+.BI_LfontBox > div {
+    font-size: 110px;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    /* color: #000; */
+    /* background-color: antiquewhite; */
+}
+
+.BI3_Rightbox > img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.BI3_Rightbox {
+    width: 50%;
+    height: 100vh;
+    /* background-color: pink; */
+    position: relative;
+    display: flex;
+    /* justify-content: space-between; */
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* BI 섹션4 */
+
+#BI_4 {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    margin-top: 180px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.BI4Box {
+    width: 90%;
+    height: 200px;
+    /* background-color: antiquewhite; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 120px;
+}
+
+.BI4Box > h2 {
+    font-size: 50px;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+}
+
+.BI4Box2_out {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.BI4Box2,
+.BI4Box3 {
+    width: 45%;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    /* background-color: antiquewhite; */
+    gap: 40px;
+}
+
+.B4_inBox {
+    width: 200px;
+    height: 200px;
+    background-color: #1a1a1a;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* justify-content: center; */
+}
+
+.B4_inBox:first-child {
+    align-items: center;
+    justify-content: center;
+}
+
+.B4_inBox2 {
+    width: 200px;
+    height: 200px;
+    background-color: #f5f3ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.B4_inBox > .B4_txt {
     color: #fff;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 20px;
+}
+
+.B4_inBox > p {
+    color: #666;
+    padding-top: 30px;
+}
+
+.BI4Box3 .B4_txt {
+    color: #333;
+}
+
+.B4_inBox > .B4_txt {
+    padding-top: 0;
+}
+
+.B4_inBox--light {
+    background-color: #f5f3ee;
+}
+
+.BI4Box3 .B4_inBox:first-child {
+    align-items: center;
+    justify-content: center;
+}
+
+/* BI 섹션5 */
+
+#BI_5 {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.B5_outBox {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.B5_imgBox {
+    width: 90%;
+    height: 43%;
+    position: relative;
+    background-color: gold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.B5_imgBox > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.B5_textBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+}
+
+.B5_textBox h2 {
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: 60px;
+    font-family: "Cormorant Garamond", serif;
 }
