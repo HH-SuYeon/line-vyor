@@ -620,6 +620,79 @@ body {
     border-left: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.BI_RfontBox {
+    width: 100%;
+    height: auto;
+    /* background-color: aqua; */
+    /* padding: 30px; */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-left: 30px;
+}
+
+.BI_RfontBox > p {
+    align-self: flex-start;
+    margin: 0;
+    font-size: 13px;
+    /* background-color: antiquewhite; */
+    color: #666;
+}
+
+.BI_RfontBox > div {
+    font-size: 100px;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 650;
+    /* color: #000; */
+    /* background-color: antiquewhite; */
+}
+
+.BI2_Right_inBox3 {
+    width: 88%;
+    height: 200px;
+    /* background-color: tan; */
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+/* BI 섹션3 */
+#BI_3 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: 160px;
+}
+
+.BI3_Leftbox {
+    width: 40%;
+    height: 100vh;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-left: 100px;
+    justify-content: center;
+}
+
+#BI_3 .BrBox {
+    width: 700px;
+}
+
+.BI3_Left_inBox {
+    width: 700px;
+    height: 350px;
+    /* background-color: red; */
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    display: flex;
 
     flex-direction: column;
 }
