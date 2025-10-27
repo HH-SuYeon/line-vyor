@@ -6,7 +6,7 @@
     <title>Document</title>
     
     <link rel="stylesheet" href="../css/product.css">
-    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 </head>
 <body>
 <!-- product_main 공통 -->
@@ -16,16 +16,16 @@
         </video>
         <div class="product_mainTxt">
             <h1>Products</h1>
-            <p>전체보기</p>
+            <p style="font-weight: normal;">전체보기</p>
         </div>
     </div>
 
 <!-- 메뉴 -->
     <div class="product_menus">
-        <div class="product_menus_bold">전체보기</div>
-        <div>바디라인</div>
-        <div>헤어라인</div>
-        <div>페이셜라인</div>
+        <a href="product.html"  class="product_menus_bold">전체보기</a><span class="product_menusBar"></span>
+        <a href="product_body.html">바디라인</a><span class="product_menusBar"></span>
+        <a href="product_hair.html">헤어라인</a><span class="product_menusBar"></span>
+        <a href="product_facial.html">페이셜라인</a>
     </div>
 
 <!-- 2 Page -->
@@ -38,14 +38,14 @@
                 <img src="../img/products/m21_cate0_img2.jpg" alt="img1">
             </div>
             <div class="product_p2txt1">
-                <h2>Signature Scents.<br>Urban Spirit Nature Soul.</h2>
+                <h2 style="font-weight: 500;">Signature Scents.<br>Urban Spirit Nature Soul.</h2>
             </div>
             <div class="product_p2txt2">
                 <h4>"촉촉한 흙, 젖은 나무, 싱그러운 공기 속 깊은 평온함"</h4>
                 <p>
-                    도시 속에서도 자연의 숨결을 느낄 수 있도록 설계 된 VYOR의 시그니처 향 입니다. 비에
-                    젖은 숲길을 걷는 듯한 자연의 정화감, 그리고 피부와 마음을 채우는 차분하고 깊은 잔향이
-                    페이셜, 바디, 헤어 전 제품에 은은하게 스며들어 사용자의 일상에 감감적 여운을 남깁니다.
+                    도시 속에서도 자연의 숨결을 느낄 수 있도록 설계 된 VYOR의 시그니처 향 입니다. 비에<br>
+                    젖은 숲길을 걷는 듯한 자연의 정화감, 그리고 피부와 마음을 채우는 차분하고 깊은 잔향이<br>
+                    페이셜, 바디, 헤어 전 제품에 은은하게 스며들어 사용자의 일상에 감감적 여운을 남깁니다.<br>
                     NMN, 트라넥사믹애씨드, 식물성 성분으로 피부를 채워줍니다.
                 </p>
             </div>
@@ -53,117 +53,72 @@
     </div>
 
 <!-- 3 Page -->
-    <div class="product_page3">
-        <div class="product_p3Box1">
-            <a href="product_body.html">
-                <img src="../img/products/thum_img_body_lotion.jpg" alt="바디로션">
-                <div class="product_p3Tbox">
-                    <h2>VYOR 바이오르 바디로션</h2>
-                    <div class="product_p3Tboxin">
-                        <div>84,000원</div>
-                        <div class="product_bb">
-                            <div></div>
-                            <div></div>
+    <div class="product_page3_outBox">
+        <div class="product_page3">
+            <div class="product_page3_gridBox">
+                <a href="product_body_lotion.html" class="product_page3_link">
+                    <div class="product_page3_gridBox_product">
+                        <div class="product_page3_imgbox">
+                            <img src="../img/products/thum_img_body_lotion.jpg" alt="bodylotion">
                         </div>
-                        <div>500ml</div>
+                        <div class="product_page3_textBox">
+                            <h3>VYOR 바이오르 바디로션</h3>
+                            <p>84,000원<span class="product_page3_bar"></span>500ml</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="product_page3_gridBox_product">
+                    <div class="product_page3_imgbox">
+                        <img src="../img/products/thum_img_body_wash.jpg" alt="bodylotion">
+                    </div>
+                    <div class="product_page3_textBox">
+                        <h3>VYOR 바이오르 바디 워시</h3>
+                        <p>65,000원<span class="product_page3_bar"></span>500ml</p>
                     </div>
                 </div>
-            </a>
-            <a href="product_body.html">
-                <img src="../img/products/thum_img_body_wash.jpg" alt="바디워시">
-                <div class="product_p3Tbox">
-                    <h2>VYOR 바이오르 바디 워시</h2>
-                    <div class="product_p3Tboxin">
-                        <div>65,000원</div>
-                        <div class="product_bb">
-                            <div></div>
-                            <div></div>
+                <a href="product_hair_shampoo.html" class="product_page3_link">
+                    <div class="product_page3_gridBox_product">
+                        <div class="product_page3_imgbox">
+                            <img src="../img/products/thum_img_shampoo.jpg" alt="shampoo">
                         </div>
-                        <div>500ml</div>
+                        <div class="product_page3_textBox">
+                            <h3>VYOR 바이오르 샴푸</h3>
+                            <p>61,000원<span class="product_page3_bar"></span>500ml</p>
+                        </div>
+                    </div>
+                </a>
+                <div class="product_page3_gridBox_product">
+                    <div class="product_page3_imgbox">
+                        <img src="../img/products/thum_img_treatment.jpg" alt="bodylotion">
+                    </div>
+                    <div class="product_page3_textBox">
+                        <h3>VYOR 바이오르 트리트먼트</h3>
+                        <p>68,000원<span class="product_page3_bar"></span>500ml</p>
                     </div>
                 </div>
-            </a>
-            <a href="product_hair_.html">
-                <img src="../img/products/thum_img_shampoo.jpg" alt="샴푸">
-                <div class="product_p3Tbox">
-                    <h2>VYOR 바이오르 바이오르 샴푸</h2>
-                    <div class="product_p3Tboxin">
-                        <div>61,000원</div>
-                        <div class="product_bb">
-                            <div></div>
-                            <div></div>
-                        </div>
-                        <div>500ml</div>
+                <div class="product_page3_gridBox_product">
+                    <div class="product_page3_imgbox">
+                        <img src="../img/products/thum_img_skin.jpg" alt="bodylotion">
+                    </div>
+                    <div class="product_page3_textBox">
+                        <h3>VYOR 바이오르 크림 스킨</h3>
+                        <p>64,000원<span class="product_page3_bar"></span>300ml</p>
                     </div>
                 </div>
-            </a>
-        </div>
-        <div class="product_p3Box2">
-            <a href="product_hair_.html">
-                <img src="../img/products/thum_img_treatment.jpg" alt="트리트먼트">
-                <div class="product_p3Tbox">
-                    <h2>VYOR 바이오르 트리트 먼트</h2>
-                    <div class="product_p3Tboxin">
-                        <div>68,000원</div>
-                        <div class="product_bb">
-                            <div></div>
-                            <div></div>
-                        </div>
-                        <div>500ml</div>
+                <div class="product_page3_gridBox_product">
+                    <div class="product_page3_imgbox">
+                        <img src="../img/products/thum_img_emulsion.jpg" alt="bodylotion">
                     </div>
-                </div>
-            </a>
-            <a href="product_facial.html">
-                <img src="../img/products/thum_img_skin.jpg" alt="스킨">
-                <div class="product_p3Tbox">
-                    <h2>VYOR 바이오르 크림 스킨</h2>
-                    <div class="product_p3Tboxin">
-                        <div>64,000원</div>
-                        <div class="product_bb">
-                            <div></div>
-                            <div></div>
-                        </div>
-                        <div>500ml</div>
+                    <div class="product_page3_textBox">
+                        <h3>VYOR 바이오르 크림 에멀젼</h3>
+                        <p>69,000원<span class="product_page3_bar"></span>300ml</p>
                     </div>
-                </div>
-            </a>
-            <a href="product_facial.html">
-                <img src="../img/products/thum_img_emulsion.jpg" alt="에멀젼">
-                <div class="product_p3Tbox">
-                    <h2>VYOR 바이오르 크림 에멀젼</h2>
-                    <div class="product_p3Tboxin">
-                        <div>69,000원</div>
-                        <div class="product_bb">
-                            <div></div>
-                            <div></div>
-                        </div>
-                        <div>500ml</div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="product_p3Box3">
-            <h2>1</h2>
-        </div>
-    </div>
-
-        <!-- <div class="product_page3">
-        <div class="product_page3_gridBox">
-            <div class="product_page3_gridBox_product">
-                <div class="product_page3_imgbox">
-                    <img/>
-                </div>
-                <div class="product_page3_textBox">
-                    <h3>VYOR 바이오르 바디로션</h3>
-                    <p>84,000원<span class="product_page3_bar"></span>500ml</p>
                 </div>
             </div>
-            <div class="product_page3_gridBox_product"></div>
-            <div class="product_page3_gridBox_product"></div>
-            <div class="product_page3_gridBox_product"></div>
-            <div class="product_page3_gridBox_product"></div>
-            <div class="product_page3_gridBox_product"></div>
-        </div> -->
+            <div class="product_page3_pagenum">
+                <h4>1</h4>
+            </div>
+        </div>
     </div>
 
 </body>
