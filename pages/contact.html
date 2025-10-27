@@ -1,11 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    contact.html
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
+            rel="stylesheet"
+        />
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="../css/contact.css" />
+    </head>
+    <body>
+        <!-- con섹션1 -->
+        <section id="contact">
+            <video autoplay muted loop playsinline>
+                <source src="../img/contact/pn5_video.mp4" type="video/mp4" />
+            </video>
+
+            <div class="contactText">
+                <h1>CONTACT</h1>
+                <p>contact</p>
+            </div>
+        </section>
+
+        <!-- con 섹션2 -->
+        <section id="contact_2">
+            <div class="con2_outBox">
+                <div class="con2_LeftBox">
+                    <div class="con2_ImgBox">
+                        <img
+                            src="../img/contact/m51_img.jpg"
+                            alt="con문의사진"
+                        />
+                        <img
+                            class="conLog"
+                            src="../img/contact/m11_btmVisual_logo.png"
+                            alt="con로고"
+                        />
+                        <h3><span>VYOR</span>에게 지금 바로 문의하세요.</h3>
+                    </div>
+                </div>
+
+                <div class="con2_RightBox">
+                    <div class="con2_Right_InBox">
+                        <div>이름</div>
+                        <input type="text" />
+
+                        <div>이메일</div>
+                        <input type="text" />
+
+                        <div>연락처</div>
+                        <input type="text" />
+
+                        <div>제목</div>
+                        <input type="text" />
+
+                        <div>내용</div>
+                        <textarea></textarea>
+                    </div>
+
+                    <div id="conBtnTxt">
+                        Inquiry <i class="ri-arrow-right-line"></i>
+                    </div>
+                </div>
+
+                <!-- 빈박스 -->
+                <div class="con2_bottomBox"></div>
+            </div>
+        </section>
+    </body>
 </html>
