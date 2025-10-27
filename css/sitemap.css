@@ -1,5 +1,3 @@
-* {margin: 0; padding: 0; list-style: none; text-decoration: none; box-sizing: border-box;}
-body {width: 100vw; overflow-x: hidden; background-color: #f5f3ee;}
 .sitemap {
   width: 100%;
   height: 100%;
@@ -28,9 +26,9 @@ body {width: 100vw; overflow-x: hidden; background-color: #f5f3ee;}
   transform: translateX(100px);
   filter: blur(5px);
   opacity: 0;
-  transition: all 0.5s linear;
+  transition: all 1s linear;
 }
-.sitemap .menu_side {z-index: 10;}
+
 .sitemap .menu_side > ul > .menuLarge.on {
   transform: translateX(0);
   opacity: 1;

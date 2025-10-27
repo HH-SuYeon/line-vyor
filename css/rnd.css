@@ -1,5 +1,3 @@
-* {margin: 0; padding: 0; list-style: none; text-decoration: none; box-sizing: border-box;}
-body {width: 100vw; overflow-x: hidden; background-color: #f5f3ee;}
 .rnd_sec {
    width: 100%;
    height: 100vh;
@@ -23,7 +21,7 @@ body {width: 100vw; overflow-x: hidden; background-color: #f5f3ee;}
    color: #f5f3ee;
    top: 60%;
    left: 5%;
-   transform: translateY(-50%);
+   /* transform: translateY(-50%); */
    width: 20%;
 }
 .overlay > h1 {
@@ -31,14 +29,16 @@ body {width: 100vw; overflow-x: hidden; background-color: #f5f3ee;}
    font-weight: 400;
    font-size: 12rem;
    opacity: 0;
-   transform: translateY(-100px);
-   transition: all 0.3s ease;
+   transform: translateY(100px);
+   transition: all 0.5s ease;
+   transition-duration: 1s;
 }
 .overlay > p {
    font-size: 1.5rem;
    opacity: 0;
-   transform: translateY(-100px);
-   transition: all 0.5s ease;
+   transform: translateY(100px);
+   transition: all 0.9s ease;
+   transition-duration: 1.5s;
 }
 .overlay.on > h1, .overlay.on > p {
    opacity: 1;
@@ -46,12 +46,12 @@ body {width: 100vw; overflow-x: hidden; background-color: #f5f3ee;}
 }
 /* video 화면의 글자가 너무 커서  */
 @media (max-width: 768px) {
-  .overlay > h1 {
-    font-size: 6rem;
-  }
-  .overlay > p {
-    font-size: 1rem;
-  }
+   .overlay > h1 {
+      font-size: 6rem;
+   }
+   .overlay > p {
+      font-size: 1rem;
+   }
 }
 
 #rnd_sec2 {
