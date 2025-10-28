@@ -1,21 +1,33 @@
-let img_side = document.querySelector(".img_side");
-let menu_side = document.querySelector(".menu_side");
-let menuLarge = document.querySelectorAll(".menuLarge");
+function initSitemap() {
+  const imgSide = $(".img_side");
+  const menuLarge = $(".menuLarge");
+  const menuSmall = $(".menuSmall");
 
-window.addEventListener("DOMContentLoaded", () => {
-  menuLarge.forEach((item, idx) => {
-    item.style.transitionDelay = (idx * 0.2) + "s";
-    item.classList.add("on");
-    
-    item.addEventListener("click", ()=> {
-      menuLarge.forEach((otherItem) => {
-console.log(otherItem)
-        if(otherItem !== item) {
-          otherItem.classList.remove("active");
-        }
-      });
-      item.classList.toggle("active");
+  menuLarge.each( function (idx) {
+    // 글자 애니메이션
+    $(this).css("transition-delay", idx * 0.2 + "s").addClass("on");
+  })
+  // 이미지 로드
+  imgSide.addClass("on");
+
+  menuLarge.on("click", function(e) {
+    e.preventDefault();
+    menuLarge.not(this).removeClass("active");
+    $(this).toggleClass("active");
+
+    menuSmall.off("click").on("click", "a[data-page]", function(e) {
+      e.preventDefault();
+      const targetPage = $(this).data("page");
+      
+      if(!targetPage) return;
+
+      if(targetPage !== window.currentPage) {
+        location.hash = targetPage;
+
+        setTimeout(() => {
+          if (typeof loadPage === "function") loadPage(targetPage);
+        }, 100);
+      }
     });
-  });
-  img_side.classList.add("on");      
-});
+  })
+}

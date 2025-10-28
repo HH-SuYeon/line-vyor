@@ -4,6 +4,10 @@
     height: 210px;
     background: #222;
   }
+  /* sitemap 화면에서 footer가 완전히 안 보이게 */
+  #footer.hide_footer {
+    display: none;
+  }
   footer .footer_inner {
     display: flex;
     align-items: center;
