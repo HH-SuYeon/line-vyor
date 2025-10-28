@@ -48,30 +48,35 @@ console.log("header.js loaded!");
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
+        animateProductText();
       },
     },
     product_body: {
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
+        animateProductText()
       },
     },
     product_body_lotion: {
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
+        animateProductText()
       },
     },
     product_hair: {
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
+        animateProductText()
       },
     },
     product_facial: {
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
+        animateProductText()
       },
     },
     rndTechnology: {
@@ -355,3 +360,15 @@ console.log("overlay 찾음")
     fadeItems.forEach((item) => io.observe(item));
   });
 });
+
+//프로덕트 js
+function animateProductText() {
+  const h1 = document.querySelector(".product_mainTxt h1");
+  const p = document.querySelector(".product_mainTxt p");
+  if (!h1 || !p) return;
+  h1.style.transform = "translateY(0)";
+  h1.style.opacity = "1";
+  p.style.transform = "translateY(0)";
+  p.style.opacity = "1";
+}
+//프로덕트 js

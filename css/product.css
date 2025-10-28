@@ -37,19 +37,27 @@ body{width: 100vw; height: 100vh; overflow-x: hidden; background-color: #F5F3EE;
         width: 90%;
         z-index: 1;
         position: absolute;
-        bottom: 125px;
+        bottom: 128px;
         color: white;
+        line-height: 1.2;
     }
         .product_mainTxt h1{
-            font-size: 188px;
+            font-size: 186px;
             font-weight: 100;
             font-family: "Cormorant Garamond", serif;
             letter-spacing: -0.1rem;
+            transform: translateY(60px);
+            opacity: 0;
+            transition: all 0.8s ease;
         }
         .product_mainTxt p{
-            font-size: 22px;
+            font-size: 23px;
             color: white;
+            padding-left: 2px;
             font-family: "Pretendard";
+            transform: translateY(60px);
+            opacity: 0;
+            transition: all 1s ease;
         }
         
 
@@ -85,6 +93,7 @@ body{width: 100vw; height: 100vh; overflow-x: hidden; background-color: #F5F3EE;
 
 /* 메인 2Page */
 .product_page2{
+    padding: 10% 0 6% 0;
     /* background-color: yellowgreen; */
     width: 90%; 
     height: 140%;
@@ -256,23 +265,24 @@ body{width: 100vw; height: 100vh; overflow-x: hidden; background-color: #F5F3EE;
     .product_2page_same{
         /* background-color: gold; */
         width: 90%;
-        height: 90%;
+        /* height: auto; */
+        min-height: 85vh;
         display: flex;
         justify-content: center;
         position: relative;
         margin: auto;
         border-bottom: 0.5px solid #999999;
+        margin-top: 4%;
     }
         .product_2page_samegridBox{
             /* background-color: cornflowerblue; */
             width: 100%;
-            height: 72%;
-            position: absolute;
+            height: auto;
+            /* position: absolute; */
             bottom: 10%;
             display: grid;
             grid-template-columns: 50% auto;
             gap: 0px;
-            
         }
             .product_2page_samegrid{
                 width: 100%;
