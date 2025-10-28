@@ -105,7 +105,7 @@ header.hide_header .nav_icon {
    z-index: 2000;
 }
 header.hide_header #navWrap .logo img {
-   content: url("/img/etc/logo/logo2.png");
+   content: url("../img/etc/logo/logo2.png");
    transition: all 0.3s;
 }
 #gnb.hide_inner {
