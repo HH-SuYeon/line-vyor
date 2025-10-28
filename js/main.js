@@ -10,8 +10,8 @@ $(document).ready(function () {
   // footer.hide();
 
   // 공통 헤더 로드
-  header.load("/components/header.html", function() {
-    $.getScript("/js/header.js")
+  header.load("components/header.html", function() {
+    $.getScript("js/header.js")
       .done(function() {
 console.log("header.js loaded!");
         if(typeof initHeader === "function") initHeader();
