@@ -122,6 +122,7 @@ console.log("header.js loaded!");
       css: "css/contact.css",
       init: function () {
         console.log("contact 초기화 중...");
+        contactUs();
       },
     },
     sitemap: {
@@ -372,3 +373,67 @@ function animateProductText() {
   p.style.opacity = "1";
 }
 //프로덕트 js
+  // contact_address.js start
+  function contactUs() {
+    let APIKEY = "8f9769b44b504d8c07c091258a07fd4e";
+    let timezone = document.getElementById("timezone");
+    let icon = document.getElementById("icon");
+    let temp = document.querySelector(".weather_temp");
+    let lat = 37.500508;
+    let lon = 127.032538;
+
+    // 지도 표시 *************
+    kakao.maps.load(function() {
+        let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = { 
+                center: new kakao.maps.LatLng(lat, lon), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+            };
+
+    let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+    // 마커 생성하기
+    let markerPosition  = new kakao.maps.LatLng(lat, lon);
+    let marker = new kakao.maps.Marker({
+        position: markerPosition
+    });
+    marker.setMap(map);
+
+    // 컨트롤러 올리기
+    var mapTypeControl = new kakao.maps.MapTypeControl();
+    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+    // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+    let zoomControl = new kakao.maps.ZoomControl();
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+  })
+
+    // 시간 표시 ************* 
+    function updateTime() {
+        let now = new Date();
+        let dateS = now.toLocaleDateString("ko-KR", {year:"numeric", month:"long", day:"numeric", weekday:"long"});
+        let timeS = now.toLocaleTimeString("ko-KR", {hour: "2-digit", minute: "2-digit", second: "2-digit"});
+
+        timezone.innerHTML = `${dateS}-${timeS}`
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // 날씨 표시 ***************
+    let getWeather = async(lat, lon) => {
+        try {
+            let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Ansan,kr&appid=${APIKEY}&units=metric&lang=kr`)
+            let data = await res.json();
+            temp.textContent = `${data.main.temp} ℃`;
+            let iconNum = data.weather[0].icon;
+            iconSrc = `http://openweathermap.org/img/wn/${iconNum}@2x.png`;
+            icon.setAttribute("src", iconSrc);
+  console.log("날씨 업데이트 완료")
+        }
+        catch(err) {
+            temp.textContent = "날씨정보를 불러오지 못했습니다"
+        }
+    }
+    getWeather(lat, lon);
+  }
+// // contact_address.js end
