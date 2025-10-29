@@ -178,19 +178,20 @@ body {
     /* background-color: #838181; */
     margin-top: 15vw;
     display: flex;
-    align-items: center;
-    justify-items: center;
+
+    justify-items: self-end;
 }
 
 .front {
     display: flex;
     font-family: "Cormorant Garamond", serif;
     font-size: 40px;
+    /* background-color: red; */
 }
 
 .brandRightbox_3 li {
     width: 40.5vw;
-    height: 205px;
+    height: 230px;
     /* background-color: antiquewhite; */
     border-top: 1px solid #ccc;
 }
@@ -198,13 +199,19 @@ body {
 .front > .tit1 {
     width: 100%;
     height: 120px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #ccc;
+    margin-top: 40px;
     /* background-color: palegreen; */
 }
 
 .front > .tit2 {
     width: 100%;
     height: 120px;
-    font-size: 50px;
+    font-size: 55px;
+    font-weight: 600;
+    margin-top: 40px;
     /* background-color: pink; */
     text-align: right;
 }
@@ -217,7 +224,7 @@ body {
     color: #666;
 }
 
-/* ========== 섹션3 : 왼쪽 이미지 페이드아웃========== */
+/*섹션3 왼쪽 이미지 페이드아웃 */
 #brand_3 .brandLeftbox_3 {
     position: relative;
     width: 50%;
@@ -274,27 +281,52 @@ body {
     }
 }
 
-/* 섹션3 아코디언 보완 */
+/* 섹션3 오른쪽 기능 */
 #brand_3 .brandRightbox_3 .front {
     cursor: pointer;
 }
 
-/* 기본은 접힘 */
 #brand_3 .brandRightbox_3 .hidden {
+    display: block;
     max-height: 0;
-    overflow: hidden;
     opacity: 0;
-    transition: max-height 0.4s ease, opacity 0.3s ease;
+    overflow: hidden;
+    transform: translateY(-6px);
+    transition: max-height 0.45s ease, opacity 0.3s ease, transform 0.45s ease;
+    will-change: max-height, opacity, transform;
 }
 
-/* 열리면 보여주기 */
-#brand_3 .brandRightbox_3 li.brand3-open {
-    height: auto; /* ← 고정 높이 해제 */
+/* 열림 부드럽게 */
+#brand_3 .brandRightbox_3 li.brand3-on .hidden {
+    max-height: 240px;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 열림창 선표시 */
+#brand_3 .brandRightbox_3 li.brand3-on {
     border-color: #000;
 }
-#brand_3 .brandRightbox_3 li.brand3-open .hidden {
-    max-height: 220px; /* 필요시 더 크게 */
-    opacity: 1;
+
+#brand_3 .brandRightbox_3 .tit1 span {
+    color: #333;
+    transition: transform 0.3s ease;
+}
+
+#brand_3 .brandRightbox_3 li.brand3-on .tit1 span {
+    animation: blink-scale 1s ease-in-out 10000;
+}
+
+@keyframes blink-scale {
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0;
+        transform: scale(1.3);
+    }
 }
 
 /* 섹션4 */
@@ -321,6 +353,7 @@ body {
     display: flex;
     justify-content: center;
     text-align: left;
+    gap: 30px;
 }
 .brandLeftbox_4 h1 {
     font-family: "Cormorant Garamond", serif;
@@ -583,14 +616,6 @@ body {
     /* background-color: antiquewhite; */
 }
 
-.BI2_Leftbox > img {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .BI2_Rightbox {
     width: 45%;
     height: auto;
@@ -616,6 +641,22 @@ body {
 .BI_fontBox00 > h1 {
     font-size: 55px;
     font-weight: 600;
+}
+
+/* BI_fontBox00 줄간격*/
+
+.BI_fontBox00 h1 {
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+}
+
+.BI_fontBox00 h3 {
+    line-height: 4;
+    /* margin: 10px; */
+}
+
+.BI_fontBox00 > div {
+    line-height: 1.9;
 }
 
 .BrBox {
