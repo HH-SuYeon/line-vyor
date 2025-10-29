@@ -1,6 +1,591 @@
 * {margin: 0; padding: 0; list-style: none; text-decoration: none; box-sizing: border-box; font-size: 16px;}
 body {width: 100vw; overflow-x: hidden; background-color: #f5f3ee;}
 
+html {
+  scroll-behavior: smooth;
+}
+/* ================= HERO SECTION ================= */
+#home_hero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+#home_hero video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* ================= SCROLL INDICATOR ================= */
+#home_scrollIndicator {
+  position: fixed;
+  right: 60px;
+  bottom: 0;
+  display: flex;
+  align-items: flex-start;
+  z-index: 10;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+#home_scrollIndicator.home_hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.home_scrollText {
+  right: 8px;
+  font-size: 16px;
+  writing-mode: vertical-rl;
+  color: #fff;
+  transform: rotate(180deg);
+}
+.home_scrollBar {
+  width: 3px;
+  height: 200px;
+  background: rgba(255, 255, 255, 0.25);
+  overflow: hidden;
+}
+.home_scrollBar::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(to bottom, transparent, #fff, transparent);
+  animation: home_scrollFlow 3.5s ease-in-out infinite;
+}
+@keyframes home_scrollFlow {
+  0% {
+    top: -100%;
+    opacity: 0;
+  }
+  30% {
+    opacity: 1;
+  }
+  70% {
+    top: 100%;
+    opacity: 1;
+  }
+  100% {
+    top: 120%;
+    opacity: 0;
+  }
+}
+
+/* ================= ARROWS ================= */
+.home_arrows {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 60px;
+  z-index: 30;
+  color: #eee;
+  opacity: 1;
+  transition: opacity 0.6s ease;
+}
+.home_arrows.home_hide {
+  opacity: 0;
+  pointer-events: none;
+}
+.home_leftArrow,
+.home_rightArrow {
+  position: absolute;
+  top: 50%;
+  font-size: 40px;
+}
+.home_leftArrow {
+  left: 0;
+}
+.home_rightArrow {
+  right: 0;
+}
+
+/* ================= INTRO SECTION ================= */
+#home_intro {
+  position: relative;
+  margin-top: 100vh;
+  width: 100%;
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 100px;
+  background: #f7f6f3;
+  overflow: visible;
+  z-index: 5;
+}
+
+.home_intro-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 70%;
+  max-width: 1200px;
+  gap: 380px;
+  /* position: relative;
+  z-index: 10; */
+}
+.home_intro-left h2 {
+  font-family: "Cormorant", serif;
+  font-size: 4.5rem;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #444;
+}
+.home_intro-left {
+  flex: 0 0 auto;
+}
+
+.home_intro-right {
+  flex: 0 0 65%;
+}
+.home_intro-right p {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: #333;
+}
+/* ================= 배경 도형 ================= */
+.home_bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+.home_shape-left {
+  width: 830px;
+  height: 830px;
+  top: -110px;
+  left: -80px;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  clip-path: inset(110px 0 0 0);
+}
+
+.home_shape-left::after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 1060px;
+  height: 120px; /* 덮을 높이 (값 조정 가능) */
+  background: rgba(255, 255, 255, 0.25);
+  z-index: 2;
+}
+.home_shape-right {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  overflow: visible;
+}
+.home_shape-right::before,
+.home_shape-right::after {
+  content: "";
+  position: absolute;
+  background: rgba(0, 0, 0, 0.18);
+}
+.home_shape-right::before {
+  width: 1px;
+  height: 100%;
+  right: 30px;
+  top: 0;
+}
+.home_shape-right::after {
+  width: 1px;
+  height: 300%;
+  right: -100px;
+  top: -150px;
+  transform: rotate(-45deg);
+  transform-origin: top right;
+}
+
+/* ================= VIEW MORE (공통 수정) ================= */
+.home_view-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+  font-size: 1.35rem;
+  font-family: "Cormorant", serif;
+  color: #111;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.home_view-more span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 55px;
+  border: 1.2px solid #333;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  transition: all 0.4s ease;
+}
+
+.home_view-more:hover {
+  color: #111;
+}
+.home_view-more:hover span {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+.home_contact_view-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+  font-size: 1.35rem;
+  font-family: "Cormorant ", serif;
+  color: #e6e6e6;
+  letter-spacing: 0.5px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.home_contact_view-more span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 55px;
+  height: 55px;
+  border: 1.2px solid #e6e6e6;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  transition: all 0.4s ease;
+}
+.home_contact_view-more:hover span {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+.home_rnd-right .home_view-more {
+  transition-delay: 1.3s;
+}
+/* ================= PRODUCT SECTION ================= */
+#home_product {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  padding: 160px 0;
+  position: relative;
+  z-index: 6;
+}
+
+.home_product-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 85%;
+  max-width: 1400px;
+  gap: 100px;
+}
+
+/* 🔹 왼쪽 텍스트 */
+.home_product-text {
+  flex: 0 0 45%;
+  text-align: left;
+  transform: translateX(-50px);
+}
+
+.home_product-text .home_subtitle {
+  font-size: 1.2rem;
+  font-family: "Cormorant", serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #111;
+  margin-bottom: 70px;
+}
+
+.home_product-text h2 {
+  font-family: "Cormorant", serif;
+  font-size: 3.6rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #111;
+  margin-bottom: 40px;
+}
+
+.home_product-text p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #555;
+  margin-bottom: 50px;
+  max-width: 420px;
+}
+.home_product-gallery {
+  flex: 0 0 60%;
+  display: flex;
+  gap: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.home_slide-item {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 1s ease;
+}
+
+.home_slide-item:is(:in-view) {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.home_product-text .home_subtitle {
+  transition-delay: 0.1s;
+}
+
+.home_product-text h2 {
+  transition-delay: 0.4s;
+}
+
+.home_product-text p {
+  transition-delay: 0.7s;
+}
+
+.home_product-text .home_view-more {
+  transition-delay: 1s;
+}
+
+/* hover 시 슬라이드 일시정지 */
+.home_product-gallery:hover {
+  animation-play-state: paused;
+}
+/*  개별 카드 */
+.home_card {
+  padding: 8px;
+  min-width: 440px;
+  text-align: center;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.home_card img {
+  width: 100%;
+  height: 560px;
+  object-fit: cover;
+}
+
+.home_card h4 {
+  font-size: 1.1rem;
+  margin: 14px 0 6px;
+  font-weight: 600;
+}
+
+.home_card p {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+
+.home_price {
+  font-size: 0.85rem;
+  color: #777;
+}
+/* ================= R&D SECTION ================= */
+#home_rnd {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: #f9f8f4;
+  overflow: hidden;
+  position: relative;
+  z-index: 7;
+}
+
+.home_rnd-inner {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1600px;
+  height: 100vh;
+}
+
+.home_rnd-left {
+  flex: 1.4;
+  overflow: hidden;
+  position: relative;
+}
+
+.home_rnd-left video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  animation: rndZoom 1s ease-in-out forwards;
+  transform-origin: center center;
+}
+@keyframes rndZoom {
+  0% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+.home_slideUp-item {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+
+.home_slideUp-item::in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.home_rnd-right {
+  flex: 0.8;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 80px;
+  color: #111;
+}
+.home_rnd-right .home_subtitle {
+  font-size: 0.9rem;
+  color: #666;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  transition-delay: 0.1s;
+}
+.home_rnd-right h2 {
+  font-family: "Cormorant", serif;
+  font-size: 2.8rem;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  font-weight: 500;
+  transition-delay: 0.4s;
+}
+.home_rnd-right h4 {
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+  margin-bottom: 20px;
+  transition-delay: 0.7s;
+}
+.home_rnd-right p {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 40px;
+  transition-delay: 1s;
+}
+
+/* ================= MOVING TEXT SECTION ================= */
+#home_movingText {
+  width: 100%;
+  overflow: hidden;
+  background: #f7f6f3;
+  padding: 100px 0;
+  position: relative;
+  z-index: 8;
+}
+.home_text-wrap {
+  white-space: nowrap;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.home_text-line {
+  display: inline-flex;
+  gap: 80px;
+  font-family: "Cormorant", sans-serif;
+  font-size: 16rem;
+  font-weight: 500;
+  letter-spacing: 4px;
+  color: #1a1a1a;
+  animation: home_moveText 50s linear infinite;
+}
+@keyframes home_moveText {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+/* ================= CONTACT SECTION  ================= */
+#home_contact {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 170px;
+}
+
+#home_contact video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  opacity: 1;
+}
+
+.home_press-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  max-width: 800px;
+  padding: 0 20px;
+  opacity: 0.6;
+}
+.home_press-text .home_subtitle {
+  font-family: "Cormorant", serif;
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  color: #e6e6e6;
+}
+
+.home_press-text h2 {
+  font-family: "Cormorant", serif;
+  font-size: 4.5rem;
+  font-weight: 500;
+  line-height: 1.25;
+  margin-bottom: 30px;
+  opacity: 0.8;
+}
+
+.home_press-text p {
+  font-size: 1.35rem;
+  line-height: 1.9;
+  color: #ddd;
+  margin-bottom: 40px;
+  font-weight: 600;
+  opacity: 0.8;
+}
 /* 수연코드 */
 /* popup */
     .popupBox{
