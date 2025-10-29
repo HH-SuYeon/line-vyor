@@ -592,7 +592,9 @@ html {
         width: 500px;
         height: 650px;
         /* background-color: tomato; */
-        position: relative;
+        position: absolute;
+        z-index: 9999;
+        inset: 0;
     }
         .popup_imgBox{
             width: 500px;
@@ -622,5 +624,4 @@ html {
                 bottom: 0;
                 z-index: 15;
             }
-
 /* 수연코드 */
