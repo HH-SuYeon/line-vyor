@@ -35,16 +35,27 @@ body {
     z-index: 0;
 }
 
+/* 섹션1  기능추가함 */
 .brandText {
     position: absolute;
     bottom: 5vh;
     left: 5vw;
-    z-index: 1;
-    /* background-color: darkgoldenrod; */
     width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transform: translateY(40px);
+    opacity: 0;
+    animation: up 0.8s ease-out forwards;
+    transition: none;
+    will-change: left, opacity;
+}
+
+@keyframes up {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .brandText h1 {
@@ -146,14 +157,14 @@ body {
 /* 섹션3 */
 #brand_3 {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     margin-top: 15%;
     display: flex;
 }
 
 .brandLeftbox_3 {
     width: 50%;
-    margin-top: 15vw;
+    margin-top: 12vw;
     /* background-color: aqua; */
 }
 
@@ -169,12 +180,6 @@ body {
     display: flex;
     align-items: center;
     justify-items: center;
-}
-
-.BR3_inbox {
-    width: 100%;
-    height: 45%;
-    background-color: rgb(83, 83, 211);
 }
 
 .front {
@@ -212,6 +217,63 @@ body {
     color: #666;
 }
 
+/* ========== 섹션3 : 왼쪽 이미지 페이드아웃========== */
+#brand_3 .brandLeftbox_3 {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#brand_3 .brand3-image-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    /* background: #000; */
+}
+
+#brand_3 .brand3-slides img {
+    position: absolute;
+    width: 47vw;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    animation: brand3-fade 20s infinite ease-in-out;
+}
+
+#brand_3 .brand3-slides img:nth-child(1) {
+    animation-delay: 0s;
+}
+#brand_3 .brand3-slides img:nth-child(2) {
+    animation-delay: 5s;
+}
+#brand_3 .brand3-slides img:nth-child(3) {
+    animation-delay: 10s;
+}
+#brand_3 .brand3-slides img:nth-child(4) {
+    animation-delay: 15s;
+}
+
+@keyframes brand3-fade {
+    0% {
+        opacity: 0;
+    }
+    5% {
+        opacity: 1;
+    } /* 서서히 나타남 */
+    25% {
+        opacity: 1;
+    } /* 유지 */
+    30% {
+        opacity: 0;
+    } /* 서서히 사라짐 (다음 사진과 겹침) */
+    100% {
+        opacity: 0;
+    }
+}
+
 /* 섹션4 */
 #brand_4 {
     position: relative;
@@ -225,7 +287,7 @@ body {
     gap: 0;
     justify-content: center;
 
-    margin-top: 20vw;
+    margin-top: 10vw;
 }
 
 .brandLeftbox_4 {
@@ -442,7 +504,7 @@ body {
     height: 100vh;
     /* background-color: aquamarine; */
     display: flex;
-    align-items: start;
+    align-items: center;
     justify-content: center;
 }
 

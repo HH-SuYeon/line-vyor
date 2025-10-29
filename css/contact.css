@@ -34,17 +34,27 @@ body {
     object-fit: cover;
     z-index: 0;
 }
-
+/* 섹션1  기능추가함 */
 .contactText {
     position: absolute;
     bottom: 5vh;
     left: 5vw;
-    z-index: 1;
-    /* background-color: darkgoldenrod; */
     width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transform: translateY(40px);
+    opacity: 0;
+    animation: up 0.8s ease-out forwards;
+    transition: none;
+    will-change: left, opacity;
+}
+
+@keyframes up {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
 
 .contactText h1 {
@@ -152,6 +162,7 @@ body {
     border: 1px solid #000;
     background-color: #fff;
     outline: none;
+    padding: 20px;
 }
 
 .con2_Right_InBox > textarea {
