@@ -56,7 +56,7 @@
 
 #rnd_sec2 {
    background-attachment: fixed;
-   background-image: url("/img/rnd/m31_intro_bg.jpg");
+   background-image: url("../img/rnd/m31_intro_bg.jpg");
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;
@@ -195,10 +195,10 @@
    transform: translate(-50%, -50%);
    z-index: 3;
 }
-.grid_container .grid1 .outImg {background-image: url("/img/rnd/m31_bg1.jpg");}
-.grid_container .grid4 .outImg {background-image: url("/img/rnd/m31_bg2.jpg");}
-.grid_container .grid1 .outImg .innerImg {background-image: url("/img/rnd/m31_bg1_1.png");}
-.grid_container .grid4 .outImg .innerImg {background-image: url("/img/rnd/m31_bg2_1.png");}
+.grid_container .grid1 .outImg {background-image: url("../img/rnd/m31_bg1.jpg");}
+.grid_container .grid4 .outImg {background-image: url("../img/rnd/m31_bg2.jpg");}
+.grid_container .grid1 .outImg .innerImg {background-image: url("../img/rnd/m31_bg1_1.png");}
+.grid_container .grid4 .outImg .innerImg {background-image: url("../img/rnd/m31_bg2_1.png");}
 
 .grid_container .grid3 .outImg .grid3Img {
    display: flex;
@@ -215,7 +215,7 @@
 }
 /* rndResearch.html grid 영역 grid5, grid6 */
 .grid_container .grid5 .outImg {
-   background-image: url("/img/rnd/m32_design_bg.jpg");
+   background-image: url("../img/rnd/m32_design_bg.jpg");
    width: 90%;
    height: 80%;
    margin-top: 100px;
