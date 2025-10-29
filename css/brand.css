@@ -262,16 +262,39 @@ body {
     }
     5% {
         opacity: 1;
-    } /* 서서히 나타남 */
+    }
     25% {
         opacity: 1;
-    } /* 유지 */
+    }
     30% {
         opacity: 0;
-    } /* 서서히 사라짐 (다음 사진과 겹침) */
+    }
     100% {
         opacity: 0;
     }
+}
+
+/* 섹션3 아코디언 보완 */
+#brand_3 .brandRightbox_3 .front {
+    cursor: pointer;
+}
+
+/* 기본은 접힘 */
+#brand_3 .brandRightbox_3 .hidden {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+
+/* 열리면 보여주기 */
+#brand_3 .brandRightbox_3 li.brand3-open {
+    height: auto; /* ← 고정 높이 해제 */
+    border-color: #000;
+}
+#brand_3 .brandRightbox_3 li.brand3-open .hidden {
+    max-height: 220px; /* 필요시 더 크게 */
+    opacity: 1;
 }
 
 /* 섹션4 */
