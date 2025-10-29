@@ -10,13 +10,13 @@
             rel="stylesheet"
         />
 
-        <link rel="stylesheet" href="../css/brand.css" />
+        <link rel="stylesheet" href="css/brand.css" />
     </head>
     <body>
         <!--BI섹션1 -->
         <section id="brand">
             <video autoplay muted loop playsinline>
-                <source src="../img/brand/pn1_video.mp4" type="video/mp4" />
+                <source src="img/brand/pn1_video.mp4" type="video/mp4" />
             </video>
 
             <div class="brandText">
@@ -29,7 +29,7 @@
         <div class="Xbox">VYOR 브랜드 디자인 가이드라인</div>
         <section id="BI_2">
             <div class="BI2_Leftbox">
-                <img src="../img/brand/m12_sec1_img1.jpg" alt="디자인이미지" />
+                <img src="img/brand/m12_sec1_img1.jpg" alt="디자인이미지" />
             </div>
 
             <div class="BI2_Rightbox">
@@ -88,10 +88,7 @@
             </div>
 
             <div class="BI3_Rightbox">
-                <img
-                    src="../img/brand/m12_sec1_img2.jpg"
-                    alt="본문서체이미지"
-                />
+                <img src="img/brand/m12_sec1_img2.jpg" alt="본문서체이미지" />
             </div>
         </section>
 
@@ -156,7 +153,7 @@
             <div class="B5_outBox">
                 <div class="B5_imgBox">
                     <img
-                        src="../img/brand/m12_sec2_tm_bg.jpg"
+                        src="img/brand/m12_sec2_tm_bg.jpg"
                         alt="bi하단이미지"
                     />
                     <div class="B5_textBox">
@@ -171,5 +168,66 @@
                 </div>
             </div>
         </section>
+
+        <!-- bi섹션1 -->
+        <script>
+            const brand_sec = document.getElementById("brand");
+            const brand_text = brand_sec.querySelector(".brandText");
+
+            let brand_ready = false;
+            let brand_rafId = null;
+
+            brand_text.addEventListener("animationend", () => {
+                brand_text.style.animation = "none";
+                brand_text.style.transform = "translateY(0)";
+                brand_ready = true;
+                brand_onScroll();
+            });
+
+            function brand_applyProgress(progress) {
+                const vw = window.innerWidth;
+                const startLeft = 0.05 * vw;
+                const endLeft = -0.55 * vw;
+
+                const eased = 1 - Math.pow(1 - progress, 0.1);
+
+                //투명
+                const opacity = 1 - Math.pow(progress, 1.3);
+
+                const left = startLeft + (endLeft - startLeft) * eased;
+
+                brand_text.style.left = left + "px";
+                brand_text.style.opacity = opacity.toFixed(3);
+            }
+
+            function brand_onScroll() {
+                if (!brand_ready) return;
+                if (brand_rafId) return;
+
+                brand_rafId = requestAnimationFrame(() => {
+                    brand_rafId = null;
+
+                    const rect = brand_sec.getBoundingClientRect();
+                    const vh = window.innerHeight;
+
+                    const startY = vh * 0.9;
+                    const endY = vh * 0.05;
+                    let progress = (startY - rect.bottom) / (startY - endY);
+                    progress = Math.min(Math.max(progress, 0), 1);
+
+                    progress = progress < 0.02 ? 0 : progress;
+                    progress = progress > 0.98 ? 1 : progress;
+
+                    brand_applyProgress(progress);
+                });
+            }
+
+            window.addEventListener("scroll", brand_onScroll, {
+                passive: true,
+            });
+            window.addEventListener("resize", brand_onScroll, {
+                passive: true,
+            });
+        </script>
     </body>
 </html>

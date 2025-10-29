@@ -9,13 +9,13 @@
             rel="stylesheet"
         />
 
-        <link rel="stylesheet" href="../css/brand.css" />
+        <link rel="stylesheet" href="css/brand.css" />
     </head>
     <body>
         <!-- 섹션1 -->
         <section id="brand">
             <video autoplay muted loop playsinline>
-                <source src="../img/brand/pn1_video.mp4" type="video/mp4" />
+                <source src="img/brand/pn1_video.mp4" type="video/mp4" />
             </video>
 
             <div class="brandText">
@@ -59,14 +59,8 @@
 
             <div class="brandRightbox_2">
                 <div>
-                    <img
-                        src="../img/brand/m11_philosophy_img1.jpg"
-                        alt="나무1"
-                    />
-                    <img
-                        src="../img/brand/m11_philosophy_img2.jpg"
-                        alt="나무2"
-                    />
+                    <img src="img/brand/m11_philosophy_img1.jpg" alt="나무1" />
+                    <img src="img/brand/m11_philosophy_img2.jpg" alt="나무2" />
                 </div>
             </div>
         </section>
@@ -74,11 +68,14 @@
         <!-- 섹션3 -->
         <section id="brand_3">
             <div class="brandLeftbox_3">
-                <div>
-                    <img
-                        src="../img/brand/m11_vyor_bg1.jpg"
-                        alt="스크롤이미지"
-                    />
+                <!--페이드아웃 슬라이더 -->
+                <div class="brand3-image-container">
+                    <div class="brand3-slides">
+                        <img src="img/brand/m11_vyor_bg1.jpg" alt="bg1" />
+                        <img src="img/brand/m11_vyor_bg2.jpg" alt="bg2" />
+                        <img src="img/brand/m11_vyor_bg3.jpg" alt="bg3" />
+                        <img src="img/brand/m11_vyor_bg4.jpg" alt="bg4" />
+                    </div>
                 </div>
             </div>
 
@@ -86,13 +83,9 @@
                 <ul>
                     <li>
                         <div class="front">
-                            <div class="tit1">
-                                <span>V</span>
-                                YOR
-                            </div>
+                            <div class="tit1"><span>V</span>YOR</div>
                             <div class="tit2">Vitality</div>
                         </div>
-
                         <div class="hidden">
                             <div class="tit3">생기</div>
                             <div class="txt">
@@ -103,13 +96,9 @@
 
                     <li>
                         <div class="front">
-                            <div class="tit1">
-                                <span>V</span>
-                                YOR
-                            </div>
+                            <div class="tit1"><span>V</span>YOR</div>
                             <div class="tit2">Your</div>
                         </div>
-
                         <div class="hidden">
                             <div class="tit3">당신의 개성</div>
                             <div class="txt">
@@ -121,13 +110,9 @@
 
                     <li>
                         <div class="front">
-                            <div class="tit1">
-                                <span>V</span>
-                                YOR
-                            </div>
+                            <div class="tit1"><span>V</span>YOR</div>
                             <div class="tit2">Opulence</div>
                         </div>
-
                         <div class="hidden">
                             <div class="tit3">풍요로움</div>
                             <div class="txt">
@@ -139,13 +124,9 @@
 
                     <li>
                         <div class="front">
-                            <div class="tit1">
-                                <span>V</span>
-                                YOR
-                            </div>
+                            <div class="tit1"><span>V</span>YOR</div>
                             <div class="tit2">Radiance</div>
                         </div>
-
                         <div class="hidden">
                             <div class="tit3">빛</div>
                             <div class="txt">
@@ -183,7 +164,7 @@
 
             <div class="brandRightbox_4">
                 <div>
-                    <img src="../img/brand/m11_story_bg.jpg" alt="나무3" />
+                    <img src="img/brand/m11_story_bg.jpg" alt="나무3" />
 
                     <div class="brand4_Text">
                         <h2 style="font-weight: lighter">Watered soil</h2>
@@ -214,7 +195,7 @@
 
             <div class="BR5_inbox3">
                 <div class="BR5_imgBox">
-                    <img src="../img/brand/m11_notes_bg1.jpg" alt="레몬" />
+                    <img src="img/brand/m11_notes_bg1.jpg" alt="레몬" />
                     <div class="BR5_imgtxt">TOP NOTE</div>
                 </div>
 
@@ -236,7 +217,7 @@
 
             <div class="BR5_inbox3">
                 <div class="BR5_imgBox">
-                    <img src="../img/brand/m11_notes_bg2.jpg" alt="장미" />
+                    <img src="img/brand/m11_notes_bg2.jpg" alt="장미" />
                     <div class="BR5_imgtxt2">MIDDLE NOTE</div>
                 </div>
 
@@ -255,7 +236,7 @@
 
             <div class="BR5_inbox3">
                 <div class="BR5_imgBox">
-                    <img src="../img/brand/m11_notes_bg3.jpg" alt="나뭇가지" />
+                    <img src="img/brand/m11_notes_bg3.jpg" alt="나뭇가지" />
                     <div class="BR5_imgtxt3">BASE NOTE</div>
                 </div>
 
@@ -281,13 +262,98 @@
                 <div>
                     <img
                         class="BR6_scr_log"
-                        src="../img/brand/m11_btmVisual_logo.png"
+                        src="img/brand/m11_btmVisual_logo.png"
                         alt="스크롤로고"
                     />
                 </div>
             </div>
         </section>
 
-        <script></script>
+        <!-- 섹션1 -->
+        <script>
+            const brand_sec = document.getElementById("brand");
+            const brand_text = brand_sec.querySelector(".brandText");
+
+            let brand_ready = false;
+            let brand_rafId = null;
+
+            brand_text.addEventListener("animationend", () => {
+                brand_text.style.animation = "none";
+                brand_text.style.transform = "translateY(0)";
+                brand_ready = true;
+                brand_onScroll();
+            });
+
+            function brand_applyProgress(progress) {
+                const vw = window.innerWidth;
+                const startLeft = 0.05 * vw;
+                const endLeft = -0.55 * vw;
+
+                const eased = 1 - Math.pow(1 - progress, 0.1);
+
+                //투명
+                const opacity = 1 - Math.pow(progress, 1.3);
+
+                const left = startLeft + (endLeft - startLeft) * eased;
+
+                brand_text.style.left = left + "px";
+                brand_text.style.opacity = opacity.toFixed(3);
+            }
+
+            function brand_onScroll() {
+                if (!brand_ready) return;
+                if (brand_rafId) return;
+
+                brand_rafId = requestAnimationFrame(() => {
+                    brand_rafId = null;
+
+                    const rect = brand_sec.getBoundingClientRect();
+                    const vh = window.innerHeight;
+
+                    const startY = vh * 0.9;
+                    const endY = vh * 0.05;
+                    let progress = (startY - rect.bottom) / (startY - endY);
+                    progress = Math.min(Math.max(progress, 0), 1);
+
+                    // 위로 올릴 때도 자연스럽게
+                    progress = progress < 0.02 ? 0 : progress;
+                    progress = progress > 0.98 ? 1 : progress;
+
+                    brand_applyProgress(progress);
+                });
+            }
+
+            //스크롤내리면 왼쪽
+            window.addEventListener("scroll", brand_onScroll, {
+                passive: true,
+            });
+            window.addEventListener("resize", brand_onScroll, {
+                passive: true,
+            });
+
+            //섹션3
+
+            (function brand3FadeGallery() {
+                const section = document.getElementById("brand_3");
+                if (!section) return;
+
+                const slidesBox = section.querySelector(".brand3-slides");
+                const items = section.querySelectorAll(".brandRightbox_3 li");
+                if (!slidesBox || !items.length) return;
+
+                slidesBox.innerHTML = "";
+                items.forEach((li, i) => {
+                    const src =
+                        li.dataset.brand3Bg ||
+                        `img/brand/m11_vyor_bg${i + 1}.jpg`;
+                    const img = document.createElement("img");
+                    img.src = src;
+                    img.alt = "";
+                    img.style.animationDelay = `${5 * i}s`;
+                    img.style.animationDuration = "20s";
+                    slidesBox.appendChild(img);
+                });
+            })();
+        </script>
     </body>
 </html>
