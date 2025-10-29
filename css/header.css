@@ -21,7 +21,7 @@
    background-color: #111;
 }
 .dark_header .logo img {
-   content: url("/img/etc/logo/logo2.png");
+   content: url("../img/etc/logo/logo2.png");
 }
 #navWrap {
    display: flex;

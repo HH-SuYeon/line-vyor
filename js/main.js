@@ -13,7 +13,7 @@ $(document).ready(function () {
   header.load("components/header.html", function() {
     $.getScript("js/header.js")
       .done(function() {
-console.log("header.js loaded!");
+  console.log("header.js loaded!");
         if(typeof initHeader === "function") initHeader();
       })
       .fail(function (jqxhr, settings, exception) {
@@ -48,68 +48,70 @@ console.log("header.js loaded!");
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
-        animateProductText();
+        initProduct();
       },
     },
     product_body: {
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
-        animateProductText()
+        initProduct()
       },
     },
     product_body_lotion: {
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
-        animateProductText()
+        initProduct()
       },
     },
     product_hair: {
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
-        animateProductText()
+        initProduct()
       },
     },
     product_facial: {
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
-        animateProductText()
+        initProduct()
       },
     },
     rndTechnology: {
       css: "css/rnd.css",
       init: function () {
         console.log("rnd 초기화 중...");
-        rndTechnology();
+        initRnd();
       },
     },
     rndResearch: {
       css: "css/rnd.css",
       init: function () {
         console.log("rnd 초기화 중...");
-        rndTechnology();
+        initRnd();
       },
     },
     rndProduction: {
       css: "css/rnd.css",
       init: function () {
         console.log("rnd 초기화 중...");
-        rndTechnology();
+        initRnd();
       },
     },
     press: {
       css: "css/press.css",
       init: function () {
         console.log("press 초기화 중...");
+         initPress();
       },
     },
     press_news: {
       css: "css/press.css",
       init: function () {
         console.log("press 초기화 중...");
+        initPress();
       },
     },
     contact: {
@@ -122,7 +124,7 @@ console.log("header.js loaded!");
       css: "css/contact.css",
       init: function () {
         console.log("contact 초기화 중...");
-        contactUs();
+        initContact();
       },
     },
     sitemap: {
@@ -161,7 +163,7 @@ console.log("header.js loaded!");
     window.currentPage = pageName;
     const settings = pageSettings[pageName] || {};
 
-console.log(pageName)
+  console.log(pageName)
     main.fadeOut(100, async function() {
       // 각페이지의 css 화일 로드
       await loadPageCSS(settings.css)
@@ -187,19 +189,18 @@ console.log(pageName)
   // 페이지 이동 라우터
   function handleRoute() {
     const page = location.hash.replace("#", "") || "home";
-console.log("handleRoute 실행")
+  console.log("handleRoute 실행")
     loadPage(page);
   }
 
   $(window).on("hashchange", handleRoute);
-  // handleRoute();
-
+  handleRoute();
 
   // 페이지별 헤더 / 푸터 처리
   function updateHeader(pageName) {
     const navIcon = header.find(".nav_icon");
     const gnb = header.find(".gnb");
-console.log(pageName)
+  console.log(pageName)
     if (pageName === "sitemap") {
       footer.hide();
       // gnb.addClass("hide_inner");
@@ -228,57 +229,7 @@ console.log(pageName)
     }
   };
 
-  // sitemap 페이지 전용 ---------
-  function initSitemap() {
-
-    const imgSide = $(".img_side");
-    const menuLarge = $(".menuLarge");
-    const menuSmall = $(".menuSmall");
-
-    menuLarge.each( function (idx) {
-      // 글자 애니메이션
-      $(this).css("transition-delay", idx * 0.2 + "s").addClass("on");
-    });
-    // 이미지 보이기
-    imgSide.addClass("on");
-
-    menuLarge.on("click", function(e) {
-console.log(this)
-
-      e.preventDefault();
-      menuLarge.not(this).removeClass("active");
-      $(this).toggleClass("active");
-    });
-
-    menuSmall.off("click").on("click", "a[data-page]", function(e) {
-      e.preventDefault();
-      const targetPage = $(this).data("page");
-      if(!targetPage) return;
-
-      if(targetPage !== window.currentPage) {
-console.log("sitemap 내부이동" + targetPage);
-
-        location.hash = targetPage;
-      }
-    });
-  }
-
-  // rnd 페이지 부분 -----------
-  function rndTechnology() {
-console.log("rndTechnology")
-  
-    const overlay = document.querySelector(".overlay");
-
-    if(overlay) {
-console.log("overlay 찾음")
-      overlay.classList.add("on");    
-    }else {
-      console.warn("⚠️ .overlay를 찾을 수 없습니다!");
-    }
-  }
-});
-
-  // home.js 통합 (loadPageComplete 이벤트 아래)
+  // ======== home.js 통합 (loadPageComplete 이벤트 아래) ==================
   $(document).on("loadPageComplete", function (e, pageName) {
     const footer = $("#footer");
 
@@ -296,6 +247,16 @@ console.log("overlay 찾음")
     const home_scrollIndicator = document.getElementById("home_scrollIndicator");
     const home_arrows = document.querySelector(".home_arrows");
     const home_intro = document.getElementById("home_intro");
+
+    // home 내부 링크 이동
+    $(".home_view-more").off("click").on("click", "a[data-page]", function(e) {
+      e.preventDefault();
+      const targetPage = $(this).data("page");
+      if(!targetPage) return;
+      if(targetPage !== window.currentPage) {
+        location.hash = targetPage;
+      }
+    });
 
     // IntersectionObserver (페이드인 효과)
     const observer = new IntersectionObserver(
@@ -359,54 +320,214 @@ console.log("overlay 찾음")
       { threshold: 0.3 }
     );
     fadeItems.forEach((item) => io.observe(item));
+    });
   });
-});
 
-//프로덕트 js
-function animateProductText() {
-  const h1 = document.querySelector(".product_mainTxt h1");
-  const p = document.querySelector(".product_mainTxt p");
-  if (!h1 || !p) return;
-  h1.style.transform = "translateY(0)";
-  h1.style.opacity = "1";
-  p.style.transform = "translateY(0)";
-  p.style.opacity = "1";
-}
-//프로덕트 js
-  // contact_address.js start
-  function contactUs() {
+  // ======== sitemap 페이지 전용 =================
+  function initSitemap() {
+
+    const imgSide = $(".img_side");
+    const menuLarge = $(".menuLarge");
+    const menuSmall = $(".menuSmall");
+
+    menuLarge.each( function (idx) {
+      // 글자 애니메이션
+      $(this).css("transition-delay", idx * 0.2 + "s").addClass("on");
+    });
+    // 이미지 보이기
+    imgSide.addClass("on");
+
+    menuLarge.on("click", function(e) {
+  console.log(this)
+
+      e.preventDefault();
+      menuLarge.not(this).removeClass("active");
+      $(this).toggleClass("active");
+    });
+
+    menuSmall.off("click").on("click", "a[data-page]", function(e) {
+      e.preventDefault();
+      const targetPage = $(this).data("page");
+      if(!targetPage) return;
+
+      if(targetPage !== window.currentPage) {
+  console.log("sitemap 내부이동" + targetPage);
+
+        location.hash = targetPage;
+      }
+    });
+  }
+
+  // ======== rnd 페이지 부분 ======================
+  function initRnd() {
+    const overlay = document.querySelector(".videoWrap .overlay");
+    const title = $(".text_rnd");
+    const desc = $(".grid2 .text_desc, .grid6 .text_desc");
+
+    if(overlay) {
+      overlay.classList.add("on");    
+    }else {
+      console.warn("⚠️ .overlay를 찾을 수 없습니다!");
+    }
+    if (desc.length > 0) {
+      desc.on("click", function() {
+        // 페이지에 존재할 때만 실행됨
+        console.log("클릭:", $(this).text());
+      });
+    }
+    if (desc.length > 0) {
+      $(window).on("scroll", function () {
+        // 스크롤 위치 가져오기
+        const scrollTop = $(window).scrollTop();
+        const winHeight = $(window).height();
+
+        desc.each(function () {
+          const top = $(this).offset().top;
+
+          // 요소가 화면에 나타나면 실행
+          if (scrollTop  > top - 500) {
+          // if (scrollTop + winHeight > top) {
+            // $(this).css("transition-delay", idx * 0.2 + "s").addClass("on");
+            $(this).addClass("on");
+          } else {
+            $(this).removeClass("on");
+          }
+        });
+      });
+    
+      function rollingImg() {
+        let iconImgBox = document.querySelector(".rnd_sec .devel_keyword .iconImgBox");
+        let rollingBox = document.querySelector(".rollingBox");
+        // let cloneFront = rollingBox.cloneNode(true);
+        let cloneBack = rollingBox.cloneNode(true);
+
+        iconImgBox.append(cloneBack);
+        // rollingBox.insertBefore(cloneFront, rollingBox.firstChild);
+
+        rollingBox.classList.add("roll_01");
+        // cloneFront.classList.add("roll_02");
+        cloneBack.classList.add("roll_01");
+      }
+      rollingImg()
+    }
+     // rnd 내부 링크 이동
+    $(".mid_menu .sub_menu").off("click").on("click", "a[data-page]", function(e) {
+      e.preventDefault();
+      const targetPage = $(this).data("page");
+      if(!targetPage) return;
+      if(targetPage !== window.currentPage) {
+        location.hash = targetPage;
+      }
+    });
+
+    title.on("click", function(e) {
+        e.preventDefault();
+        title.not(this).removeClass("active");
+        $(this).toggleClass("active");
+    })
+  }
+
+  // ========= 프로덕트 js ============================
+  function initProduct() {
+    const h1 = document.querySelector(".product_mainTxt h1");
+    const p = document.querySelector(".product_mainTxt p");
+    if (!h1 || !p) return;
+    h1.style.transform = "translateY(0)";
+    h1.style.opacity = "1";
+    p.style.transform = "translateY(0)";
+    p.style.opacity = "1";
+
+
+     // product_menus 내부 링크 이동
+    $(".product_menus, product_page3_link").off("click").on("click", "a[data-page]", function(e) {
+      e.preventDefault();
+      const targetPage = $(this).data("page");
+      if(!targetPage) return;
+      if(targetPage !== window.currentPage) {
+        location.hash = targetPage;
+      }
+    });
+  }
+  // =>프로덕트 js end
+
+  // ========== press페이지 부분 =======================
+  function initPress() {
+    const overlay = document.querySelector(".videoWrap .overlay");
+    const img_vyor = document.querySelector(".press_board .boardBox .imgBox");
+
+    if(overlay) {
+      overlay.classList.add("on");    
+    }else {
+      console.warn("⚠️ .overlay를 찾을 수 없습니다!");
+    }
+
+    $(".press_board .boardBox .imgBox").off("click").on("click", "a[data-page]", function(e) {
+      e.preventDefault();
+      const targetPage = $(this).data("page");
+      if(!targetPage) return;
+      if(targetPage !== window.currentPage) {
+        location.hash = targetPage;
+      }
+    })
+    $(".listHam").off("click").on("click", "a[data-page]", function(e) {
+      e.preventDefault();
+      const targetPage = $(this).data("page");
+      if(!targetPage) return;
+      if(targetPage !== window.currentPage) {
+        location.hash = targetPage;
+      }
+    })
+
+  }
+
+  // ========== contact 페이지 부분 ====================
+  function initContact() {
     let APIKEY = "8f9769b44b504d8c07c091258a07fd4e";
     let timezone = document.getElementById("timezone");
     let icon = document.getElementById("icon");
     let temp = document.querySelector(".weather_temp");
     let lat = 37.500508;
     let lon = 127.032538;
+    let contactUsScroll = document.getElementById("contactUs");
+
+    function startScroll() {
+      let sy = window.scrollY;
+      let sec2P = contactUsScroll.offsetTop;
+      if(sy >= sec2P - 500 ) {
+        $(".contactUs_text").each( function (idx) {
+          // 글자 애니메이션
+          $(this).css("transition-delay", idx * 0.5 + "s").addClass("on");
+        });
+      }
+    }
+    startScroll()
+    window.addEventListener("scroll", startScroll);
 
     // 지도 표시 *************
     kakao.maps.load(function() {
-        let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-            mapOption = { 
-                center: new kakao.maps.LatLng(lat, lon), // 지도의 중심좌표
-                level: 3 // 지도의 확대 레벨
-            };
+      let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+          mapOption = { 
+              center: new kakao.maps.LatLng(lat, lon), // 지도의 중심좌표
+              level: 3 // 지도의 확대 레벨
+          };
 
-    let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+      let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-    // 마커 생성하기
-    let markerPosition  = new kakao.maps.LatLng(lat, lon);
-    let marker = new kakao.maps.Marker({
-        position: markerPosition
-    });
-    marker.setMap(map);
+      // 마커 생성하기
+      let markerPosition  = new kakao.maps.LatLng(lat, lon);
+      let marker = new kakao.maps.Marker({
+          position: markerPosition
+      });
+      marker.setMap(map);
 
-    // 컨트롤러 올리기
-    var mapTypeControl = new kakao.maps.MapTypeControl();
-    map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+      // 컨트롤러 올리기
+      var mapTypeControl = new kakao.maps.MapTypeControl();
+      map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
-    // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
-    let zoomControl = new kakao.maps.ZoomControl();
-    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
-  })
+      // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+      let zoomControl = new kakao.maps.ZoomControl();
+      map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+    })
 
     // 시간 표시 ************* 
     function updateTime() {
@@ -436,4 +557,5 @@ function animateProductText() {
     }
     getWeather(lat, lon);
   }
+});
 // // contact_address.js end

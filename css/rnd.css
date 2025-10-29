@@ -64,7 +64,7 @@
 }
 .rnd_content .mid_menu {
    width: 100%;
-   height: 80x;
+   height: 80px;
    background-color: #EEEAE2;
 }
 .rnd_content .mid_menu .sub_menu {
@@ -86,7 +86,7 @@
 }
 .rnd_content .frame2 {
    width: 100%;
-   height: 200px;
+   height: 230px;
    background-color: #f5f3ee;
 }
 .rnd_content .window_frame {
@@ -117,6 +117,9 @@
    padding-top: 180px;
    margin-bottom: 50px;
    position: relative;
+}
+.rnd_content .frame3 .img_frame img {
+   width: 100%;
 }
 .img_frame .text_opacity {
    position: absolute;
@@ -182,7 +185,7 @@
 }
 .grid_container .grid .outImg {
    width: 100%;
-   /* height: 100%; */
+   height: 100%;
    position: relative;
    /* top: 0; left: 0; */
 }
@@ -265,23 +268,58 @@
    flex-direction: column;
    justify-content: space-around;
    padding: 200px 100px;
+
 }
 .grid_container .grid6 {background-color: #f5f3ee;}
 .grid2 .text_desc > div, .grid6 .text_desc > div {
    padding: 50px 0;
    border-top: 1px solid #aaa;
+   opacity: 0;
+   transform: translateX(50px);
+   transition: all 0.4s linear;
 }
 .grid2 .text_desc > div:last-child, .grid6 .text_desc > div:last-child {
    border-bottom: 1px solid #aaa;
+   opacity: 0;
+   transform: translateX(50px);
+   transition: all 0.4s linear;
 }
 .grid2 .text_desc > div > h4, .grid6 .text_desc > div > h4 {
    font-size: 1.5rem;
    font-weight: 400;
-   margin-bottom: 10px;
+   margin-bottom: 10px; 
+   opacity: 0;
+   transform: translateX(50px);
+   transition: all 0.4s linear;
 }
 .grid2 .text_desc > div > p .grid6 .text_desc > div > p {
    font-size: 1rem;
    color: #666;
+   opacity: 0;
+   transform: translateX(100px);
+   transition: all 0.4s linear;
+}
+/* 글자 애니메이션 */
+.grid2 .text_desc.on > div, .grid6 .text_desc.on > div {
+   opacity: 1;
+   transform: translateX(0);
+}
+.grid2 .text_desc.on > div:last-child, .grid6 .text_desc.on > div:last-child {
+   opacity: 1;
+   transform: translateX(0);
+   transition-delay: 0.2s;
+}
+.grid2 .text_desc.on > div > h4, .grid6 .text_desc.on > div > h4 {
+   opacity: 1;
+   transform: translateX(0);
+   transition-duration: 0.5s;
+
+}
+.grid2 .text_desc.on > div > p .grid6 .text_desc.on > div > p {
+   opacity: 1;
+   transform: translateX(0);
+   transition-duration: 0.8s;
+
 }
 
 #rnd_sec4 {
@@ -370,7 +408,7 @@
 
 }
 #rnd_research_sec4 {
-   /* height: calc(100vh + 50px); */
+   height: calc(100vh - 300px);
    margin-top: 100px;
 }
 .devel_keyword {
@@ -379,11 +417,11 @@
    background-color: #EEEAE2;
    display: flex;
    flex-direction: column;
-   gap: 50px;
-   justify-content: center;
+   gap: 100px;
 }
 .devel_keyword .textBox {
    margin-left: 100px;
+   margin-top: 100px;
    line-height: 1.8;
 }
 .devel_keyword .textBox > h4 {
@@ -397,12 +435,17 @@
    color: #666;
 }
 .iconImgBox {
+   padding: 0 150px;
+   display: flex;
+   overflow: hidden;
+   width: max-content;
+}
+.iconImgBox .rollingBox {
    display: flex;
    justify-content: center;
-   flex-wrap: wrap;
-   padding: 0 150px;
+   align-items: center;
 }
-.iconImgBox .benefit {
+.iconImgBox > ul .benefit {
    width: 210px;
    height: 200px;
    border: 1px solid #ccc;
@@ -412,6 +455,21 @@
    justify-content: center;
    color: #666;
    gap: 20px;
+   margin-right: 20px;
+}
+.roll_01 {
+   animation: move_rnd 50s linear infinite;
+}
+/* .roll_02 {
+   animation: move_rnd 50s linear infinite;
+}
+.roll_03 {
+   animation: move_rnd 50s linear infinite;
+} */
+/* animation rolling */
+@keyframes move_rnd {
+   0% {transform: translateX(0);}
+   100% {transform: translateX(-100%);}
 }
 .rnd_production_sec3 {
    width: 100%;
@@ -427,29 +485,44 @@
    grid-template-columns: 1fr 1fr;
 }
 .rnd_production_sec3 .pro_grid .grid9{
-   width: 75%;
+   width: 80%;
    height: 100%;
    margin: 0 auto;
    display: flex;
    flex-direction: column;
+   justify-content: center;
    gap: 30px;
 }
-.grid9 .text_rnd .title_btn {
+.grid9 .text_rnd {
    width: 100%;
    /* height: 100px; */
    padding: 50px 0; 
    display: flex;
-   align-items: center;
+   flex-direction: column;
+   /* align-items: center; */
+   cursor: pointer;
    gap: 60px;
    border: none;
    background-color: #f5f3ee;
    border-top: 1px solid #ccc;
    border-bottom: 1px solid #ccc;
 } 
-.grid9 .text_rnd .title_btn > div > h4 {
+.grid9 .text_rnd .title_btn span:first-child {
+   font-family: "Cormorant", "Garamond", serif;
+   font-size: 2.2rem;
+   font-weight: 700;
+   margin-right: 80px;
+}
+.grid9 .text_rnd .title_btn span:last-child {
    font-size: 1.4rem;
-   font-weight: 400;
+   font-weight: 500;
 }
 .grid9 .text_rnd .desc_text {
-   padding: 50px 0;
+   display: none;
+   line-height: 1.8;
+   color: #666;
+   /* padding: 50px 0; */
+}
+.grid9 .text_rnd.active .desc_text{
+   display: flex;
 }

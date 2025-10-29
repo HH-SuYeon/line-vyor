@@ -1,1 +1,142 @@
-press.css
+.press_sec {
+   width: 100%;
+   height: 100vh;
+   overflow: hidden;
+   position: relative;  
+   z-index: 0;
+}
+#video {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   z-index: 0;
+   object-fit: cover;
+}
+.overlay {
+   position: absolute;
+   z-index: 100;
+   color: #f5f3ee;
+   top: 60%;
+   left: 5%;
+   width: 20%;
+}
+.overlay > h1 {
+   font-family: "Cormorant", serif;
+   font-weight: 400;
+   font-size: 12rem;
+   opacity: 0;
+   transform: translateY(100px);
+   transition: all 0.5s ease;
+   transition-duration: 1s;
+}
+.overlay > p {
+   font-size: 1.5rem;
+   opacity: 0;
+   transform: translateY(100px);
+   transition: all 0.9s ease;
+   transition-duration: 1.5s;
+}
+.overlay.on > h1, .overlay.on > p {
+   opacity: 1;
+   transform: translateY(0);
+}
+.press_board {
+  width: 100%;
+  height: calc(100vh + 100px);
+}
+.press_board .boardBox {
+  width: 30%;
+  height: 100%;
+  margin-left: 100px;
+  padding-top: 200px;
+}
+.press_board .boardBox .imgBox img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.3s linear;
+}
+.boardBox:hover .imgBox img{
+  border: 10px solid #000;
+}
+.press_board .boardBox .text_area {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 50px;
+}
+.press_board .boardBox .text_area h4 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.press_board .boardBox .text_area p {
+  font-size: 1rem;
+  color: #666;
+}
+.h_line {
+  width: 100%;
+  height: 1px;
+  background-color: #aaa;
+  margin-top: 50px;
+  margin-bottom: 200px;
+}
+.press_board_view {
+  width: 90%;
+  margin: 200px auto;
+}
+.press_board_view .boardBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.press_board_view .boardBox .text_area_tit {
+  width: 100%;
+  padding: 50px;
+  text-align: center;
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+}
+.press_board_view .boardBox .text_area_tit h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+.press_board_view .boardBox .text_area_tit p {
+  font-size: 1rem;
+  color: #666;
+}
+.press_board_view .boardBox .text_area_des {
+  padding: 100px;
+  border-bottom: 1px solid #aaa;
+}
+.press_board_view .boardBox .text_area_des h6 {
+  font-size: 1rem;
+  color: #666;
+}
+.listHam {
+  width: 80px;
+  height: 80px;
+  background-color: #333333;
+  margin: 100px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.listHam .lines {
+  width: 20px;
+  height: 1px;
+  background-color: #fff;
+}
+
+/* video 화면의 글자가 너무 커서  */
+@media (max-width: 768px) {
+   .overlay > h1 {
+      font-size: 6rem;
+   }
+   .overlay > p {
+      font-size: 1rem;
+   }
+}
