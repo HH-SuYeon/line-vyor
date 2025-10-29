@@ -40,21 +40,53 @@ $(document).on("loadPageComplete", function (e, pageName) {
     }
   });
 
-  // Product Gallery 자동 스크롤
-  const home_gallery = document.querySelector(".home_product-gallery");
-  let home_scrollInterval;
-  if (home_gallery) {
-    home_gallery.addEventListener("mouseenter", () => {
-      home_scrollInterval = setInterval(() => {
-        home_gallery.scrollLeft += 1;
-      }, 15);
-    });
-    home_gallery.addEventListener("mouseleave", () => {
-      clearInterval(home_scrollInterval);
-    });
-  }
+  // Product Gallery  스크롤
+  document.addEventListener("DOMContentLoaded", () => {
+    const gallery = document.querySelector(".home_product-gallery");
+    const cards = document.querySelectorAll(".home_product-gallery .home_card");
+    let index = 0;
+    let interval;
 
-  // ✅ Contact 텍스트 효과
+    // 한 번에 하나만 보이게 (CSS 영향 받는 구조 대응)
+    cards.forEach((card, i) => {
+      card.style.display = i === 0 ? "block" : "none";
+    });
+
+    // 다음 카드로 이동
+    const showNextCard = () => {
+      cards[index].style.display = "none";
+      index = (index + 1) % cards.length;
+      cards[index].style.display = "block";
+    };
+
+    // 자동 재생 시작
+    const startSlide = () => {
+      interval = setInterval(showNextCard, 6000); // 4초마다 전환
+    };
+
+    // 정지
+    const stopSlide = () => clearInterval(interval);
+
+    // hover 시 멈춤
+    gallery.addEventListener("mouseenter", stopSlide);
+    gallery.addEventListener("mouseleave", startSlide);
+
+    // 클릭 시 링크 이동
+    cards.forEach((card) => {
+      const linkTag = card.querySelector("a");
+      if (linkTag) {
+        card.addEventListener("click", () => {
+          const href = linkTag.getAttribute("href");
+          if (href) window.location.href = href;
+        });
+      }
+    });
+
+    startSlide(); // 실행
+  });
+
+
+  //  Contact 텍스트 효과
   const fadeItems = document.querySelectorAll(".fade-item");
   const io = new IntersectionObserver(
     (entries) => {

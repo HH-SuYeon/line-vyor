@@ -4,8 +4,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- <style>
+        #contactUs {
+            width: 100vw;
+            height: 100vh;
+        }
+        .contactUs_text {
+            text-align: center;
+            margin-top: 150px;
+        }
+        .contactUs_text h1 {
+            font-size: 6rem;
+            font-family: "Cormorant";
+            margin-bottom: -10px;
+        }
+        .contactUs_text p {
+            font-size: 1rem;
+            font-family: "serif";
+        }
+        .contactUs_map {
+            max-width: 1000px;
+            height: 500px;
+            background-color: aqua;
+            margin: 0 auto;
+            margin-top: 100px;
+            border: 2px solid #ccc;
+        }
+        .contactUs_grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            margin-top: 30px;
+            display: grid;
+            grid-template-columns: 33% 33% 33%;
+            grid-template-rows: 200px 200px;
+        }
+            .contactUs_grid .grid {
+                border: 1px solid #ccc;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                line-height: 0.1;
+            }
+            .contactUs_grid .grid1 {
+                grid-column: 1/3;
+            }
+            .contactUs_grid .grid2 {
+                grid-column: 3/4;
+            }
+            .contactUs_grid .grid3 {
+                grid-column: 1/2;
+            }
+            .contactUs_grid .grid4 {
+                grid-column: 2/3;
+            }
+            .contactUs_grid .grid5 {
+                grid-column: 3/4;
+            }
+            .contactUs_grid .grid h5 {
+                font-family: "Cormorant", serif;
+                font-size: 1.2rem;
+            }
+            .contactUs_grid .grid p {
+                font-size: 0.81rem;
+                color: #666;
+            }
+        .weather_info {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 100%;
+            height: 100px;
+        }
+        .weather_info > img {
+            width: 100px;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style> -->
 </head>
 <body>
-    contact_address.html
+    <!-- con섹션1 -->
+    <section id="contact">
+        <video autoplay muted loop playsinline>
+            <source src="img/contact/pn5_video.mp4" type="video/mp4" />
+        </video>
+
+        <div class="contactText">
+            <h1>CONTACT</h1>
+            <p style="font-size: 22px">CONTACT</p>
+        </div>
+    </section>
+    
+    <section id="contactUs">
+        <div>
+            <div class="contactUs_text">
+                <h1>CONTACT US</h1>
+                <p>If you have any questions about Freqty, don't hesitate to reach out to us!</p>
+            </div>
+            <div id="map" class="contactUs_map">
+                <!-- <div>지도 들어갈 곳</div> -->
+            </div>
+            <div class="contactUs_grid">
+                <div class="grid1 grid">
+                    <h5>LOCATION</h5>
+                    <p>서울시 서초구 논현로 87</p>
+                </div>
+                <div id="weather" class="grid2 grid">
+                    <h5>대한민국 서울</h5>
+                    <div class="weather_info">
+                        <img id="icon" alt="날씨 아이콘" />
+                        <div class="weather_temp"></div>
+                    </div>
+                </div>
+                <div class="grid3 grid">
+                    <h5>E-MAIL</h5>
+                    <p>vyor@vyor.co.kr</p>
+                </div>
+                <div class="grid4 grid">
+                    <h5>TEL</h5>
+                    <p>02-123-4567</p>
+                </div>
+                <div class="grid5 grid">
+                    <h5>TIME</h5>
+                    <p id="timezone"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cc276c8e4982a4daa6075e4c1b7f6991&libraries=services,clusterer,drawing"></script>
+    <!-- <script>
+        let APIKEY = "8f9769b44b504d8c07c091258a07fd4e";
+        let timezone = document.getElementById("timezone");
+        let icon = document.getElementById("icon");
+        let temp = document.querySelector(".weather_temp");
+        let lat = 37.500508;
+        let lon = 127.032538;
+
+        // 지도 표시 *************
+        // window.addEventListener("DOMContentLoaded", () => {
+        kakao.maps.load(function() {
+            let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = { 
+                    center: new kakao.maps.LatLng(lat, lon), // 지도의 중심좌표
+                    level: 3 // 지도의 확대 레벨
+                };
+
+        let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+        // 마커 생성하기
+        let markerPosition  = new kakao.maps.LatLng(lat, lon);
+        let marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+        marker.setMap(map);
+
+        // 컨트롤러 올리기
+        var mapTypeControl = new kakao.maps.MapTypeControl();
+        map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+        // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+        let zoomControl = new kakao.maps.ZoomControl();
+        map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+      })
+    // })
+
+        // 시간 표시 ************* 
+        function updateTime() {
+            let now = new Date();
+            let dateS = now.toLocaleDateString("ko-KR", {year:"numeric", month:"long", day:"numeric", weekday:"long"});
+            let timeS = now.toLocaleTimeString("ko-KR", {hour: "2-digit", minute: "2-digit", second: "2-digit"});
+
+            timezone.innerHTML = `${dateS}-${timeS}`
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        // 날씨 표시 ***************
+        let getWeather = async(lat, lon) => {
+            try {
+                let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Ansan,kr&appid=${APIKEY}&units=metric&lang=kr`)
+                let data = await res.json();
+                temp.textContent = `${data.main.temp} ℃`;
+                let iconNum = data.weather[0].icon;
+                iconSrc = `http://openweathermap.org/img/wn/${iconNum}@2x.png`;
+                icon.setAttribute("src", iconSrc);
+console.log("날씨 업데이트 완료")
+            }
+            catch(err) {
+                temp.textContent = "날씨정보를 불러오지 못했습니다"
+            }
+        }
+        getWeather(lat, lon);
+    </script> -->
 </body>
 </html>

@@ -4,13 +4,12 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <script src="/js/rnd.js" defer></script>
-   <title>R&D</title>
+   <title>R&D Technology</title>
 </head>
 <body>
    <section id="rnd_sec1" class="videoWrap rnd_sec">
       <video id="video" autoplay muted loop>
-         <source src="./img/rnd/R&D.mp4" type="video/mp4">
+         <source src="img/rnd/R&D.mp4" type="video/mp4">
       </video>
 
       <div class="overlay">
@@ -22,9 +21,9 @@
    <section id="rnd_sec2" class="rnd_content  rnd_sec">
       <div class="mid_menu">
          <ul class="sub_menu">
-            <li><a data-page="rndTechnology.html">테크놀로지</a></li>
-            <li><a data-page="rndResearch.html">연구분야</a></li>
-            <li><a data-page="rndProduction.html">생산시설</a></li>
+            <li><a href="#"><strong>테크놀로지</strong></a></li>
+            <li><a href="#rndResearch">연구분야</a></li>
+            <li><a href="#rndProduction">생산시설</a></li>
          </ul>
       </div>
          <div class="frame1"></div>
@@ -38,7 +37,7 @@
       <div class="grid_container">
          <div class="grid grid1">
             <div class="outImg">
-               <img src="/img/rnd/m31_bg1_1.png" alt="">
+               <img src="img/rnd/m31_bg1_1.png" alt="">
                <div class="innerImg">
                </div>
                <div class="text_area">
@@ -74,8 +73,8 @@
          <div class="grid grid3">
             <div class="outImg ">
                <div class="grid3Img">
-                  <img src="/img/rnd/m31_bg3.jpg" alt="">
-                  <img src="/img/rnd/m31_bg4.jpg" alt="">
+                  <img src="img/rnd/m31_bg3.jpg" alt="">
+                  <img src="img/rnd/m31_bg4.jpg" alt="">
                </div>
                <div class="text_nmn">
                   <div>
@@ -101,7 +100,7 @@
       
          <div class="grid grid4">
             <div class="outImg">
-               <img src="/img/rnd/m31_bg2.jpg" alt="">
+               <img src="img/rnd/m31_bg2.jpg" alt="">
                <div class="innerImg"></div>
                <div class="text_area">
                   <h4>핵심 기술</h4>
@@ -112,39 +111,5 @@
          </div>
       </div>
    </section>
-      
-   <!-- 2. fetch로 불러오기 (script 생성) -->
-   <!-- <script>
-      document.addEventListener("DOMContentLoaded", function() {
-      // Header 불러오기
-      fetch("/components/header.html")
-         .then(response => response.text())
-         .then(html => {
-            document.getElementById("header").innerHTML = html;
-
-            // header.js 불러오기
-            const script = document.createElement("script");
-            script.src = "/js/header.js";
-            script.onload = function() {
-            console.log("header.js loaded!");
-            initHeader(); // header 초기화 함수 실행
-            };
-            script.onerror = function() {
-            console.error("header.js load failed");
-            };
-            document.body.appendChild(script);
-         })
-         .catch(err => console.error("header.html load failed", err));
-
-      // Footer 불러오기
-      fetch("/components/footer.html")
-         .then(response => response.text())
-         .then(html => {
-            document.getElementById("footer").innerHTML = html;
-         })
-         .catch(err => console.error("footer.html load failed", err));
-      });
-   </script> -->
-   
 </body>
 </html>
