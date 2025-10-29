@@ -381,12 +381,11 @@ $(document).ready(function () {
 
   // ======== rnd 페이지 부분 ======================
   function initRnd() {
-    const overlay = document.querySelector(".videoWrap .overlay");
-    const title = $(".text_rnd");
+    const overlay_rnd = document.querySelector(".videoWrap .overlay");
     const desc = $(".grid2 .text_desc, .grid6 .text_desc");
 
-    if(overlay) {
-      overlay.classList.add("on");    
+    if(overlay_rnd) {
+      overlay_rnd.classList.add("on");    
     }else {
       console.warn("⚠️ .overlay를 찾을 수 없습니다!");
     }
@@ -441,11 +440,46 @@ $(document).ready(function () {
       }
     });
 
-    title.on("click", function(e) {
-        e.preventDefault();
-        title.not(this).removeClass("active");
-        $(this).toggleClass("active");
-    })
+    // title.on("click", function(e) {
+    //     e.preventDefault();
+    //     title.not(this).removeClass("active");
+    //     $(this).toggleClass("active");
+    //     if (descText.classList.contains('active')) {
+    //         descText.style.maxHeight = descText.scrollHeight + 'px';
+    //       } else {
+    //         descText.style.maxHeight = '0';
+    //       }
+    // })
+    
+    const $firstContent = $(".desc_text").first();
+    $firstContent.addClass('open')
+      .css({
+        maxHeight: $firstContent.prop('scrollHeight') + 'px',
+        opacity: 1
+      });
+    $('.title_btn').on('click', function() {
+      const $content = $(this).next('.desc_text');
+      const isOpen = $content.hasClass('open');
+
+      if(isOpen) return;
+      // 모든 아코디언 닫기 (하나만 열리게)
+      $('.desc_text').not($content).removeClass('open')
+        .css({
+          maxHeight: 0,
+          opacity: 0
+        });
+
+      // 클릭한 아코디언 열기/닫기
+      if (!isOpen) {
+        $content.addClass('open')
+          .css({
+            maxHeight: $content.prop('scrollHeight') + 'px',
+            opacity: 1
+        });
+      }else {
+
+      }
+    });
   }
 
   // ========= 프로덕트 js ============================
@@ -525,6 +559,11 @@ $(document).ready(function () {
     window.addEventListener("scroll", startScroll);
 
     // 지도 표시 *************
+    // let overlay;
+    // function closeOverlay() {
+    //     overlay.setMap(null);     
+    // }
+    // window.closeOverlay = closeOverlay;
     kakao.maps.load(function() {
       let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
           mapOption = { 
@@ -533,21 +572,59 @@ $(document).ready(function () {
           };
 
       let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-      // 마커 생성하기
-      let markerPosition  = new kakao.maps.LatLng(lat, lon);
-      let marker = new kakao.maps.Marker({
-          position: markerPosition
-      });
-      marker.setMap(map);
-
       // 컨트롤러 올리기
-      var mapTypeControl = new kakao.maps.MapTypeControl();
+      let mapTypeControl = new kakao.maps.MapTypeControl();
       map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
       // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
       let zoomControl = new kakao.maps.ZoomControl();
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+      // 마커 생성하기
+      let marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(lat, lon)
+      });
+      let content = document.createElement("div");
+      content.innerHTML = `
+          <div class="wrap_map">
+            <div class="info_map">
+              <div class="company_map">
+                <div class="img_map">
+                  <img src="img/etc/logo/logo1.png" width="50" height="25" />
+                </div>
+                <div class="title_map">비오르</div>
+                <div class="close_map" title="닫기">X</div>
+              </div>
+              <div class="body_map">
+                <div class="desc_map">
+                  <div class="ellipsis_map">(우) 06775</div>
+                  <div class="jibun_map ellipsis_map">서울시 서초구 논현로 87</div>
+                  <div class="home_map">
+                    <a href="https://vyor.kr/" target="_blank" class="link">홈페이지 - vyor.kr</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      // 커스텀 오버레이 생성
+      overlay = new kakao.maps.CustomOverlay({
+          content: content,
+          map: map,
+          position: marker.getPosition(),
+          xAnchor: 0.5,
+          yAnchor: 1.35       
+      });
+      // 닫기 버튼 (X)
+      let closeBtn = content.querySelector('.close_map');
+      closeBtn.addEventListener('click', () => {
+        overlay.setMap(null);
+      })
+      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+      kakao.maps.event.addListener(marker, 'click', function() {
+          overlay.setMap(map);
+      });
     })
 
     // 시간 표시 ************* 
