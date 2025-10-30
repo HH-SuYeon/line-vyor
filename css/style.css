@@ -1,7 +1,8 @@
-* {margin: 0; padding: 0; list-style: none; text-decoration: none; box-sizing: border-box; font-size: 16px;}
+* {margin: 0; padding: 0; list-style: none; text-decoration: none; box-sizing: border-box;}
 body {width: 100vw; overflow-x: hidden; background-color: #f5f3ee;}
 
 html {
+  font-size: 16px;
   scroll-behavior: smooth;
 }
 /* ================= HERO SECTION ================= */
@@ -299,9 +300,30 @@ html {
 .home_product-text {
   flex: 0 0 45%;
   text-align: left;
-  transform: translateX(-50px);
+  opacity: 0;
+  transform: translateY(50px); 
+   transition: all 1.4s cubic-bezier(0.25, 0.1, 0.25, 1); 
+  will-change: transform, opacity;
+}
+.home_product-text.home_active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.home_product-text > * {
+  opacity: 0;
+  transform: translateY(40px);
+ transition: all 1.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform, opacity;
 }
 
+.home_product-text.home_active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.home_product-text.home_active .home_subtitle { transition-delay: 0.2s; }
+.home_product-text.home_active h2 { transition-delay: 0.5s; }
+.home_product-text.home_active p { transition-delay: 0.8s; }
+.home_product-text.home_active .home_view-more { transition-delay: 1.1s; }
 .home_product-text .home_subtitle {
   font-size: 1.2rem;
   font-family: "Cormorant", serif;
@@ -448,11 +470,11 @@ html {
 }
 .home_slideUp-item {
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 1s ease;
+  transform: translateY(60px);
+  transition: all 1.3s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-.home_slideUp-item::in-view {
+.home_slideUp-item.home_active {
   opacity: 1;
   transform: translateY(0);
 }
@@ -514,7 +536,7 @@ html {
   display: inline-flex;
   gap: 80px;
   font-family: "Cormorant", sans-serif;
-  font-size: 16rem;
+  font-size: 16rem  !important;
   font-weight: 500;
   letter-spacing: 4px;
   color: #1a1a1a;
@@ -625,3 +647,10 @@ html {
                 z-index: 15;
             }
 /* 수연코드 */
+/*  Footer 항상 표시 */
+#footer {
+  background: #1a1a1a; 
+  color: #fff;
+  position: relative;
+  z-index: 50; 
+}

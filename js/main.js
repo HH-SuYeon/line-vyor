@@ -48,7 +48,7 @@ $(document).ready(function () {
   // 페이지별 설정 
   const pageSettings = {
     home: {
-      css: "css/home.css",
+      css: "css/style.css",
       init: function () {
         console.log("home 초기화 완료");
       },
@@ -191,17 +191,17 @@ $(document).ready(function () {
       main.load(`pages/${pageName}.html`, function() {
         // 페이지 이동 후 항상 top 0
         $(window).scrollTop(0);
-        main.fadeIn(200);
+        main.fadeIn(200,function(){
+          $(document).trigger("loadPageComplete", [pageName]);
+          updateHeader(pageName);
         // 페이지별 init 함수 실행
         if (settings.init) {
           setTimeout(() => settings.init(), 300)
         }
-        // 페이지 로드 완료 이벤트 (home.js용) **
-        $(document).trigger("loadPageComplete", [pageName]);
-
         // header 상태(색상) 업데이트
         updateHeader(pageName);
       });
+    });
     });
   }
   // 현재페이지 로드 (처음 접속시 home)
@@ -249,7 +249,6 @@ $(document).ready(function () {
       loadPage(event.state.page);
     }
   };
-
   // ======== home.js 통합 (loadPageComplete 이벤트 아래) ==================
   $(document).on("loadPageComplete", function (e, pageName) {
     const footer = $("#footer");
@@ -311,7 +310,38 @@ $(document).ready(function () {
         home_scrollIndicator.classList.add("home_hide");
         home_arrows.classList.add("home_hide");
       }
-    
+      })
+      //  세 번째 섹션(Product Text) 등장 효과
+          const homeProductText = document.querySelector(".home_product-text");
+      if (homeProductText) {
+        console.log(" home_product-text 찾음:", homeProductText);
+        const productObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              console.log(" 감시 중:", entry.isIntersecting);
+              if (entry.isIntersecting) {
+                homeProductText.classList.add("home_active");
+                console.log(" home_active 클래스 추가됨!");
+              }
+            });
+          },
+          { threshold: 0.05 }
+        );
+
+        productObserver.observe(homeProductText);
+        setTimeout(() => {
+    const rect = homeProductText.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+    console.log(" 초기 화면 체크:", inView);
+    if (inView) {
+      homeProductText.classList.add("home_active");
+      console.log(" 초기 로드시 화면 안에 있어서 home_active 추가!");
+    }
+  }, 500);
+      } else {
+        console.warn("⚠️ home_product-text를 찾을 수 없음!");
+      }
+      
     // Product Gallery 자동 스크롤
     const home_gallery = document.querySelector(".home_product-gallery");
     let home_scrollInterval;
@@ -326,7 +356,27 @@ $(document).ready(function () {
       });
     }
 
-    // ✅ Contact 텍스트 효과
+//  Moving Text 섹션 - 자동 좌우 무빙 (수정된 위치)
+  const movingText = document.querySelector("#home_movingText .home_text-line");
+  if (movingText) {
+    movingText.style.animationPlayState = "running";
+  }
+  //  R&D 섹션 텍스트 애니메이션
+  const rndTexts = document.querySelectorAll(".home_slideUp-item");
+if (rndTexts.length) {
+  const rndObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("home_active");
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+  rndTexts.forEach((el) => rndObserver.observe(el));
+}
+    //  Contact 텍스트 효과
     const fadeItems = document.querySelectorAll(".fade-item");
     const io = new IntersectionObserver(
       (entries) => {
@@ -381,12 +431,11 @@ $(document).ready(function () {
 
   // ======== rnd 페이지 부분 ======================
   function initRnd() {
-    const overlay = document.querySelector(".videoWrap .overlay");
-    const title = $(".text_rnd");
+    const overlay_rnd = document.querySelector(".videoWrap .overlay");
     const desc = $(".grid2 .text_desc, .grid6 .text_desc");
 
-    if(overlay) {
-      overlay.classList.add("on");    
+    if(overlay_rnd) {
+      overlay_rnd.classList.add("on");    
     }else {
       console.warn("⚠️ .overlay를 찾을 수 없습니다!");
     }
@@ -441,11 +490,46 @@ $(document).ready(function () {
       }
     });
 
-    title.on("click", function(e) {
-        e.preventDefault();
-        title.not(this).removeClass("active");
-        $(this).toggleClass("active");
-    })
+    // title.on("click", function(e) {
+    //     e.preventDefault();
+    //     title.not(this).removeClass("active");
+    //     $(this).toggleClass("active");
+    //     if (descText.classList.contains('active')) {
+    //         descText.style.maxHeight = descText.scrollHeight + 'px';
+    //       } else {
+    //         descText.style.maxHeight = '0';
+    //       }
+    // })
+    
+    const $firstContent = $(".desc_text").first();
+    $firstContent.addClass('open')
+      .css({
+        maxHeight: $firstContent.prop('scrollHeight') + 'px',
+        opacity: 1
+      });
+    $('.title_btn').on('click', function() {
+      const $content = $(this).next('.desc_text');
+      const isOpen = $content.hasClass('open');
+
+      if(isOpen) return;
+      // 모든 아코디언 닫기 (하나만 열리게)
+      $('.desc_text').not($content).removeClass('open')
+        .css({
+          maxHeight: 0,
+          opacity: 0
+        });
+
+      // 클릭한 아코디언 열기/닫기
+      if (!isOpen) {
+        $content.addClass('open')
+          .css({
+            maxHeight: $content.prop('scrollHeight') + 'px',
+            opacity: 1
+        });
+      }else {
+
+      }
+    });
   }
 
   // ========= 프로덕트 js ============================
@@ -460,7 +544,7 @@ $(document).ready(function () {
 
 
      // product_menus 내부 링크 이동
-    $(".product_menus, product_page3_link").off("click").on("click", "a[data-page]", function(e) {
+    $(".product_menus, .product_page3_link").off("click").on("click", "a[data-page]", function(e) {
       e.preventDefault();
       const targetPage = $(this).data("page");
       if(!targetPage) return;
@@ -501,6 +585,8 @@ $(document).ready(function () {
 
   }
 
+
+
   // ========== contact 페이지 부분 ====================
   function initContact() {
     let APIKEY = "8f9769b44b504d8c07c091258a07fd4e";
@@ -525,6 +611,11 @@ $(document).ready(function () {
     window.addEventListener("scroll", startScroll);
 
     // 지도 표시 *************
+    // let overlay;
+    // function closeOverlay() {
+    //     overlay.setMap(null);     
+    // }
+    // window.closeOverlay = closeOverlay;
     kakao.maps.load(function() {
       let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
           mapOption = { 
@@ -533,21 +624,59 @@ $(document).ready(function () {
           };
 
       let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-      // 마커 생성하기
-      let markerPosition  = new kakao.maps.LatLng(lat, lon);
-      let marker = new kakao.maps.Marker({
-          position: markerPosition
-      });
-      marker.setMap(map);
-
       // 컨트롤러 올리기
-      var mapTypeControl = new kakao.maps.MapTypeControl();
+      let mapTypeControl = new kakao.maps.MapTypeControl();
       map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
 
       // 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
       let zoomControl = new kakao.maps.ZoomControl();
       map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+
+      // 마커 생성하기
+      let marker = new kakao.maps.Marker({
+        map: map,
+        position: new kakao.maps.LatLng(lat, lon)
+      });
+      let content = document.createElement("div");
+      content.innerHTML = `
+          <div class="wrap_map">
+            <div class="info_map">
+              <div class="company_map">
+                <div class="img_map">
+                  <img src="img/etc/logo/logo1.png" width="50" height="25" />
+                </div>
+                <div class="title_map">비오르</div>
+                <div class="close_map" title="닫기">X</div>
+              </div>
+              <div class="body_map">
+                <div class="desc_map">
+                  <div class="ellipsis_map">(우) 06775</div>
+                  <div class="jibun_map ellipsis_map">서울시 서초구 논현로 87</div>
+                  <div class="home_map">
+                    <a href="https://vyor.kr/" target="_blank" class="link">홈페이지 - vyor.kr</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      // 커스텀 오버레이 생성
+      overlay = new kakao.maps.CustomOverlay({
+          content: content,
+          map: map,
+          position: marker.getPosition(),
+          xAnchor: 0.5,
+          yAnchor: 1.35       
+      });
+      // 닫기 버튼 (X)
+      let closeBtn = content.querySelector('.close_map');
+      closeBtn.addEventListener('click', () => {
+        overlay.setMap(null);
+      })
+      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+      kakao.maps.event.addListener(marker, 'click', function() {
+          overlay.setMap(map);
+      });
     })
 
     // 시간 표시 ************* 
@@ -578,5 +707,5 @@ $(document).ready(function () {
     }
     getWeather(lat, lon);
   }
-});
+
 // // contact_address.js end
