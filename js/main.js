@@ -289,10 +289,11 @@ $(document).ready(function () {
       },
       { threshold: 0.3 }
     );
-    document
-      .querySelectorAll(".home_fade-item")
-      .forEach((el) => observer.observe(el));
-
+   setTimeout(() => {
+  document
+    .querySelectorAll(".home_fade-item, #home_intro .home_intro-left, #home_intro .home_intro-right")
+    .forEach((el) => observer.observe(el));
+}, 500);
     // 스크롤 인디케이터 + 화살표 제어
     window.addEventListener("scroll", () => {
       if (!home_hero || !home_intro || !home_scrollIndicator || !home_arrows)
@@ -326,7 +327,50 @@ $(document).ready(function () {
       });
     }
 
+<<<<<<< Updated upstream
     // ✅ Contact 텍스트 효과
+=======
+    //  Moving Text 섹션 - 자동 좌우 무빙 (수정된 위치)
+    const movingText = document.querySelector(
+      "#home_movingText .home_text-line"
+    );
+    if (movingText) {
+      movingText.style.animationPlayState = "running";
+    }
+    //  R&D 섹션 텍스트 애니메이션
+    const rndTexts = document.querySelectorAll(".home_slideUp-item");
+    const imgSmall = document.querySelector(".home_rnd-left");
+    if (rndTexts.length) {
+      const rndObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("home_active");
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      rndTexts.forEach((el) => rndObserver.observe(el));
+    }const rndVideo = document.querySelector("#home_rnd .home_rnd-left video");
+if (rndVideo) {
+  const videoObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          rndVideo.style.transform = "scale(1)";
+        } else {
+          rndVideo.style.transform = "scale(1.5)";
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+  videoObserver.observe(rndVideo);
+}
+
+    //  Contact 텍스트 효과
+>>>>>>> Stashed changes
     const fadeItems = document.querySelectorAll(".fade-item");
     const io = new IntersectionObserver(
       (entries) => {
