@@ -5,23 +5,22 @@ $(document).ready(function () {
   const header = $("#header");
   const footer = $("#footer");
 
-
   // 공통 헤더 로드
-  header.load("components/header.html", function() {
+  header.load("components/header.html", function () {
     $.getScript("js/header.js")
-      .done(function() {
-    console.log("header.js loaded!");
-        if(typeof initHeader === "function") initHeader();
+      .done(function () {
+        console.log("header.js loaded!");
+        if (typeof initHeader === "function") initHeader();
       })
       .fail(function (jqxhr, settings, exception) {
-    console.error("header.js load failed", exception)
-      })
-      footer.load("components/footer.html", function() {
-        console.log("푸터 로드 완료");
-      });  
+        console.error("header.js load failed", exception);
+      });
+    footer.load("components/footer.html", function () {
+      console.log("푸터 로드 완료");
     });
-  
-  // 페이지별 설정 
+  });
+
+  // 페이지별 설정
   const pageSettings = {
     home: {
       css: "css/style.css",
@@ -52,28 +51,28 @@ $(document).ready(function () {
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
-        initProduct()
+        initProduct();
       },
     },
     product_body_lotion: {
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
-        initProduct()
+        initProduct();
       },
     },
     product_hair: {
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
-        initProduct()
+        initProduct();
       },
     },
     product_facial: {
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
-        initProduct()
+        initProduct();
       },
     },
     rndTechnology: {
@@ -101,7 +100,7 @@ $(document).ready(function () {
       css: "css/press.css",
       init: function () {
         console.log("press 초기화 중...");
-         initPress();
+        initPress();
       },
     },
     press_news: {
@@ -133,7 +132,7 @@ $(document).ready(function () {
     },
   };
 
-  // 공통 CSS 로드 함수 
+  // 공통 CSS 로드 함수
   function loadPageCSS(cssPath) {
     return new Promise((resolve) => {
       if (!cssPath) return resolve();
@@ -160,24 +159,24 @@ $(document).ready(function () {
     window.currentPage = pageName;
     const settings = pageSettings[pageName] || {};
 
-  console.log(pageName)
-    main.fadeOut(100, async function() {
+    console.log(pageName);
+    main.fadeOut(100, async function () {
       // 각페이지의 css 화일 로드
-      await loadPageCSS(settings.css)
-      main.load(`pages/${pageName}.html`, function() {
+      await loadPageCSS(settings.css);
+      main.load(`pages/${pageName}.html`, function () {
         // 페이지 이동 후 항상 top 0
         $(window).scrollTop(0);
-        main.fadeIn(200,function(){
+        main.fadeIn(200, function () {
           $(document).trigger("loadPageComplete", [pageName]);
           updateHeader(pageName);
-        // 페이지별 init 함수 실행
-        if (settings.init) {
-          setTimeout(() => settings.init(), 300)
-        }
-        // header 상태(색상) 업데이트
-        updateHeader(pageName);
+          // 페이지별 init 함수 실행
+          if (settings.init) {
+            setTimeout(() => settings.init(), 300);
+          }
+          // header 상태(색상) 업데이트
+          updateHeader(pageName);
+        });
       });
-    });
     });
   }
   // 현재페이지 로드 (처음 접속시 home)
@@ -186,7 +185,7 @@ $(document).ready(function () {
   // 페이지 이동 라우터
   function handleRoute() {
     const page = location.hash.replace("#", "") || "home";
-  console.log("handleRoute 실행")
+    console.log("handleRoute 실행");
     loadPage(page);
   }
 
@@ -197,27 +196,27 @@ $(document).ready(function () {
   function updateHeader(pageName) {
     const navIcon = header.find(".nav_icon");
     const gnb = header.find(".gnb");
-  console.log(pageName)
+    console.log(pageName);
     if (pageName === "sitemap") {
       footer.hide();
       // gnb.addClass("hide_inner");
-      gnb.addClass("hide_inner").css({opacity:0, pointerEvent: "none"});
+      gnb.addClass("hide_inner").css({ opacity: 0, pointerEvent: "none" });
       header.addClass("hide_header");
       navIcon.addClass("on");
     } else {
-      footer.show();  
+      footer.show();
       // gnb.removeClass("hide_inner");
-      gnb.removeClass("hide_inner").css({opacity:"", pointerEvent:""});
+      gnb.removeClass("hide_inner").css({ opacity: "", pointerEvent: "" });
       header.removeClass("hide_header");
       navIcon.removeClass("on");
     }
   }
 
   // header.js에서 보낸 커스텀 이벤트 받기
-  $(document).on("navigateTo", function(e, pageName) {
+  $(document).on("navigateTo", function (e, pageName) {
     location.hash = pageName;
     // loadPage(pageName);
-  })
+  });
 
   // 뒤로가기 / 앞으로가기 처리
   window.onpopstate = function (event) {
@@ -236,23 +235,27 @@ $(document).ready(function () {
       // sitemap 외 페이지는 항상 보이게
       footer.removeClass("hide_footer");
     }
-    
+
     if (pageName !== "home") return;
 
     const home_hero = document.getElementById("home_hero");
-    const home_scrollIndicator = document.getElementById("home_scrollIndicator");
+    const home_scrollIndicator = document.getElementById(
+      "home_scrollIndicator"
+    );
     const home_arrows = document.querySelector(".home_arrows");
     const home_intro = document.getElementById("home_intro");
 
     // home 내부 링크 이동
-    $(".home_view-more").off("click").on("click", "a[data-page]", function(e) {
-      e.preventDefault();
-      const targetPage = $(this).data("page");
-      if(!targetPage) return;
-      if(targetPage !== window.currentPage) {
-        location.hash = targetPage;
-      }
-    });
+    $(".home_view-more")
+      .off("click")
+      .on("click", "a[data-page]", function (e) {
+        e.preventDefault();
+        const targetPage = $(this).data("page");
+        if (!targetPage) return;
+        if (targetPage !== window.currentPage) {
+          location.hash = targetPage;
+        }
+      });
 
     // IntersectionObserver (페이드인 효과)
     const observer = new IntersectionObserver(
@@ -286,39 +289,39 @@ $(document).ready(function () {
         home_scrollIndicator.classList.add("home_hide");
         home_arrows.classList.add("home_hide");
       }
-    })
+    });
     //  세 번째 섹션(Product Text) 등장 효과
     const homeProductText = document.querySelector(".home_product-text");
     if (homeProductText) {
-        console.log(" home_product-text 찾음:", homeProductText);
-        const productObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              console.log(" 감시 중:", entry.isIntersecting);
-              if (entry.isIntersecting) {
-                homeProductText.classList.add("home_active");
-                console.log(" home_active 클래스 추가됨!");
-              }
-            });
-          },
-          { threshold: 0.05 }
-        );
+      console.log(" home_product-text 찾음:", homeProductText);
+      const productObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            console.log(" 감시 중:", entry.isIntersecting);
+            if (entry.isIntersecting) {
+              homeProductText.classList.add("home_active");
+              console.log(" home_active 클래스 추가됨!");
+            }
+          });
+        },
+        { threshold: 0.05 }
+      );
 
-        productObserver.observe(homeProductText);
+      productObserver.observe(homeProductText);
 
-        setTimeout(() => {
-          const rect = homeProductText.getBoundingClientRect();
-          const inView = rect.top < window.innerHeight && rect.bottom > 0;
-          console.log(" 초기 화면 체크:", inView);
-          if (inView) {
-            homeProductText.classList.add("home_active");
-            console.log(" 초기 로드시 화면 안에 있어서 home_active 추가!");
-          }
-        }, 500);
-      } else {
-        console.warn("⚠️ home_product-text를 찾을 수 없음!");
-      }
-      
+      setTimeout(() => {
+        const rect = homeProductText.getBoundingClientRect();
+        const inView = rect.top < window.innerHeight && rect.bottom > 0;
+        console.log(" 초기 화면 체크:", inView);
+        if (inView) {
+          homeProductText.classList.add("home_active");
+          console.log(" 초기 로드시 화면 안에 있어서 home_active 추가!");
+        }
+      }, 500);
+    } else {
+      console.warn("⚠️ home_product-text를 찾을 수 없음!");
+    }
+
     // Product Gallery 자동 스크롤
     // const home_gallery = document.querySelector(".home_product-gallery");
     // let home_scrollInterval;
@@ -341,34 +344,34 @@ $(document).ready(function () {
 
     // 슬라이드 이미지
     function showImage() {
-      slide.style.transform = `translateX(${-step*index}%)`;
-  console.log("slide 1")
+      slide.style.transform = `translateX(${-step * index}%)`;
+      console.log("slide 1");
     }
     function nextBtn() {
-      if(index >= imgNum -1) return;
+      if (index >= imgNum - 1) return;
       index++;
-  console.log("slide 2")
+      console.log("slide 2");
       showImage();
     }
     function imgLoop() {
-      if(index === imgNum -2) {
+      if (index === imgNum - 2) {
         slide.style.transition = "none";
         index = 0;
-  console.log("slide 3")
+        console.log("slide 3");
         showImage();
         void slide.offsetWidth;
         slide.style.transition = "1s";
-      }else if(index === 0) {
+      } else if (index === 0) {
         slide.style.transition = "none";
         index = imgNum - 2;
-  console.log("slide 4")
+        console.log("slide 4");
         showImage();
         void slide.offsetWidth;
         slide.style.transition = "1s";
       }
     }
     slide.addEventListener("transitionend", imgLoop);
-    let slideInterval = setInterval(nextBtn,8000);
+    let slideInterval = setInterval(nextBtn, 8000);
     // 자동으로 nextBtn쪽으로 실행하도록 함수 실행을 변수에 저장하고
     window.addEventListener("click", () => {
       clearInterval(slideInterval);
@@ -377,7 +380,9 @@ $(document).ready(function () {
     showImage();
 
     //  Moving Text 섹션 - 자동 좌우 무빙 (수정된 위치)
-    const movingText = document.querySelector("#home_movingText .home_text-line");
+    const movingText = document.querySelector(
+      "#home_movingText .home_text-line"
+    );
     if (movingText) {
       movingText.style.animationPlayState = "running";
     }
@@ -412,54 +417,54 @@ $(document).ready(function () {
     );
     fadeItems.forEach((item) => io.observe(item));
 
-    // scroll이벤트시 마지막 이미지 
+    // scroll이벤트시 마지막 이미지
     $(window).on("scroll", function () {
-        // 스크롤 위치 가져오기
-      
+      // 스크롤 위치 가져오기
+
       const scrollTop = $(window).scrollTop();
       const winHeight = $(window).height();
       const imgScale = $(".home_contact-inner");
       const top = imgScale.offset().top;
 
-      if (scrollTop  > top - 700) {
+      if (scrollTop > top - 700) {
         // if (scrollTop + winHeight > top) {
-          imgScale.addClass("on");
-        } else {
-          imgScale.removeClass("on");
+        imgScale.addClass("on");
+      } else {
+        imgScale.removeClass("on");
       }
     });
-
   });
 
   // ======== sitemap 페이지 전용 =================
   function initSitemap() {
-
     const imgSide = $(".img_side");
     const menuLarge = $(".menuLarge");
     const menuSmall = $(".menuSmall");
 
-    menuLarge.each( function (idx) {
+    menuLarge.each(function (idx) {
       // 글자 애니메이션
-      $(this).css("transition-delay", idx * 0.2 + "s").addClass("on");
+      $(this)
+        .css("transition-delay", idx * 0.2 + "s")
+        .addClass("on");
     });
     // 이미지 보이기
     imgSide.addClass("on");
 
-    menuLarge.on("click", function(e) {
-  console.log(this)
+    menuLarge.on("click", function (e) {
+      console.log(this);
 
       e.preventDefault();
       menuLarge.not(this).removeClass("active");
       $(this).toggleClass("active");
     });
 
-    menuSmall.off("click").on("click", "a[data-page]", function(e) {
+    menuSmall.off("click").on("click", "a[data-page]", function (e) {
       e.preventDefault();
       const targetPage = $(this).data("page");
-      if(!targetPage) return;
+      if (!targetPage) return;
 
-      if(targetPage !== window.currentPage) {
-  console.log("sitemap 내부이동" + targetPage);
+      if (targetPage !== window.currentPage) {
+        console.log("sitemap 내부이동" + targetPage);
 
         location.hash = targetPage;
       }
@@ -471,13 +476,13 @@ $(document).ready(function () {
     const overlay_rnd = document.querySelector(".videoWrap .overlay");
     const desc = $(".grid2 .text_desc, .grid6 .text_desc");
 
-    if(overlay_rnd) {
-      overlay_rnd.classList.add("on");    
-    }else {
+    if (overlay_rnd) {
+      overlay_rnd.classList.add("on");
+    } else {
       console.warn("⚠️ .overlay를 찾을 수 없습니다!");
     }
     if (desc.length > 0) {
-      desc.on("click", function() {
+      desc.on("click", function () {
         // 페이지에 존재할 때만 실행됨
         console.log("클릭:", $(this).text());
       });
@@ -492,8 +497,8 @@ $(document).ready(function () {
           const top = $(this).offset().top;
 
           // 요소가 화면에 나타나면 실행
-          if (scrollTop  > top - 500) {
-          // if (scrollTop + winHeight > top) {
+          if (scrollTop > top - 500) {
+            // if (scrollTop + winHeight > top) {
             // $(this).css("transition-delay", idx * 0.2 + "s").addClass("on");
             $(this).addClass("on");
           } else {
@@ -501,9 +506,11 @@ $(document).ready(function () {
           }
         });
       });
-    
+
       function rollingImg() {
-        let iconImgBox = document.querySelector(".rnd_sec .devel_keyword .iconImgBox");
+        let iconImgBox = document.querySelector(
+          ".rnd_sec .devel_keyword .iconImgBox"
+        );
         let rollingBox = document.querySelector(".rollingBox");
         // let cloneFront = rollingBox.cloneNode(true);
         let cloneBack = rollingBox.cloneNode(true);
@@ -515,46 +522,44 @@ $(document).ready(function () {
         // cloneFront.classList.add("roll_02");
         cloneBack.classList.add("roll_01");
       }
-      rollingImg()
+      rollingImg();
     }
-     // rnd 내부 링크 이동
-    $(".mid_menu .sub_menu").off("click").on("click", "a[data-page]", function(e) {
-      e.preventDefault();
-      const targetPage = $(this).data("page");
-      if(!targetPage) return;
-      if(targetPage !== window.currentPage) {
-        location.hash = targetPage;
-      }
-    });
-
-    // 생산시설 
-    const $firstContent = $(".desc_text").first();
-    $firstContent.addClass('open')
-      .css({
-        maxHeight: $firstContent.prop('scrollHeight') + 'px',
-        opacity: 1
+    // rnd 내부 링크 이동
+    $(".mid_menu .sub_menu")
+      .off("click")
+      .on("click", "a[data-page]", function (e) {
+        e.preventDefault();
+        const targetPage = $(this).data("page");
+        if (!targetPage) return;
+        if (targetPage !== window.currentPage) {
+          location.hash = targetPage;
+        }
       });
-    $('.title_btn').on('click', function() {
-      const $content = $(this).next('.desc_text');
-      const isOpen = $content.hasClass('open');
 
-      if(isOpen) return;
+    // 생산시설
+    const $firstContent = $(".desc_text").first();
+    $firstContent.addClass("open").css({
+      maxHeight: $firstContent.prop("scrollHeight") + "px",
+      opacity: 1,
+    });
+    $(".title_btn").on("click", function () {
+      const $content = $(this).next(".desc_text");
+      const isOpen = $content.hasClass("open");
+
+      if (isOpen) return;
       // 모든 아코디언 닫기 (하나만 열리게)
-      $('.desc_text').not($content).removeClass('open')
-        .css({
-          maxHeight: 0,
-          opacity: 0
-        });
+      $(".desc_text").not($content).removeClass("open").css({
+        maxHeight: 0,
+        opacity: 0,
+      });
 
       // 클릭한 아코디언 열기/닫기
       if (!isOpen) {
-        $content.addClass('open')
-          .css({
-            maxHeight: $content.prop('scrollHeight') + 'px',
-            opacity: 1
+        $content.addClass("open").css({
+          maxHeight: $content.prop("scrollHeight") + "px",
+          opacity: 1,
         });
-      }else {
-
+      } else {
       }
     });
   }
@@ -569,16 +574,17 @@ $(document).ready(function () {
     p.style.transform = "translateY(0)";
     p.style.opacity = "1";
 
-
-     // product_menus 내부 링크 이동
-    $(".product_menus, .product_page3_link").off("click").on("click", "a[data-page]", function(e) {
-      e.preventDefault();
-      const targetPage = $(this).data("page");
-      if(!targetPage) return;
-      if(targetPage !== window.currentPage) {
-        location.hash = targetPage;
-      }
-    });
+    // product_menus 내부 링크 이동
+    $(".product_menus, .product_page3_link")
+      .off("click")
+      .on("click", "a[data-page]", function (e) {
+        e.preventDefault();
+        const targetPage = $(this).data("page");
+        if (!targetPage) return;
+        if (targetPage !== window.currentPage) {
+          location.hash = targetPage;
+        }
+      });
   }
   // =>프로덕트 js end
 
@@ -587,28 +593,32 @@ $(document).ready(function () {
     const overlay = document.querySelector(".videoWrap .overlay");
     const img_vyor = document.querySelector(".press_board .boardBox .imgBox");
 
-    if(overlay) {
-      overlay.classList.add("on");    
-    }else {
+    if (overlay) {
+      overlay.classList.add("on");
+    } else {
       console.warn("⚠️ .overlay를 찾을 수 없습니다!");
     }
 
-    $(".press_board .boardBox .imgBox").off("click").on("click", "a[data-page]", function(e) {
-      e.preventDefault();
-      const targetPage = $(this).data("page");
-      if(!targetPage) return;
-      if(targetPage !== window.currentPage) {
-        location.hash = targetPage;
-      }
-    })
-    $(".listHam").off("click").on("click", "a[data-page]", function(e) {
-      e.preventDefault();
-      const targetPage = $(this).data("page");
-      if(!targetPage) return;
-      if(targetPage !== window.currentPage) {
-        location.hash = targetPage;
-      }
-    })
+    $(".press_board .boardBox .imgBox")
+      .off("click")
+      .on("click", "a[data-page]", function (e) {
+        e.preventDefault();
+        const targetPage = $(this).data("page");
+        if (!targetPage) return;
+        if (targetPage !== window.currentPage) {
+          location.hash = targetPage;
+        }
+      });
+    $(".listHam")
+      .off("click")
+      .on("click", "a[data-page]", function (e) {
+        e.preventDefault();
+        const targetPage = $(this).data("page");
+        if (!targetPage) return;
+        if (targetPage !== window.currentPage) {
+          location.hash = targetPage;
+        }
+      });
   }
 
   // ========== contact 페이지 부분 ====================
@@ -624,23 +634,25 @@ $(document).ready(function () {
     function startScroll() {
       let sy = window.scrollY;
       let sec2P = contactUsScroll.offsetTop;
-      if(sy >= sec2P - 500 ) {
-        $(".contactUs_text").each( function (idx) {
+      if (sy >= sec2P - 500) {
+        $(".contactUs_text").each(function (idx) {
           // 글자 애니메이션
-          $(this).css("transition-delay", idx * 0.5 + "s").addClass("on");
+          $(this)
+            .css("transition-delay", idx * 0.5 + "s")
+            .addClass("on");
         });
       }
     }
-    startScroll()
+    startScroll();
     window.addEventListener("scroll", startScroll);
 
     // 지도 표시 *************
-    kakao.maps.load(function() {
-      let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-          mapOption = { 
-              center: new kakao.maps.LatLng(lat, lon), // 지도의 중심좌표
-              level: 3 // 지도의 확대 레벨
-          };
+    kakao.maps.load(function () {
+      let mapContainer = document.getElementById("map"), // 지도를 표시할 div
+        mapOption = {
+          center: new kakao.maps.LatLng(lat, lon), // 지도의 중심좌표
+          level: 3, // 지도의 확대 레벨
+        };
 
       let map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
       // 컨트롤러 올리기
@@ -654,7 +666,7 @@ $(document).ready(function () {
       // 마커 생성하기
       let marker = new kakao.maps.Marker({
         map: map,
-        position: new kakao.maps.LatLng(lat, lon)
+        position: new kakao.maps.LatLng(lat, lon),
       });
       let content = document.createElement("div");
       content.innerHTML = `
@@ -681,49 +693,59 @@ $(document).ready(function () {
         `;
       // 커스텀 오버레이 생성
       overlay = new kakao.maps.CustomOverlay({
-          content: content,
-          map: map,
-          position: marker.getPosition(),
-          xAnchor: 0.5,
-          yAnchor: 1.35       
+        content: content,
+        map: map,
+        position: marker.getPosition(),
+        xAnchor: 0.5,
+        yAnchor: 1.35,
       });
       // 닫기 버튼 (X)
-      let closeBtn = content.querySelector('.close_map');
-      closeBtn.addEventListener('click', () => {
+      let closeBtn = content.querySelector(".close_map");
+      closeBtn.addEventListener("click", () => {
         overlay.setMap(null);
-      })
-      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-      kakao.maps.event.addListener(marker, 'click', function() {
-          overlay.setMap(map);
       });
-    })
+      // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+      kakao.maps.event.addListener(marker, "click", function () {
+        overlay.setMap(map);
+      });
+    });
 
-    // 시간 표시 ************* 
+    // 시간 표시 *************
     function updateTime() {
-        let now = new Date();
-        let dateS = now.toLocaleDateString("ko-KR", {year:"numeric", month:"long", day:"numeric", weekday:"long"});
-        let timeS = now.toLocaleTimeString("ko-KR", {hour: "2-digit", minute: "2-digit", second: "2-digit"});
+      let now = new Date();
+      let dateS = now.toLocaleDateString("ko-KR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        weekday: "long",
+      });
+      let timeS = now.toLocaleTimeString("ko-KR", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
 
-        timezone.innerHTML = `${dateS}-${timeS}`
+      timezone.innerHTML = `${dateS}-${timeS}`;
     }
     updateTime();
     setInterval(updateTime, 1000);
 
     // 날씨 표시 ***************
-    let getWeather = async(lat, lon) => {
-        try {
-            let res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=Ansan,kr&appid=${APIKEY}&units=metric&lang=kr`)
-            let data = await res.json();
-            temp.textContent = `${data.main.temp} ℃`;
-            let iconNum = data.weather[0].icon;
-            iconSrc = `http://openweathermap.org/img/wn/${iconNum}@2x.png`;
-            icon.setAttribute("src", iconSrc);
-  console.log("날씨 업데이트 완료")
-        }
-        catch(err) {
-            temp.textContent = "날씨정보를 불러오지 못했습니다"
-        }
-    }
+    let getWeather = async (lat, lon) => {
+      try {
+        let res = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=Ansan,kr&appid=${APIKEY}&units=metric&lang=kr`
+        );
+        let data = await res.json();
+        temp.textContent = `${data.main.temp} ℃`;
+        let iconNum = data.weather[0].icon;
+        iconSrc = `http://openweathermap.org/img/wn/${iconNum}@2x.png`;
+        icon.setAttribute("src", iconSrc);
+        console.log("날씨 업데이트 완료");
+      } catch (err) {
+        temp.textContent = "날씨정보를 불러오지 못했습니다";
+      }
+    };
     getWeather(lat, lon);
   }
 });
