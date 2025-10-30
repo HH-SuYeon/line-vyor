@@ -102,3 +102,4 @@ $(document).on("loadPageComplete", function (e, pageName) {
   );
   fadeItems.forEach((item) => io.observe(item));
 });
+
