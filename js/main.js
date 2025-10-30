@@ -9,21 +9,48 @@ $(document).ready(function () {
   // main.hide();
   // footer.hide();
 
+    // 시작 시 화면 전체 숨김
+  $("body").css("opacity", 0);  //************* */
+
   // 공통 헤더 로드
   header.load("components/header.html", function() {
     $.getScript("js/header.js")
       .done(function() {
-  console.log("header.js loaded!");
+    console.log("header.js loaded!");
         if(typeof initHeader === "function") initHeader();
       })
       .fail(function (jqxhr, settings, exception) {
-        console.error("header.js load failed", exception);
-      });
-    footer.load("components/footer.html", function() {
-      console.log("푸터 로드 완료");
+    console.error("header.js load failed", exception)
+      })
+      .always(checkAllLoaded); //*************
+    // footer.load("components/footer.html", function() {
+    //   console.log("푸터 로드 완료");
     });
-  });
+      footer.load("components/footer.html", checkAllLoaded); // ***********
+  
+  // ***********
+   let loadedCount = 0;
+  function checkAllLoaded() {
+    loadedCount++;
+    if (loadedCount === 2) {
+      // header + footer가 모두 로드된 후에 페이지 로드 시작
+      initApp();
+    }
+  }
 
+  function initApp() {
+    console.log("✅ header & footer 로드 완료, 메인 시작!");
+
+    // 메인 콘텐츠 로드
+    loadPage(window.currentPage || "home");
+
+    // 페이지 이동 이벤트 등록
+    $(window).on("hashchange", handleRoute);
+
+    // 이제 전체 화면 보여주기 (fade-in)
+    $("body").animate({ opacity: 1 }, 300);
+  }
+// *****************
   // 팝업창
     window.addEventListener('load', () => {
         const popup = document.querySelector('.popupBox');
@@ -310,10 +337,10 @@ $(document).ready(function () {
         home_scrollIndicator.classList.add("home_hide");
         home_arrows.classList.add("home_hide");
       }
-      })
-      //  세 번째 섹션(Product Text) 등장 효과
-          const homeProductText = document.querySelector(".home_product-text");
-      if (homeProductText) {
+    })
+    //  세 번째 섹션(Product Text) 등장 효과
+    const homeProductText = document.querySelector(".home_product-text");
+    if (homeProductText) {
         console.log(" home_product-text 찾음:", homeProductText);
         const productObserver = new IntersectionObserver(
           (entries) => {
@@ -329,53 +356,96 @@ $(document).ready(function () {
         );
 
         productObserver.observe(homeProductText);
+
         setTimeout(() => {
-    const rect = homeProductText.getBoundingClientRect();
-    const inView = rect.top < window.innerHeight && rect.bottom > 0;
-    console.log(" 초기 화면 체크:", inView);
-    if (inView) {
-      homeProductText.classList.add("home_active");
-      console.log(" 초기 로드시 화면 안에 있어서 home_active 추가!");
-    }
-  }, 500);
+          const rect = homeProductText.getBoundingClientRect();
+          const inView = rect.top < window.innerHeight && rect.bottom > 0;
+          console.log(" 초기 화면 체크:", inView);
+          if (inView) {
+            homeProductText.classList.add("home_active");
+            console.log(" 초기 로드시 화면 안에 있어서 home_active 추가!");
+          }
+        }, 500);
       } else {
         console.warn("⚠️ home_product-text를 찾을 수 없음!");
       }
       
     // Product Gallery 자동 스크롤
-    const home_gallery = document.querySelector(".home_product-gallery");
-    let home_scrollInterval;
-    if (home_gallery) {
-      home_gallery.addEventListener("mouseenter", () => {
-        home_scrollInterval = setInterval(() => {
-          home_gallery.scrollLeft += 1;
-        }, 15);
-      });
-      home_gallery.addEventListener("mouseleave", () => {
-        clearInterval(home_scrollInterval);
-      });
-    }
+    // const home_gallery = document.querySelector(".home_product-gallery");
+    // let home_scrollInterval;
+    // if (home_gallery) {
+    //   home_gallery.addEventListener("mouseenter", () => {
+    //     home_scrollInterval = setInterval(() => {
+    //       home_gallery.scrollLeft += 1;
+    //     }, 15);
+    //   });
+    //   home_gallery.addEventListener("mouseleave", () => {
+    //     clearInterval(home_scrollInterval);
+    //   });
+    // }
 
-//  Moving Text 섹션 - 자동 좌우 무빙 (수정된 위치)
-  const movingText = document.querySelector("#home_movingText .home_text-line");
-  if (movingText) {
-    movingText.style.animationPlayState = "running";
-  }
-  //  R&D 섹션 텍스트 애니메이션
-  const rndTexts = document.querySelectorAll(".home_slideUp-item");
-if (rndTexts.length) {
-  const rndObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("home_active");
-        }
-      });
-    },
-    { threshold: 0.2 }
-  );
-  rndTexts.forEach((el) => rndObserver.observe(el));
-}
+    // Product Gallery 자동 슬라이드
+    let slide = document.querySelector(".home_product-gallery");
+    let imgNum = document.querySelectorAll(".home_card").length;
+    let index = 1;
+    let step = 41.7;
+
+    // 슬라이드 이미지
+    function showImage() {
+      slide.style.transform = `translateX(${-step*index}%)`;
+  console.log("slide 1")
+    }
+    function nextBtn() {
+      if(index >= imgNum -1) return;
+      index++;
+  console.log("slide 2")
+      showImage();
+    }
+    function imgLoop() {
+      if(index === imgNum -2) {
+        slide.style.transition = "none";
+        index = 0;
+  console.log("slide 3")
+        showImage();
+        void slide.offsetWidth;
+        slide.style.transition = "1s";
+      }else if(index === 0) {
+        slide.style.transition = "none";
+        index = imgNum - 2;
+  console.log("slide 4")
+        showImage();
+        void slide.offsetWidth;
+        slide.style.transition = "1s";
+      }
+    }
+    slide.addEventListener("transitionend", imgLoop);
+    let slideInterval = setInterval(nextBtn,8000);
+    // 자동으로 nextBtn쪽으로 실행하도록 함수 실행을 변수에 저장하고
+    window.addEventListener("click", () => {
+      clearInterval(slideInterval);
+      // click 시에 멈춤. 현재는 화면 어디를 눌러도 멈춤
+    });
+    showImage();
+    //  Moving Text 섹션 - 자동 좌우 무빙 (수정된 위치)
+    const movingText = document.querySelector("#home_movingText .home_text-line");
+    if (movingText) {
+      movingText.style.animationPlayState = "running";
+    }
+    //  R&D 섹션 텍스트 애니메이션
+    const rndTexts = document.querySelectorAll(".home_slideUp-item");
+    if (rndTexts.length) {
+      const rndObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("home_active");
+            }
+          });
+        },
+        { threshold: 0.2 }
+      );
+      rndTexts.forEach((el) => rndObserver.observe(el));
+    }
     //  Contact 텍스트 효과
     const fadeItems = document.querySelectorAll(".fade-item");
     const io = new IntersectionObserver(
@@ -391,7 +461,6 @@ if (rndTexts.length) {
       { threshold: 0.3 }
     );
     fadeItems.forEach((item) => io.observe(item));
-    });
   });
 
   // ======== sitemap 페이지 전용 =================
@@ -582,10 +651,7 @@ if (rndTexts.length) {
         location.hash = targetPage;
       }
     })
-
   }
-
-
 
   // ========== contact 페이지 부분 ====================
   function initContact() {
@@ -611,11 +677,6 @@ if (rndTexts.length) {
     window.addEventListener("scroll", startScroll);
 
     // 지도 표시 *************
-    // let overlay;
-    // function closeOverlay() {
-    //     overlay.setMap(null);     
-    // }
-    // window.closeOverlay = closeOverlay;
     kakao.maps.load(function() {
       let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
           mapOption = { 
@@ -707,5 +768,5 @@ if (rndTexts.length) {
     }
     getWeather(lat, lon);
   }
-
+});
 // // contact_address.js end
