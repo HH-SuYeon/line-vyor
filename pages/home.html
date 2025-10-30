@@ -47,7 +47,7 @@
             VYOR은 당신의 본질을 깨우고, 자연스럽고 우아한 아름다움이 피어나는
             순간을 함께합니다.
           </p>
-          <a href="#brand" data-page="brand" class="home_view-more link_brand">view more <span>→</span></a>
+          <a href="#brand" data-page="brand" class="home_view-more link_brand">view more <span></span></a>
         </div>
       </div>
 
@@ -175,7 +175,7 @@
             기초 연구에서 응용 연구까지 철저하고 체계적인 접근 방식을 통해<br />
             새로운 제형을 개발하고, 이를 제품화하는 전 과정을 실현하고 있습니다.
           </p>
-          <a href="#rndProduction" data-page="rndProduction" class="home_view-more home_slideUp-item">view more <span>→</span></a>
+          <a href="#rndProduction" data-page="rndProduction" class="home_view-more home_slideUp-item">view more <span></span></a>
         </div>
       </div>
     </section>
@@ -208,5 +208,24 @@
         </div>
       </div>
     </section>
+
+
+    <!-- 팝업창 코드 -->
+    <div id="popupBox" class="popupBox">
+        <div class="popup_imgBox">
+            <img src="img/popup/pop-up1.jpg" alt="popup">
+        </div>
+        <div class="popup_tBox">
+            <!-- <div>오늘 하루 보지 않기</div> -->
+            <button id="popupBtn" onclick="closePopUp()">CLOSE</button>
+        </div>
+    </div>
+    <script>
+      document.getElementById("popupBtn").style.cursor = "pointer";
+      function closePopUp(){
+        document.getElementById("popupBox").style.display = "none";
+      };
+    </script>
+    <!-- 팝업창 코드 -->
   </body>
 </html>

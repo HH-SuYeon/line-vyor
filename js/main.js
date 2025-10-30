@@ -24,27 +24,6 @@ $(document).ready(function () {
     });
   });
 
-  // 팝업창
-    // window.addEventListener('load', () => {
-    //     const popup = document.querySelector('.popupBox');
-    //     const closeBtn = document.querySelector('.popup_tBox button');
-
-    //     // localStorage에서 'popupClosed' 값 확인
-    //     const isClosed = localStorage.getItem('popupClosed');
-
-    //     if (!isClosed) {
-    //     // 닫은 적 없으면 팝업 보임
-    //     popup.style.display = 'block';
-    //     }
-
-    //     closeBtn.addEventListener('click', () => {
-    //     popup.style.display = 'none';
-    //     // 닫기 저장
-    //     localStorage.setItem('popupClosed', 'true');
-    //     });
-    // });
-  // 팝업창 종료
-
   // 페이지별 설정 
   const pageSettings = {
     home: {
