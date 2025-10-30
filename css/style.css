@@ -241,6 +241,11 @@ html {
   transition: all 0.4s ease;
   background-image: url(../img/etc/icon/btnMore_arr2.png);
 }
+.home_product-text a{
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+}
 
 /* .home_view-more:hover {
   color: #111;
@@ -277,7 +282,7 @@ html {
 .home_contact_view-more:hover span {
   border-color: #000;
   background: #000;
-  color: #fff;
+  /* color: #fff; */
 }
 .home_rnd-right .home_view-more {
   transition-delay: 1.3s;
@@ -337,28 +342,31 @@ html {
 .home_product-text .home_subtitle {
   font-size: 1.2rem;
   font-family: "Cormorant", serif;
-  font-weight: 600;
+  font-weight: bold;
   letter-spacing: 1px;
   color: #111;
-  margin-bottom: 70px;
+  /* margin-bottom: 70px; */
 }
 
 .home_product-text h2 {
   font-family: "Cormorant", serif;
   font-size: 3.6rem;
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.2;
   color: #111;
-  margin-bottom: 40px;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 .home_product-text p {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   line-height: 1.9;
   color: #555;
-  margin-bottom: 50px;
+  /* margin-bottom: 20px; */
   max-width: 420px;
+  font-family: "Pretendard";
 }
+
 /* new */
 .home_gallery-wrap {
   width: 70%;
@@ -516,7 +524,7 @@ html {
   font-weight: bold;
   color: #000;
   letter-spacing: 1px;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   transition-delay: 0.1s;
   font-family: "Cormorant", serif;
 }
@@ -536,7 +544,7 @@ html {
   transition-delay: 0.7s;
 }
 .home_rnd-right p {
-  font-size: 1.15rem;
+  font-size: 1.16rem;
   color: #555;
   line-height: 1.7;
   /* margin-bottom: 5px; */
@@ -546,7 +554,7 @@ html {
 .home_rnd-right a{
   font-size: 18px;
   font-weight: bold;
-  color: #000;
+  color: #222;
 }
 
 /* ================= MOVING TEXT SECTION ================= */
