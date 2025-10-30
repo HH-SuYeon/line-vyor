@@ -178,7 +178,7 @@ body {
     /* background-color: #838181; */
     margin-top: 15vw;
     display: flex;
-
+    align-items: center;
     justify-items: self-end;
 }
 
@@ -310,11 +310,11 @@ body {
 
 #brand_3 .brandRightbox_3 .tit1 span {
     color: #333;
-    transition: transform 0.3s ease;
+    transition: transform 3s ease;
 }
 
 #brand_3 .brandRightbox_3 li.brand3-on .tit1 span {
-    animation: blink-scale 1s ease-in-out 10000;
+    animation: blink-scale 1.2s ease-in-out 10000;
 }
 
 @keyframes blink-scale {
