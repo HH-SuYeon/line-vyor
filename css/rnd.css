@@ -220,8 +220,8 @@
 .grid_container .grid5 .outImg {
    background-image: url("../img/rnd/m32_design_bg.jpg");
    width: 90%;
-   height: 80%;
-   margin-top: 100px;
+   height: 70%;
+   margin-top: 150px;
 }
 /* grid1 - grid4  공통 text */
 .grid_container .grid .outImg .text_area {
@@ -260,39 +260,46 @@
       margin: 30px auto;
    }
 /* grid2- grid6 text */
-.grid_container .grid2 .text_desc,
+.grid_container .grid2 .text_desc {
+   width: 100%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   padding-left: 150px;
+   padding-right: 150px;
+}
 .grid_container .grid6 .text_desc {
    width: 100%;
    height: 100%;
    display: flex;
    flex-direction: column;
-   justify-content: space-around;
-   padding: 200px 100px;
-
+   justify-content: center;
+   padding-left: 100px;
 }
 .grid_container .grid6 {background-color: #f5f3ee;}
 .grid2 .text_desc > div, .grid6 .text_desc > div {
-   padding: 50px 0;
-   border-top: 1px solid #aaa;
+   padding: 45px 0;
+   border-top: 1px solid #ccc;
    opacity: 0;
    transform: translateX(50px);
    transition: all 0.4s linear;
 }
 .grid2 .text_desc > div:last-child, .grid6 .text_desc > div:last-child {
-   border-bottom: 1px solid #aaa;
+   border-bottom: 1px solid #ccc;
    opacity: 0;
    transform: translateX(50px);
    transition: all 0.4s linear;
 }
 .grid2 .text_desc > div > h4, .grid6 .text_desc > div > h4 {
-   font-size: 1.5rem;
+   font-size: 1.3rem;
    font-weight: 400;
    margin-bottom: 10px; 
    opacity: 0;
    transform: translateX(50px);
    transition: all 0.4s linear;
 }
-.grid2 .text_desc > div > p .grid6 .text_desc > div > p {
+.grid2 .text_desc > div > p, .grid6 .text_desc > div > p {
    font-size: 1rem;
    color: #666;
    opacity: 0;
@@ -315,11 +322,10 @@
    transition-duration: 0.5s;
 
 }
-.grid2 .text_desc.on > div > p .grid6 .text_desc.on > div > p {
+.grid2 .text_desc.on > div > p, .grid6 .text_desc.on > div > p {
    opacity: 1;
    transform: translateX(0);
    transition-duration: 0.8s;
-
 }
 
 #rnd_sec4 {
@@ -460,12 +466,6 @@
 .roll_01 {
    animation: move_rnd 50s linear infinite;
 }
-/* .roll_02 {
-   animation: move_rnd 50s linear infinite;
-}
-.roll_03 {
-   animation: move_rnd 50s linear infinite;
-} */
 /* animation rolling */
 @keyframes move_rnd {
    0% {transform: translateX(0);}
@@ -495,18 +495,19 @@
 }
 .grid9 .text_rnd {
    width: 100%;
-   /* height: 100px; */
-   padding: 50px 0; 
+   padding: 30px 0; 
    display: flex;
    flex-direction: column;
-   /* align-items: center; */
    cursor: pointer;
-   gap: 60px;
+   gap:50px;
    border: none;
    background-color: #f5f3ee;
    border-top: 1px solid #ccc;
-   border-bottom: 1px solid #ccc;
+   /* border-bottom: 1px solid #ccc; */
 } 
+.grid9 .text_rnd:last-child {
+   border-bottom: 1px solid #ccc;
+}
 .grid9 .text_rnd .title_btn span:first-child {
    font-family: "Cormorant", "Garamond", serif;
    font-size: 2.2rem;
@@ -518,11 +519,15 @@
    font-weight: 500;
 }
 .grid9 .text_rnd .desc_text {
-   display: none;
-   line-height: 1.8;
    color: #666;
-   /* padding: 50px 0; */
+   overflow: hidden;
+   max-height: 0;
+   opacity: 0;
+   transform: translateY(-5px);
+   transition: all 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
-.grid9 .text_rnd.active .desc_text{
-   display: flex;
+.grid9 .text_rnd .desc_text.active{
+   /* margin-top: 50px; */
+   opacity: 1;
+   transform: translateY(0);
 }
