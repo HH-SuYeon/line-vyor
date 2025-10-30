@@ -96,7 +96,7 @@
 
                     <li>
                         <div class="front">
-                            <div class="tit1"><span>V</span>YOR</div>
+                            <div class="tit1">V<span>Y</span>OR</div>
                             <div class="tit2">Your</div>
                         </div>
                         <div class="hidden">
@@ -110,7 +110,7 @@
 
                     <li>
                         <div class="front">
-                            <div class="tit1"><span>V</span>YOR</div>
+                            <div class="tit1">VY<span>O</span>R</div>
                             <div class="tit2">Opulence</div>
                         </div>
                         <div class="hidden">
@@ -124,7 +124,7 @@
 
                     <li>
                         <div class="front">
-                            <div class="tit1"><span>V</span>YOR</div>
+                            <div class="tit1">VYO<span>R</span></div>
                             <div class="tit2">Radiance</div>
                         </div>
                         <div class="hidden">
@@ -142,7 +142,9 @@
         <!-- 섹션4 -->
         <section id="brand_4">
             <div class="brandLeftbox_4">
-                <p style="color: #1a1a1a; font-size: 21px">VYOR Story</p>
+                <p style="color: #1a1a1a; font-size: 23px; font-weight: 400">
+                    VYOR Story
+                </p>
                 <h1 style="color: #1a1a1a; font-size: 53px">
                     What is the VYOR story?
                 </h1>
@@ -315,7 +317,6 @@
                     let progress = (startY - rect.bottom) / (startY - endY);
                     progress = Math.min(Math.max(progress, 0), 1);
 
-                    // 위로 올릴 때도 자연스럽게
                     progress = progress < 0.02 ? 0 : progress;
                     progress = progress > 0.98 ? 1 : progress;
 
@@ -331,8 +332,9 @@
                 passive: true,
             });
 
-            //섹션3
+            //섹션3-------------
 
+            //왼쪽이미지상자
             (function brand3FadeGallery() {
                 const section = document.getElementById("brand_3");
                 if (!section) return;
@@ -353,6 +355,38 @@
                     img.style.animationDuration = "20s";
                     slidesBox.appendChild(img);
                 });
+            })();
+
+            //섹션3 오른쪽
+
+            (function () {
+                document.addEventListener(
+                    "click",
+                    function (e) {
+                        const front = e.target.closest(
+                            "#brand_3 .brandRightbox_3 .front"
+                        );
+                        if (!front) return;
+
+                        const li = front.closest("li");
+                        if (!li) return;
+
+                        const list = li.parentElement;
+                        const isOpen = li.classList.contains("brand3-on");
+
+                        list.querySelectorAll(":scope > li").forEach((el) =>
+                            el.classList.remove("brand3-on")
+                        );
+
+                        if (!isOpen) li.classList.add("brand3-on");
+                    },
+                    { capture: true }
+                );
+
+                const first = document.querySelector(
+                    "#brand_3 .brandRightbox_3 li"
+                );
+                if (first) first.classList.add("brand3-on");
             })();
         </script>
     </body>
