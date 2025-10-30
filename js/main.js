@@ -48,7 +48,7 @@ $(document).ready(function () {
   // 페이지별 설정 
   const pageSettings = {
     home: {
-      css: "css/home.css",
+      css: "css/style.css",
       init: function () {
         console.log("home 초기화 완료");
       },
@@ -191,17 +191,17 @@ $(document).ready(function () {
       main.load(`pages/${pageName}.html`, function() {
         // 페이지 이동 후 항상 top 0
         $(window).scrollTop(0);
-        main.fadeIn(200);
+        main.fadeIn(200,function(){
+          $(document).trigger("loadPageComplete", [pageName]);
+          updateHeader(pageName);
         // 페이지별 init 함수 실행
         if (settings.init) {
           setTimeout(() => settings.init(), 300)
         }
-        // 페이지 로드 완료 이벤트 (home.js용) **
-        $(document).trigger("loadPageComplete", [pageName]);
-
         // header 상태(색상) 업데이트
         updateHeader(pageName);
       });
+    });
     });
   }
   // 현재페이지 로드 (처음 접속시 home)
@@ -249,7 +249,6 @@ $(document).ready(function () {
       loadPage(event.state.page);
     }
   };
-
   // ======== home.js 통합 (loadPageComplete 이벤트 아래) ==================
   $(document).on("loadPageComplete", function (e, pageName) {
     const footer = $("#footer");
@@ -311,7 +310,38 @@ $(document).ready(function () {
         home_scrollIndicator.classList.add("home_hide");
         home_arrows.classList.add("home_hide");
       }
-    
+      })
+      //  세 번째 섹션(Product Text) 등장 효과
+          const homeProductText = document.querySelector(".home_product-text");
+      if (homeProductText) {
+        console.log(" home_product-text 찾음:", homeProductText);
+        const productObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              console.log(" 감시 중:", entry.isIntersecting);
+              if (entry.isIntersecting) {
+                homeProductText.classList.add("home_active");
+                console.log(" home_active 클래스 추가됨!");
+              }
+            });
+          },
+          { threshold: 0.05 }
+        );
+
+        productObserver.observe(homeProductText);
+        setTimeout(() => {
+    const rect = homeProductText.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight && rect.bottom > 0;
+    console.log(" 초기 화면 체크:", inView);
+    if (inView) {
+      homeProductText.classList.add("home_active");
+      console.log(" 초기 로드시 화면 안에 있어서 home_active 추가!");
+    }
+  }, 500);
+      } else {
+        console.warn("⚠️ home_product-text를 찾을 수 없음!");
+      }
+      
     // Product Gallery 자동 스크롤
     const home_gallery = document.querySelector(".home_product-gallery");
     let home_scrollInterval;
@@ -326,7 +356,27 @@ $(document).ready(function () {
       });
     }
 
-    // ✅ Contact 텍스트 효과
+//  Moving Text 섹션 - 자동 좌우 무빙 (수정된 위치)
+  const movingText = document.querySelector("#home_movingText .home_text-line");
+  if (movingText) {
+    movingText.style.animationPlayState = "running";
+  }
+  //  R&D 섹션 텍스트 애니메이션
+  const rndTexts = document.querySelectorAll(".home_slideUp-item");
+if (rndTexts.length) {
+  const rndObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("home_active");
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+  rndTexts.forEach((el) => rndObserver.observe(el));
+}
+    //  Contact 텍스트 효과
     const fadeItems = document.querySelectorAll(".fade-item");
     const io = new IntersectionObserver(
       (entries) => {
@@ -494,7 +544,7 @@ $(document).ready(function () {
 
 
      // product_menus 내부 링크 이동
-    $(".product_menus, product_page3_link").off("click").on("click", "a[data-page]", function(e) {
+    $(".product_menus, .product_page3_link").off("click").on("click", "a[data-page]", function(e) {
       e.preventDefault();
       const targetPage = $(this).data("page");
       if(!targetPage) return;
@@ -534,6 +584,8 @@ $(document).ready(function () {
     })
 
   }
+
+
 
   // ========== contact 페이지 부분 ====================
   function initContact() {
@@ -655,5 +707,5 @@ $(document).ready(function () {
     }
     getWeather(lat, lon);
   }
-});
+
 // // contact_address.js end
