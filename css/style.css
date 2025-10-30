@@ -141,6 +141,29 @@ html {
   font-weight: 500;
   color: #000;
 }
+.vyor-text {
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    #111 0%,      
+    #fff 50%,     
+    #999 100%   
+  );
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
 .home_intro-left {
   flex: 0 0 auto;
 }
