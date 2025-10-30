@@ -372,16 +372,17 @@ body {
     opacity: 1;
 }
 
-/* 팝업 본체 */
+/* 팝업 창 */
 .popupBox {
-    background: #fff;
-    padding: 50px 80px;
+    background: #f5f3ee;
+    padding: 100px 80px;
     border-radius: 10px;
     text-align: center;
     position: relative;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
     animation: popupFade 0.4s ease;
-    max-width: 600px;
+    max-width: 700px;
+    height: 300px;
     width: 80%;
 }
 
@@ -390,7 +391,7 @@ body {
     position: absolute;
     top: 15px;
     right: 20px;
-    font-size: 25px;
+    font-size: 20px;
     color: #333;
     cursor: pointer;
     transition: color 0.2s ease;
@@ -400,12 +401,13 @@ body {
 }
 
 .popupBox h2 {
-    font-size: 24px;
+    font-size: 20px;
     margin-bottom: 15px;
-    font-family: "Cormorant Garamond", serif;
+    font-weight: 400;
+    color: #333;
 }
 .popupBox p {
-    font-size: 16px;
+    font-size: 17px;
     color: #666;
 }
 
