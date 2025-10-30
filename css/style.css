@@ -621,7 +621,7 @@ html {
   height: 100%;
   object-fit: cover;
   z-index: 3;
-  opacity: 1;
+  /* opacity: 1; */
   filter: blur(15px);
   transform: scale(1.1);
   transition: all 1s ease;

@@ -69,6 +69,13 @@ $(document).ready(function () {
         initProduct()
       },
     },
+    product_body_shampoo: {
+      css: "css/product.css",
+      init: function () {
+        console.log("product 초기화 중...");
+        initProduct()
+      },
+    },
     product_facial: {
       css: "css/product.css",
       init: function () {
@@ -115,6 +122,7 @@ $(document).ready(function () {
       css: "css/contact.css",
       init: function () {
         console.log("contact 초기화 중...");
+        initContact();
       },
     },
     contact_address: {
@@ -225,8 +233,10 @@ $(document).ready(function () {
       loadPage(event.state.page);
     }
   };
+
   // ======== home.js 통합 (loadPageComplete 이벤트 아래) ==================
   $(document).on("loadPageComplete", function (e, pageName) {
+    // footer 설정
     const footer = $("#footer");
 
     if (pageName === "sitemap") {
@@ -334,47 +344,50 @@ $(document).ready(function () {
     // }
 
     // Product Gallery 자동 슬라이드
-    let slide = document.querySelector(".home_product-gallery");
-    let imgNum = document.querySelectorAll(".home_card").length;
-    let index = 1;
-    let step = 41.7;
+    function initSlide() {
+      let slide = document.querySelector(".home_product-gallery");
+      let imgNum = document.querySelectorAll(".home_card").length;
+      let index = 1;
+      let step = 41.7;
 
-    // 슬라이드 이미지
-    function showImage() {
+      if (!slide) return; // 없을 때 에러 방지
+
+      function showImage() {
       slide.style.transform = `translateX(${-step*index}%)`;
   console.log("slide 1")
-    }
-    function nextBtn() {
-      if(index >= imgNum -1) return;
-      index++;
-  console.log("slide 2")
-      showImage();
-    }
-    function imgLoop() {
-      if(index === imgNum -2) {
-        slide.style.transition = "none";
-        index = 0;
-  console.log("slide 3")
-        showImage();
-        void slide.offsetWidth;
-        slide.style.transition = "1s";
-      }else if(index === 0) {
-        slide.style.transition = "none";
-        index = imgNum - 2;
-  console.log("slide 4")
-        showImage();
-        void slide.offsetWidth;
-        slide.style.transition = "1s";
       }
+      function nextBtn() {
+        if(index >= imgNum -1) return;
+        index++;
+    console.log("slide 2")
+        showImage();
+      }
+      function imgLoop() {
+        if(index === imgNum -2) {
+          slide.style.transition = "none";
+          index = 0;
+    console.log("slide 3")
+          showImage();
+          // void slide.offsetWidth;
+          slide.style.transition = "1s";
+        }else if(index === 0) {
+          slide.style.transition = "none";
+          index = imgNum - 2;
+          showImage();
+          // void slide.offsetWidth;
+          slide.style.transition = "1s";
+        }
+      }
+      slide.addEventListener("transitionend", imgLoop);
+      let slideInterval = setInterval(nextBtn,6000);
+      // 자동으로 nextBtn쪽으로 실행하도록 함수 실행을 변수에 저장하고
+      window.addEventListener("click", () => {
+        clearInterval(slideInterval);
+        // click 시에 멈춤. 현재는 화면 어디를 눌러도 멈춤
+      });
     }
-    slide.addEventListener("transitionend", imgLoop);
-    let slideInterval = setInterval(nextBtn,8000);
-    // 자동으로 nextBtn쪽으로 실행하도록 함수 실행을 변수에 저장하고
-    window.addEventListener("click", () => {
-      clearInterval(slideInterval);
-      // click 시에 멈춤. 현재는 화면 어디를 눌러도 멈춤
-    });
-    showImage();
+    // DOM이 다 만들어진 뒤 실행
+    window.addEventListener('DOMContentLoaded', initSlide);
 
     //  Moving Text 섹션 - 자동 좌우 무빙 (수정된 위치)
     const movingText = document.querySelector("#home_movingText .home_text-line");
@@ -383,6 +396,7 @@ $(document).ready(function () {
     }
     //  R&D 섹션 텍스트 애니메이션
     const rndTexts = document.querySelectorAll(".home_slideUp-item");
+    const imgSmall = document.querySelector(".home_rnd-left");
     if (rndTexts.length) {
       const rndObserver = new IntersectionObserver(
         (entries) => {
@@ -418,14 +432,16 @@ $(document).ready(function () {
       
       const scrollTop = $(window).scrollTop();
       const winHeight = $(window).height();
-      const imgScale = $(".home_contact-inner");
-      const top = imgScale.offset().top;
+      const target = $(".home_contact-inner");
 
-      if (scrollTop  > top - 700) {
-        // if (scrollTop + winHeight > top) {
-          imgScale.addClass("on");
+      if (target.length === 0) return;
+      const targettop = target.offset().top;
+
+      if (scrollTop  > targettop - 700) {
+        // if (scrollTop + winHeight > targettop) {
+          target.addClass("on");
         } else {
-          imgScale.removeClass("on");
+          target.removeClass("on");
       }
     });
 
@@ -501,22 +517,24 @@ $(document).ready(function () {
           }
         });
       });
-    
-      function rollingImg() {
-        let iconImgBox = document.querySelector(".rnd_sec .devel_keyword .iconImgBox");
-        let rollingBox = document.querySelector(".rollingBox");
-        // let cloneFront = rollingBox.cloneNode(true);
-        let cloneBack = rollingBox.cloneNode(true);
-
-        iconImgBox.append(cloneBack);
-        // rollingBox.insertBefore(cloneFront, rollingBox.firstChild);
-
-        rollingBox.classList.add("roll_01");
-        // cloneFront.classList.add("roll_02");
-        cloneBack.classList.add("roll_01");
-      }
-      rollingImg()
     }
+
+    function rollingImg() {
+      let iconImgBox = document.querySelector(".rnd_sec .devel_keyword .iconImgBox");
+      let rollingBox = document.querySelector(".rnd_sec .devel_keyword .iconImgBox .rollingBox");
+      
+      if (!iconImgBox || !rollingBox) {
+        console.warn("rollingBox 또는 iconImgBox를 찾을 수 없습니다!");
+        return; // 없으면 그냥 함수 종료
+      }
+      let cloneBack = rollingBox.cloneNode(true);
+      iconImgBox.append(cloneBack);
+
+      rollingBox.classList.add("roll_01");
+      cloneBack.classList.add("roll_01");
+    }
+    rollingImg()
+    
      // rnd 내부 링크 이동
     $(".mid_menu .sub_menu").off("click").on("click", "a[data-page]", function(e) {
       e.preventDefault();
