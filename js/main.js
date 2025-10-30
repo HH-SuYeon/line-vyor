@@ -44,6 +44,13 @@ $(document).ready(function () {
     // 메인 콘텐츠 로드
     loadPage(window.currentPage || "home");
 
+        // 페이지 이동 이벤트 등록
+    $(window).on("hashchange", handleRoute);
+
+    // 이제 전체 화면 보여주기 (fade-in)
+    $("body").animate({ opacity: 1 }, 300);
+  }
+  
   // 페이지별 설정 
   const pageSettings = {
     home: {
