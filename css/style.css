@@ -26,10 +26,11 @@ html {
 /* ================= SCROLL INDICATOR ================= */
 #home_scrollIndicator {
   position: fixed;
-  right: 60px;
+  right:90px;
   bottom: 0;
   display: flex;
   align-items: flex-start;
+  gap:13px;
   z-index: 10;
   opacity: 1;
   transition: opacity 0.6s ease;
@@ -39,43 +40,42 @@ html {
   pointer-events: none;
 }
 .home_scrollText {
-  right: 8px;
-  font-size: 16px;
+  font-size: 12.5px;
+  font-weight: 500;
   writing-mode: vertical-rl;
   color: #fff;
   transform: rotate(180deg);
+  letter-spacing: 1px;
 }
 .home_scrollBar {
-  width: 3px;
+  position: relative;
+  width: 1px;
   height: 200px;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.5);
   overflow: hidden;
 }
 .home_scrollBar::after {
   content: "";
   position: absolute;
-  top: -100%;
-  left: 0;
+  top: -40%;
   width: 100%;
-  height: 60%;
-  background: linear-gradient(to bottom, transparent, #fff, transparent);
-  animation: home_scrollFlow 3.5s ease-in-out infinite;
+  left:0;
+  height: 30%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 3)    
+  );
+  animation: home_scrollMove 1.5s ease-in-out infinite;
 }
-@keyframes home_scrollFlow {
+@keyframes home_scrollMove {
   0% {
-    top: -100%;
-    opacity: 0;
-  }
-  30% {
+    top: 0%;
     opacity: 1;
   }
-  70% {
+  
+  100% {
     top: 100%;
     opacity: 1;
-  }
-  100% {
-    top: 120%;
-    opacity: 0;
   }
 }
 
