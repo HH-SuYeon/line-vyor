@@ -5,12 +5,6 @@ $(document).ready(function () {
   const header = $("#header");
   const footer = $("#footer");
 
-  // 초기에는 main과 footer 숨기기
-  // main.hide();
-  // footer.hide();
-
-    // 시작 시 화면 전체 숨김
-  $("body").css("opacity", 0);  //************* */
 
   // 공통 헤더 로드
   header.load("components/header.html", function() {
@@ -22,34 +16,10 @@ $(document).ready(function () {
       .fail(function (jqxhr, settings, exception) {
     console.error("header.js load failed", exception)
       })
-      .always(checkAllLoaded); //*************
-    // footer.load("components/footer.html", function() {
-    //   console.log("푸터 로드 완료");
+      footer.load("components/footer.html", function() {
+        console.log("푸터 로드 완료");
+      });  
     });
-      footer.load("components/footer.html", checkAllLoaded); // ***********
-  
-  // ***********
-   let loadedCount = 0;
-  function checkAllLoaded() {
-    loadedCount++;
-    if (loadedCount === 2) {
-      // header + footer가 모두 로드된 후에 페이지 로드 시작
-      initApp();
-    }
-  }
-
-  function initApp() {
-    console.log("✅ header & footer 로드 완료, 메인 시작!");
-
-    // 메인 콘텐츠 로드
-    loadPage(window.currentPage || "home");
-
-        // 페이지 이동 이벤트 등록
-    $(window).on("hashchange", handleRoute);
-
-    // 이제 전체 화면 보여주기 (fade-in)
-    $("body").animate({ opacity: 1 }, 300);
-  }
   
   // 페이지별 설정 
   const pageSettings = {
@@ -405,6 +375,7 @@ $(document).ready(function () {
       // click 시에 멈춤. 현재는 화면 어디를 눌러도 멈춤
     });
     showImage();
+
     //  Moving Text 섹션 - 자동 좌우 무빙 (수정된 위치)
     const movingText = document.querySelector("#home_movingText .home_text-line");
     if (movingText) {
@@ -440,6 +411,24 @@ $(document).ready(function () {
       { threshold: 0.3 }
     );
     fadeItems.forEach((item) => io.observe(item));
+
+    // scroll이벤트시 마지막 이미지 
+    $(window).on("scroll", function () {
+        // 스크롤 위치 가져오기
+      
+      const scrollTop = $(window).scrollTop();
+      const winHeight = $(window).height();
+      const imgScale = $(".home_contact-inner");
+      const top = imgScale.offset().top;
+
+      if (scrollTop  > top - 700) {
+        // if (scrollTop + winHeight > top) {
+          imgScale.addClass("on");
+        } else {
+          imgScale.removeClass("on");
+      }
+    });
+
   });
 
   // ======== sitemap 페이지 전용 =================
@@ -538,17 +527,7 @@ $(document).ready(function () {
       }
     });
 
-    // title.on("click", function(e) {
-    //     e.preventDefault();
-    //     title.not(this).removeClass("active");
-    //     $(this).toggleClass("active");
-    //     if (descText.classList.contains('active')) {
-    //         descText.style.maxHeight = descText.scrollHeight + 'px';
-    //       } else {
-    //         descText.style.maxHeight = '0';
-    //       }
-    // })
-    
+    // 생산시설 
     const $firstContent = $(".desc_text").first();
     $firstContent.addClass('open')
       .css({

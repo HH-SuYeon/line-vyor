@@ -7,7 +7,7 @@ html {
 }
 /* ================= HERO SECTION ================= */
 #home_hero {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -305,8 +305,6 @@ html {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  /* max-width: 1400px; */
-  /* overflow: hidden; */
   gap: 100px;
 }
 
@@ -460,7 +458,7 @@ html {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background: #f9f8f4;
+  background: #f5f3ee;
   overflow: hidden;
   position: relative;
   z-index: 7;
@@ -561,7 +559,7 @@ html {
 #home_movingText {
   width: 100%;
   overflow: hidden;
-  background: #f7f6f3;
+  background: #f5f3ee;
   padding: 100px 0;
   position: relative;
   z-index: 8;
@@ -596,28 +594,45 @@ html {
   position: relative;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
-  background: #000;
+  background-color: #f5f3ee;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 170px;
 }
 
-#home_contact video {
-  position: absolute;
-  top: 0;
-  left: 0;
+.home_contact-inner {
+  position: relative;
   width: 100%;
+  background-color: #f5f3ee;
+  overflow: visible;
+  z-index: 2;
+}
+
+.home_contact-inner.on video {
+  filter: blur(0);
+  transform: scale(1);
+}
+
+.home_contact-inner video {
+  position: relative;
+  top: 5%;
+  left: 5%;
+  width: 90%;
   height: 100%;
   object-fit: cover;
-  z-index: 1;
+  z-index: 3;
   opacity: 1;
+  filter: blur(15px);
+  transform: scale(1.1);
+  transition: all 1s ease;
 }
 
 .home_press-text {
-  position: relative;
-  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
   text-align: center;
   color: #fff;
   max-width: 800px;
@@ -690,9 +705,9 @@ html {
             }
 /* 수연코드 */
 /*  Footer 항상 표시 */
-#footer {
+/* #footer {
   background: #1a1a1a; 
   color: #fff;
   position: relative;
   z-index: 50; 
-}
+} */
