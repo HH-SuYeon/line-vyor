@@ -262,7 +262,11 @@ $(document).ready(function () {
       },
       { threshold: 0.3 }
     );
-    document.querySelectorAll(".home_fade-item").forEach((el) => observer.observe(el));
+    setTimeout(() => {
+      document
+        .querySelectorAll(".home_fade-item, #home_intro .home_intro-left, #home_intro .home_intro-right")
+        .forEach((el) => observer.observe(el));
+    }, 500);
 
     // 스크롤 인디케이터 + 화살표 제어
     window.addEventListener("scroll", () => {
@@ -449,6 +453,23 @@ $(document).ready(function () {
       );
       rndTexts.forEach((el) => rndObserver.observe(el));
     }
+    const rndVideo = document.querySelector("#home_rnd .home_rnd-left video");
+    if (rndVideo) {
+      const videoObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              rndVideo.style.transform = "scale(1)";
+            } else {
+              rndVideo.style.transform = "scale(1.5)";
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+      videoObserver.observe(rndVideo);
+    }
+
     //  Contact 텍스트 효과
     const fadeItems = document.querySelectorAll(".fade-item");
     const io = new IntersectionObserver(
