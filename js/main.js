@@ -72,7 +72,7 @@ $(document).ready(function () {
       css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
-        initProduct()
+        initProduct();
       },
     },
     product_facial: {
@@ -188,7 +188,7 @@ $(document).ready(function () {
     });
   }
   // 현재페이지 로드 (처음 접속시 home)
-  loadPage(window.currentPage);  // 체크
+  loadPage(window.currentPage); // 체크
 
   // 페이지 이동 라우터
   function handleRoute() {
@@ -197,8 +197,8 @@ $(document).ready(function () {
     loadPage(page);
   }
 
-  $(window).on("hashchange", handleRoute);  // 체크
-  handleRoute();  // 체크
+  $(window).on("hashchange", handleRoute); // 체크
+  handleRoute(); // 체크
 
   // 페이지별 헤더 / 푸터 처리
   function updateHeader(pageName) {
@@ -248,7 +248,9 @@ $(document).ready(function () {
     if (pageName !== "home") return;
 
     const home_hero = document.getElementById("home_hero");
-    const home_scrollIndicator = document.getElementById("home_scrollIndicator");
+    const home_scrollIndicator = document.getElementById(
+      "home_scrollIndicator"
+    );
     const home_arrows = document.querySelector(".home_arrows");
     const home_intro = document.getElementById("home_intro");
 
@@ -262,7 +264,13 @@ $(document).ready(function () {
       },
       { threshold: 0.3 }
     );
-    document.querySelectorAll(".home_fade-item").forEach((el) => observer.observe(el));
+    setTimeout(() => {
+      document
+        .querySelectorAll(
+          ".home_fade-item, #home_intro .home_intro-left, #home_intro .home_intro-right"
+        )
+        .forEach((el) => observer.observe(el));
+    }, 500);
 
     // 스크롤 인디케이터 + 화살표 제어
     window.addEventListener("scroll", () => {
@@ -271,7 +279,8 @@ $(document).ready(function () {
 
       const heroRect = home_hero.getBoundingClientRect();
       const introRect = home_intro.getBoundingClientRect();
-      const heroVisible = heroRect.top < window.innerHeight && heroRect.bottom > 0;
+      const heroVisible =
+        heroRect.top < window.innerHeight && heroRect.bottom > 0;
       const introVisible = introRect.top <= window.innerHeight * 0.9;
 
       if (heroVisible && !introVisible) {
@@ -284,12 +293,14 @@ $(document).ready(function () {
     });
 
     // home 내부 링크 이동
-    $(".home_view-more").off("click").on("click", "a[data-page]", function (e) {
-      e.preventDefault();
-      const targetPage = $(this).data("page");
-      if (!targetPage) return;
-      if (targetPage !== window.currentPage) location.hash = targetPage;
-    });
+    $(".home_view-more")
+      .off("click")
+      .on("click", "a[data-page]", function (e) {
+        e.preventDefault();
+        const targetPage = $(this).data("page");
+        if (!targetPage) return;
+        if (targetPage !== window.currentPage) location.hash = targetPage;
+      });
 
     //  세 번째 섹션(Product Text) 등장 효과
     const homeProductText = document.querySelector(".home_product-text");
@@ -347,7 +358,7 @@ $(document).ready(function () {
       let step = 41.7;
 
       if (!slide) {
-        console.log("slide xxxx")
+        console.log("slide xxxx");
         return; // 없을 때 에러 방지
       }
       if (imgNum === 0) {
@@ -355,33 +366,34 @@ $(document).ready(function () {
         return;
       }
       function showImage() {
-      slide.style.transform = `translateX(${-step*index}%)`;
-  console.log("slide 1")
+        slide.style.transform = `translateX(${-step * index}%)`;
+        console.log("slide 1");
       }
       function nextBtn() {
-        if(index >= imgNum -1) return;
+        if (index >= imgNum - 1) return;
         index++;
-    console.log("slide 2")
+        console.log("slide 2");
         showImage();
       }
       function imgLoop() {
-        if(index === imgNum -2) {
+        if (index === imgNum - 2) {
           slide.style.transition = "none";
           index = 0;
-    console.log("slide 3")
+          console.log("slide 3");
           showImage();
           void slide.offsetWidth;
           slide.style.transition = "1s";
-        }else if(index === 0) {
+        } else if (index === 0) {
           slide.style.transition = "none";
           index = imgNum - 2;
           showImage();
           void slide.offsetWidth;
           slide.style.transition = "1s";
-        }else {}
+        } else {
+        }
       }
       slide.addEventListener("transitionend", imgLoop);
-      
+
       // 기존에 글로벌 타이머가 있으면 지움 (중복 방지)
       if (window.homeSlideTimer) {
         clearInterval(window.homeSlideTimer);
@@ -401,7 +413,10 @@ $(document).ready(function () {
 
       // 클릭 시 자동 스톱 (필요하면 제거)
       // 여기선 namespaced 리스너로 중복바인딩 방지
-      window.removeEventListener("click", window._homeSlideClickStop || (() => {}));
+      window.removeEventListener(
+        "click",
+        window._homeSlideClickStop || (() => {})
+      );
       window._homeSlideClickStop = function () {
         if (window.homeSlideTimer) {
           clearInterval(window.homeSlideTimer);
@@ -449,6 +464,23 @@ $(document).ready(function () {
       );
       rndTexts.forEach((el) => rndObserver.observe(el));
     }
+    const rndVideo = document.querySelector("#home_rnd .home_rnd-left video");
+    if (rndVideo) {
+      const videoObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              rndVideo.style.transform = "scale(1)";
+            } else {
+              rndVideo.style.transform = "scale(1.5)";
+            }
+          });
+        },
+        { threshold: 0.3 }
+      );
+      videoObserver.observe(rndVideo);
+    }
+
     //  Contact 텍스트 효과
     const fadeItems = document.querySelectorAll(".fade-item");
     const io = new IntersectionObserver(
@@ -476,31 +508,31 @@ $(document).ready(function () {
       if (target.length === 0) return;
       const targettop = target.offset().top;
 
-      if (scrollTop  > targettop - 700) {
+      if (scrollTop > targettop - 700) {
         // if (scrollTop + winHeight > targettop) {
-          target.addClass("on");
-        } else {
-          target.removeClass("on");
+        target.addClass("on");
+      } else {
+        target.removeClass("on");
       }
     });
-    initSlide();  // 체크
-  // });
+    initSlide(); // 체크
+    // });
   }
-    // ===== 팝업 닫기 시 이벤트 재실행 =====
-    $(document).on("click", "#popupBtn", function () {
-      $("#popupBox").fadeOut(300, function () {
-        // 팝업 닫힌 후 home 이벤트 재실행
-        initHomeEvents("home");
-      });
+  // ===== 팝업 닫기 시 이벤트 재실행 =====
+  $(document).on("click", "#popupBtn", function () {
+    $("#popupBox").fadeOut(300, function () {
+      // 팝업 닫힌 후 home 이벤트 재실행
+      initHomeEvents("home");
     });
-    // ==========================
-    // loadPageComplete 시 실행
-    // ==========================
-    $(document).on("loadPageComplete", function (e, pageName) {
-      if (pageName === "home") {
-        initHomeEvents(pageName);
-      }
-    });
+  });
+  // ==========================
+  // loadPageComplete 시 실행
+  // ==========================
+  $(document).on("loadPageComplete", function (e, pageName) {
+    if (pageName === "home") {
+      initHomeEvents(pageName);
+    }
+  });
 
   // ======== sitemap 페이지 전용 =================
   function initSitemap() {
@@ -576,9 +608,13 @@ $(document).ready(function () {
     }
 
     function rollingImg() {
-      let iconImgBox = document.querySelector(".rnd_sec .devel_keyword .iconImgBox");
-      let rollingBox = document.querySelector(".rnd_sec .devel_keyword .iconImgBox .rollingBox");
-      
+      let iconImgBox = document.querySelector(
+        ".rnd_sec .devel_keyword .iconImgBox"
+      );
+      let rollingBox = document.querySelector(
+        ".rnd_sec .devel_keyword .iconImgBox .rollingBox"
+      );
+
       if (!iconImgBox || !rollingBox) {
         console.warn("rollingBox 또는 iconImgBox를 찾을 수 없습니다!");
         return; // 없으면 그냥 함수 종료
@@ -589,17 +625,19 @@ $(document).ready(function () {
       rollingBox.classList.add("roll_01");
       cloneBack.classList.add("roll_01");
     }
-    rollingImg()
-    
-     // rnd 내부 링크 이동
-    $(".mid_menu .sub_menu").off("click").on("click", "a[data-page]", function(e) {
-      e.preventDefault();
-      const targetPage = $(this).data("page");
-      if(!targetPage) return;
-      if(targetPage !== window.currentPage) {
-        location.hash = targetPage;
-      }
-    });
+    rollingImg();
+
+    // rnd 내부 링크 이동
+    $(".mid_menu .sub_menu")
+      .off("click")
+      .on("click", "a[data-page]", function (e) {
+        e.preventDefault();
+        const targetPage = $(this).data("page");
+        if (!targetPage) return;
+        if (targetPage !== window.currentPage) {
+          location.hash = targetPage;
+        }
+      });
 
     // 생산시설
     const $firstContent = $(".desc_text").first();
@@ -813,5 +851,4 @@ $(document).ready(function () {
     };
     getWeather(lat, lon);
   }
-});// contact_address.js end
-
+}); // contact_address.js end
