@@ -1,11 +1,11 @@
 window.currentPage = "home"; // 기본 페이지 이름
 $(document).ready(function () {
-  // ========== [1] 기본 세팅 ==========
+  // ========== [1] 기본 세팅 ===========
   const main = $("#content");
   const header = $("#header");
   const footer = $("#footer");
 
-  // 공통 헤더 로드
+  // =========== 공통 헤더/푸터 로드 ============
   header.load("components/header.html", function () {
     $.getScript("js/header.js")
       .done(function () {
@@ -182,13 +182,13 @@ $(document).ready(function () {
             setTimeout(() => settings.init(), 300);
           }
           // header 상태(색상) 업데이트
-          updateHeader(pageName);
+          updateHeader(pageName); //체크
         });
       });
     });
   }
   // 현재페이지 로드 (처음 접속시 home)
-  loadPage(window.currentPage);
+  loadPage(window.currentPage);  // 체크
 
   // 페이지 이동 라우터
   function handleRoute() {
@@ -197,8 +197,8 @@ $(document).ready(function () {
     loadPage(page);
   }
 
-  $(window).on("hashchange", handleRoute);
-  handleRoute();
+  $(window).on("hashchange", handleRoute);  // 체크
+  handleRoute();  // 체크
 
   // 페이지별 헤더 / 푸터 처리
   function updateHeader(pageName) {
@@ -207,13 +207,11 @@ $(document).ready(function () {
     console.log(pageName);
     if (pageName === "sitemap") {
       footer.hide();
-      // gnb.addClass("hide_inner");
       gnb.addClass("hide_inner").css({ opacity: 0, pointerEvent: "none" });
       header.addClass("hide_header");
       navIcon.addClass("on");
     } else {
       footer.show();
-      // gnb.removeClass("hide_inner");
       gnb.removeClass("hide_inner").css({ opacity: "", pointerEvent: "" });
       header.removeClass("hide_header");
       navIcon.removeClass("on");
@@ -233,8 +231,9 @@ $(document).ready(function () {
     }
   };
 
-  // ======== home.js 통합 (loadPageComplete 이벤트 아래) ==================
-  $(document).on("loadPageComplete", function (e, pageName) {
+  // ======== Home 페이지 이벤트 통합 함수 ==========
+  // $(document).on("loadPageComplete", function (e, pageName) {
+  function initHomeEvents(pageName) {
     // footer 설정
     const footer = $("#footer");
 
@@ -249,23 +248,9 @@ $(document).ready(function () {
     if (pageName !== "home") return;
 
     const home_hero = document.getElementById("home_hero");
-    const home_scrollIndicator = document.getElementById(
-      "home_scrollIndicator"
-    );
+    const home_scrollIndicator = document.getElementById("home_scrollIndicator");
     const home_arrows = document.querySelector(".home_arrows");
     const home_intro = document.getElementById("home_intro");
-
-    // home 내부 링크 이동
-    $(".home_view-more")
-      .off("click")
-      .on("click", "a[data-page]", function (e) {
-        e.preventDefault();
-        const targetPage = $(this).data("page");
-        if (!targetPage) return;
-        if (targetPage !== window.currentPage) {
-          location.hash = targetPage;
-        }
-      });
 
     // IntersectionObserver (페이드인 효과)
     const observer = new IntersectionObserver(
@@ -277,9 +262,7 @@ $(document).ready(function () {
       },
       { threshold: 0.3 }
     );
-    document
-      .querySelectorAll(".home_fade-item")
-      .forEach((el) => observer.observe(el));
+    document.querySelectorAll(".home_fade-item").forEach((el) => observer.observe(el));
 
     // 스크롤 인디케이터 + 화살표 제어
     window.addEventListener("scroll", () => {
@@ -288,8 +271,7 @@ $(document).ready(function () {
 
       const heroRect = home_hero.getBoundingClientRect();
       const introRect = home_intro.getBoundingClientRect();
-      const heroVisible =
-        heroRect.top < window.innerHeight && heroRect.bottom > 0;
+      const heroVisible = heroRect.top < window.innerHeight && heroRect.bottom > 0;
       const introVisible = introRect.top <= window.innerHeight * 0.9;
 
       if (heroVisible && !introVisible) {
@@ -300,8 +282,18 @@ $(document).ready(function () {
         home_arrows.classList.add("home_hide");
       }
     });
+
+    // home 내부 링크 이동
+    $(".home_view-more").off("click").on("click", "a[data-page]", function (e) {
+      e.preventDefault();
+      const targetPage = $(this).data("page");
+      if (!targetPage) return;
+      if (targetPage !== window.currentPage) location.hash = targetPage;
+    });
+
     //  세 번째 섹션(Product Text) 등장 효과
     const homeProductText = document.querySelector(".home_product-text");
+    const productImage = document.querySelector(".home_product-gallery");
     if (homeProductText) {
       console.log(" home_product-text 찾음:", homeProductText);
       const productObserver = new IntersectionObserver(
@@ -310,6 +302,7 @@ $(document).ready(function () {
             console.log(" 감시 중:", entry.isIntersecting);
             if (entry.isIntersecting) {
               homeProductText.classList.add("home_active");
+              productImage.classList.add("active");
               console.log(" home_active 클래스 추가됨!");
             }
           });
@@ -353,8 +346,14 @@ $(document).ready(function () {
       let index = 1;
       let step = 41.7;
 
-      if (!slide) return; // 없을 때 에러 방지
-
+      if (!slide) {
+        console.log("slide xxxx")
+        return; // 없을 때 에러 방지
+      }
+      if (imgNum === 0) {
+        console.warn("⚠️ initSlide: .home_card가 없습니다. 이미지 수:", imgNum);
+        return;
+      }
       function showImage() {
       slide.style.transform = `translateX(${-step*index}%)`;
   console.log("slide 1")
@@ -371,26 +370,61 @@ $(document).ready(function () {
           index = 0;
     console.log("slide 3")
           showImage();
-          // void slide.offsetWidth;
+          void slide.offsetWidth;
           slide.style.transition = "1s";
         }else if(index === 0) {
           slide.style.transition = "none";
           index = imgNum - 2;
           showImage();
-          // void slide.offsetWidth;
+          void slide.offsetWidth;
           slide.style.transition = "1s";
-        }
+        }else {}
       }
       slide.addEventListener("transitionend", imgLoop);
-      let slideInterval = setInterval(nextBtn,6000);
-      // 자동으로 nextBtn쪽으로 실행하도록 함수 실행을 변수에 저장하고
-      window.addEventListener("click", () => {
-        clearInterval(slideInterval);
-        // click 시에 멈춤. 현재는 화면 어디를 눌러도 멈춤
-      });
+      
+      // 기존에 글로벌 타이머가 있으면 지움 (중복 방지)
+      if (window.homeSlideTimer) {
+        clearInterval(window.homeSlideTimer);
+        window.homeSlideTimer = null;
+      }
+
+      // 자동 슬라이드 재시작
+      window.homeSlideTimer = setInterval(() => {
+        // 만약 요소가 display:none 혹은 visibility:hidden이면 skip
+        const style = window.getComputedStyle(slide);
+        if (style.display === "none" || style.visibility === "hidden") {
+          // console.log("slide paused (hidden)");
+          return;
+        }
+        nextBtn();
+      }, 6000);
+
+      // 클릭 시 자동 스톱 (필요하면 제거)
+      // 여기선 namespaced 리스너로 중복바인딩 방지
+      window.removeEventListener("click", window._homeSlideClickStop || (() => {}));
+      window._homeSlideClickStop = function () {
+        if (window.homeSlideTimer) {
+          clearInterval(window.homeSlideTimer);
+          window.homeSlideTimer = null;
+          console.log("슬라이드 자동재생 정지 (클릭)");
+        }
+      };
+      window.addEventListener("click", window._homeSlideClickStop);
+
+      // 초기 렌더링 후 한 번 그려줌 (레이아웃 안정화 위해 약간 지연)
+      setTimeout(() => {
+        showImage();
+      }, 50);
+
+      // let slideInterval = setInterval(nextBtn,6000);
+      // // 자동으로 nextBtn쪽으로 실행하도록 함수 실행을 변수에 저장하고
+      // window.addEventListener("click", () => {
+      //   clearInterval(slideInterval);
+      //   // click 시에 멈춤. 현재는 화면 어디를 눌러도 멈춤
+      // });
     }
     // DOM이 다 만들어진 뒤 실행
-    window.addEventListener('DOMContentLoaded', initSlide);
+    // window.addEventListener('DOMContentLoaded', initSlide);
 
     //  Moving Text 섹션 - 자동 좌우 무빙 (수정된 위치)
     const movingText = document.querySelector(
@@ -449,7 +483,24 @@ $(document).ready(function () {
           target.removeClass("on");
       }
     });
-  });
+    initSlide();  // 체크
+  // });
+  }
+    // ===== 팝업 닫기 시 이벤트 재실행 =====
+    $(document).on("click", "#popupBtn", function () {
+      $("#popupBox").fadeOut(300, function () {
+        // 팝업 닫힌 후 home 이벤트 재실행
+        initHomeEvents("home");
+      });
+    });
+    // ==========================
+    // loadPageComplete 시 실행
+    // ==========================
+    $(document).on("loadPageComplete", function (e, pageName) {
+      if (pageName === "home") {
+        initHomeEvents(pageName);
+      }
+    });
 
   // ======== sitemap 페이지 전용 =================
   function initSitemap() {
@@ -762,5 +813,5 @@ $(document).ready(function () {
     };
     getWeather(lat, lon);
   }
-});
-// // contact_address.js end
+});// contact_address.js end
+

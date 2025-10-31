@@ -3,6 +3,8 @@
     width: 100%;
     height: 210px;
     background: #222;
+    position: relative;
+    z-index: 100;
   }
   /* sitemap 화면에서 footer가 완전히 안 보이게 */
   #footer.hide_footer {
