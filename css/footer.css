@@ -17,7 +17,6 @@
     width: 90%;
     margin: 0 auto;
     padding-top: 50px;
-    /* background-color: #ffffff; */
     gap: 100px;
   }
   .footer_inner .foot_logo { align-self: start;}
@@ -61,10 +60,64 @@
     height: 20px;
     border-bottom: 1px solid #888;
   }
-  footer .copyright {
+  .footer_inner .copyright {
     margin-top: 80px;
     margin-left: 15%;
     color: #aaa;
     font-size: 1rem;
     white-space: nowrap;
+  }
+
+  @media screen and (max-width: 768px) {
+    footer {
+      width: 100%;
+      height: 60%;
+    }
+    .footer_inner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .footer_inner .textSide {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-self: flex-start;
+      margin-left: 10px;
+    }
+    .left_txt > .tit {
+      margin-right: 30px;
+    }
+    .right_txt {
+      margin-top: 10px;
+    }
+    .right_txt > .tit {
+      margin-right: 50px;
+    }
+    .tit, .desc, .under_line {
+      gap: 30px;
+    }
+    .tit > p {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #fff;
+    }
+    .desc > p {
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+    .under_line div {
+      width: 30px;
+      height: 20px;
+      border-bottom: 1px solid #888;
+    }
+    .footer_inner .copyright {
+      box-sizing: border-box;
+      margin-top: -30px !important;
+      font-size: 0.7rem;
+      align-self: flex-start;
+      margin-left: 10px;
+    }
+    .footer_inner .foot_logo {margin-left: 10px;}
   }
