@@ -154,7 +154,7 @@ html {
   -webkit-text-fill-color: transparent;
   animation: shine 3s linear infinite;
 }
-.home_fade-item {
+/* .home_fade-item {
   opacity: 0;
   transform: translateY(40px);
   transition: all 1.2s ease;
@@ -164,7 +164,7 @@ html {
   transform: translateY(0);
 }
 #home_intro .home_intro-left.home_active { transition-delay: 0.2s; }
-#home_intro .home_intro-right.home_active { transition-delay: 0.4s; }
+#home_intro .home_intro-right.home_active { transition-delay: 0.4s; } */
 
 @keyframes shine {
   0% {
@@ -189,7 +189,7 @@ html {
   color: #555;
 }
 .home_intro-right a{
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   color: #333;
 }
@@ -201,21 +201,21 @@ html {
   z-index: 1;
 }
 .home_shape-left {
-  width: 870px;
-  height: 870px;
-  top: -110px;
-  left: -80px;
+  width: 54.375rem;
+  height: 54.375rem;
+  top: -6.875rem;
+  left: -5rem;
   border: 1px solid rgba(0, 0, 0, 0.18);
-  clip-path: inset(110px 0 0 0);
+  clip-path: inset(6.875rem 0 0 0);
 }
 
 .home_shape-left::after {
   content: "";
   position: absolute;
-  top: -5px;
-  left: -5px;
-  width: 1060px;
-  height: 120px; /* 덮을 높이 (값 조정 가능) */
+  top: -0.313rem;
+  left: -0.313rem;
+  width: 66.25rem;
+  height: 7.5rem; /* 덮을 높이 (값 조정 가능) */
   background: rgba(255, 255, 255, 0.25);
   z-index: 2;
 }
@@ -236,14 +236,14 @@ html {
 .home_shape-right::before {
   width: 1px;
   height: 100%;
-  right: 30px;
+  right: 1.875rem;
   top: 0;
 }
 .home_shape-right::after {
   width: 1px;
   height: 300%;
-  right: -100px;
-  top: -150px;
+  right: -6.25rem;
+  top: -9.375rem;
   transform: rotate(-45deg);
   transform-origin: top right;
 }
@@ -252,9 +252,9 @@ html {
 .home_view-more {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 40px;
-  font-size: 1.35rem;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  font-size: 1.2rem;
   font-family: "Cormorant", serif;
   color: #111;
   letter-spacing: 0.5px;
@@ -266,23 +266,14 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 47px;
-  height: 47px;
+  width: 2.8rem;
+  height: 2.8rem;
   border: 1.2px solid #333;
   border-radius: 50%;
   font-size: 1.5rem;
   transition: all 0.4s ease;
   background-image: url(../img/etc/icon/btnMore_arr2.png);
 }
-.home_product-text a{
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-}
-
-/* .home_view-more:hover {
-  color: #111;
-} */
 .home_view-more:hover span {
   border-color: #000;
   background: #000;
@@ -291,23 +282,22 @@ html {
 .home_contact_view-more {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  margin-top: 40px;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
   font-size: 1.35rem;
   font-family: "Cormorant ", serif;
-  color: #e6e6e6;
-  letter-spacing: 0.5px;
   text-decoration: none;
+  color: #e6e6e6;
   transition: color 0.3s ease;
 }
 
 .home_contact_view-more span {
-  display: inline-flex;
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 55px;
-  height: 55px;
-  border: 1.2px solid #e6e6e6;
+  width: 3.4rem;
+  height: 3.4rem;
+  border: 1px solid #e6e6e6;
   border-radius: 50%;
   font-size: 1.5rem;
   transition: all 0.4s ease;
@@ -315,8 +305,7 @@ html {
 .home_contact_view-more:hover span {
   border-color: #000;
   background: #000;
-  /* color: #fff; */
-}
+ }
 .home_rnd-right .home_view-more {
   transition-delay: 1.3s;
 }
@@ -325,10 +314,9 @@ html {
   width: 100%;
   min-height: 100vh;
   display: flex;
-  /* justify-content: center; */
   align-items: center;
   background: #fff;
-  padding: 160px 0;
+  padding: 10rem 0;
   position: relative;
   z-index: 6;
 }
@@ -338,16 +326,16 @@ html {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  gap: 100px;
+  gap: 6.25rem;
 }
 
 /* 🔹 왼쪽 텍스트 */
 .home_product-text {
   flex: 0 0 30%;
   text-align: left;
-  margin-left: 100px;
+  margin-left: 6.25rem;
   opacity: 0;
-  transform: translateY(50px); 
+  transform: translateY(3.125rem); 
   transition: all 1.4s cubic-bezier(0.25, 0.1, 0.25, 1); 
   will-change: transform, opacity;
 }
@@ -385,8 +373,8 @@ html {
   font-weight: 600;
   line-height: 1.2;
   color: #111;
-  margin-top: 40px;
-  margin-bottom: 20px;
+  margin-top: 2.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .home_product-text p {
@@ -394,7 +382,7 @@ html {
   line-height: 1.9;
   color: #555;
   /* margin-bottom: 20px; */
-  max-width: 420px;
+  max-width: 26.25rem;
   font-family: "Pretendard";
 }
 
@@ -407,7 +395,7 @@ html {
 
 .home_product-gallery {
   display: flex;
-  gap: 20px;
+  gap: 1.25rem;
   opacity: 0;
   transform: translateY(50px);
   transition: transform 1s ease;
@@ -460,7 +448,7 @@ html {
   display: flex;
   flex-direction: column;
   flex: 0 0 40%;
-  padding-bottom: 20px;
+  padding-bottom: 1.25rem;
 }
 
 .home_card img {
@@ -471,7 +459,7 @@ html {
 
 .home_card h4 {
   font-size: 1.1rem;
-  margin: 14px 0 6px;
+  margin: 0.875rem 0 0.375rem;
   font-weight: 600;
 }
 
@@ -479,14 +467,14 @@ html {
   font-size: 0.9rem;
   color: #333;
   line-height: 1.6;
-  margin-bottom: 6px;
+  margin-bottom: 0.375rem;
   text-align: center;
 }
 
 .home_price {
   font-size: 0.85rem;
   color: #777;
-  padding-bottom: 20px;
+  padding-bottom: 1.25rem;
 }
 /* ================= R&D SECTION ================= */
 #home_rnd {
@@ -506,7 +494,7 @@ html {
   align-items: stretch;
   justify-content: space-between;
   width: 100%;
-  max-width: 1600px;
+  max-width: 100rem;
   height: 100vh;
 }
 
@@ -543,15 +531,14 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-left: 80px;
+  padding-left: 5rem;
   color: #111;/
 }
 .home_rnd-right .home_subtitle {
   font-size: 1.2rem;
   font-weight: bold;
   color: #000;
-  letter-spacing: 1px;
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
   transition-delay: 0.1s;
   font-family: "Cormorant", serif;
 }
@@ -559,7 +546,7 @@ html {
   font-family: "Cormorant", serif;
   font-size: 3.5rem;
   line-height: 1.3;
-  margin-bottom: 15px;
+  margin-bottom: 1rem;
   font-weight: 600;
   transition-delay: 0.4s;
 }
@@ -567,7 +554,7 @@ html {
   font-size: 1.3rem;
   color: #111;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   transition-delay: 0.7s;
 }
 .home_rnd-right p {
@@ -594,7 +581,7 @@ html {
   width: 100%;
   overflow: hidden;
   background: #f5f3ee;
-  padding: 100px 0;
+  padding: 6.25rem 0;
   position: relative;
   z-index: 8;
 }
@@ -607,11 +594,11 @@ html {
 }
 .home_text-line {
   display: inline-flex;
-  gap: 80px;
+  gap: 5rem;
   font-family: "Cormorant", sans-serif;
   font-size: 16rem  !important;
   font-weight: 500;
-  letter-spacing: 4px;
+  letter-spacing: 0.25rem;
   color: #1a1a1a;
   animation: home_moveText 50s linear infinite;
 }
@@ -656,7 +643,6 @@ html {
   height: 100%;
   object-fit: cover;
   z-index: 3;
-  /* opacity: 1; */
   filter: blur(15px);
   transform: scale(1.1);
   transition: all 1s ease;
@@ -670,15 +656,15 @@ html {
   z-index: 5;
   text-align: center;
   color: #fff;
-  max-width: 800px;
-  padding: 0 20px;
+  max-width:50rem;
+  padding: 0 1.25rem;
   opacity: 1;
 }
 .home_press-text .home_subtitle {
   font-family: "Cormorant", serif;
   display: block;
   font-size: 1.5rem;
-  margin-bottom: 40px;
+  margin-bottom: 1.875rem;
   color: #fff;
 }
 
@@ -687,7 +673,7 @@ html {
   font-size: 4.5rem;
   font-weight: 500;
   line-height: 1.25;
-  margin-bottom: 30px;
+  margin-bottom: 1.875rem;
   opacity: 0.8;
 }
 
@@ -695,15 +681,15 @@ html {
   font-size: 1.35rem;
   line-height: 1.9;
   color: #f5f5f5;
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
   font-weight: 600;
   opacity: 0.8;
 }
 /* 수연코드 */
 /* popup */
     .popupBox{
-        width: 500px;
-        height: 650px;
+        width: 31.25rem;
+        height: 40.625rem;
         /* background-color: tomato; */
         position: fixed;
         z-index: 9999;
@@ -711,8 +697,8 @@ html {
         inset: 0;
     }
         .popup_imgBox{
-            width: 500px;
-            height: 650px;
+            width: 31.25rem;
+            height: 40.625rem;
             position: relative;
         }
             .popup_imgBox img{
@@ -732,7 +718,7 @@ html {
         }
             .popup_tBox button{
                 width: 100%;
-                height: 40px;
+                height: 2.5rem;
                 border: none;
                 position: absolute;
                 bottom: 0;
@@ -747,3 +733,95 @@ html {
   position: relative;
   z-index: 50; 
 } */
+
+@media(max-width:768px){
+  html{
+    font-size: 15px;
+  }
+  #home_scrollIndicator, .home_arrows{
+    display: none;
+  } 
+  #home_intro {
+    flex-direction: column;
+    padding: 4rem 2rem;
+  }
+  .home_intro-inner{
+    width: 90%;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .home_intro-left h2{
+    font-size: 2.2rem;
+  }
+  .home_intro-light p{
+    font-size: 2.2rem;
+  }
+  .home_view-more{
+    font-size: 1.2rem;
+    margin-top: 0.8rem;
+    gap: 0.8rem;
+  }
+  .home_view-more span{
+    background-position: center;
+    transition: background-position 0.3s ease;
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1rem;
+  }
+  .home_view-more:hover span{
+    background-position: center;
+  }
+  .home_contact_view-more {
+    font-size: 1rem;
+  }
+
+  .home_contact_view-more span {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  #home_product {
+    flex-direction: column;
+    padding: 6rem 0;
+  }
+  #home_product-inner {
+    flex-direction: column;
+    gap: 5rem;
+  }
+  .home_product-text{
+    margin-left: 0;
+    text-align: center;
+  }
+  .home_product-text h2{
+    font-size: 2.3rem;
+  }
+  .home_gallery-wrap {
+    width: 100%;
+  }
+  .home_card{
+    min-width: 100%;
+  }
+  .home_rnd-inner{
+    padding-left: 0;
+    text-align: center;
+  }
+  .home_rnd-right{
+    padding-left: 0;
+    text-align: center;
+  }
+  .home_rnd-right h2{
+    font-size: 2.1rem;
+  }
+  .home_rnd-right p{
+    font-size: 1rem;
+  }
+  .home_text-line{
+    font-size: 6rem ;
+  }
+  .home_press-text h2{
+    font-size: 2rem;
+  }
+  .home_press-text p{
+    font-size: 1rem;
+  }
+  
+}
