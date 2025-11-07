@@ -430,11 +430,21 @@ body {
         overflow-x: hidden;
     }
 
+    @keyframes fadeUp {
+        0% {
+            opacity: 0;
+            transform: translate(-50%, 30%);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+    }
+
     #contact {
-        position: relative !important;
         height: 100svh !important;
         min-height: 100svh !important;
-        overflow: hidden !important;
+        position: relative;
     }
     #contact video {
         position: absolute !important;
@@ -445,15 +455,13 @@ body {
         z-index: 0;
     }
     .contactText {
-        position: absolute !important;
-        bottom: 8vh !important;
-        left: 35% !important;
-        transform: translateX(-50%) !important;
-        width: auto !important;
-        opacity: 1 !important;
-        animation: none !important;
-        z-index: 1;
-        text-align: left;
+        position: absolute;
+        left: 80%;
+        top: 60%;
+        transform: translate(-50%, 30%);
+        opacity: 0;
+
+        animation: fadeUp 1.2s ease-out forwards;
     }
     .contactText h1 {
         font-family: "Cormorant Garamond", serif;
@@ -464,9 +472,10 @@ body {
         color: #fff;
     }
     .contactText p {
-        font-size: 16px;
+        font-size: 17px !important;
         margin: 0;
         color: #fff;
+        font-family: "Cormorant Garamond", serif;
     }
 
     #contact_2 {
@@ -488,13 +497,14 @@ body {
     .con2_ImgBox {
         position: relative;
         width: 100%;
-        aspect-ratio: 2 / 3;
+        aspect-ratio: 2/1.5;
         overflow: hidden;
     }
     .con2_ImgBox > img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+        object-position: bottom center;
         display: block;
     }
     .con2_ImgBox .conLog {
@@ -502,7 +512,7 @@ body {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -60%);
-        width: 120px;
+        width: 180px !important;
         height: auto;
         z-index: 2;
     }
@@ -516,7 +526,7 @@ body {
         text-align: center;
         color: #fff;
         font-weight: 500;
-        font-size: clamp(15px, 3.6vw, 18px);
+        font-size: 18px;
         line-height: 1.35;
         z-index: 2;
     }
@@ -543,9 +553,8 @@ body {
         width: 100%;
         padding: 9px 12px;
         font-size: 14px;
-        border-radius: 6px;
         border: 1px solid #ddd;
-        background: #fff;
+        background: #f5f3ee;
         box-sizing: border-box;
     }
     .con2_Right_InBox input {
@@ -556,12 +565,17 @@ body {
         resize: vertical;
     }
 
+    .con2_Right_InBox {
+        border-bottom: none !important;
+    }
+
     #conBtnTxt {
         width: 92%;
         max-width: 640px;
-        margin: 220px auto 100px !important;
+        margin: 260px auto 100px !important;
         text-align: center;
         color: #000;
+
         border-radius: 8px;
         font-size: 16px;
         display: block;
@@ -615,5 +629,64 @@ body {
         right: 15px;
         font-size: 22px;
         cursor: pointer;
+    }
+
+    /* -----------------address------------------ */
+
+    #contactUs {
+        padding: 24px 0 60px;
+    }
+    .contactUs_text {
+        width: 92%;
+        margin: 0 auto 16px;
+        text-align: center;
+    }
+    .contactUs_text h1 {
+        font-size: clamp(28px, 8vw, 36px);
+        margin: 0 0 8px;
+    }
+    .contactUs_text p {
+        font-size: 14px;
+        color: #666;
+        margin: 0;
+        line-height: 1.6;
+    }
+
+    .contactUs_map {
+        width: 92%;
+        margin: 12px auto;
+        border-radius: 8px;
+        overflow: hidden;
+        aspect-ratio: 16/9;
+    }
+
+    .contactUs_grid {
+        width: 92%;
+        margin: 12px auto 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    @media (max-width: 480px) {
+        .contactUs_grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    .grid {
+        padding: 12px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        background: #fff;
+    }
+    .weather_info {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    #icon {
+        width: 32px;
+        height: 32px;
+        object-fit: contain;
     }
 }
