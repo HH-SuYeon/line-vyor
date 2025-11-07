@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
         <title>Document</title>
         <link
             href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
@@ -10,6 +10,10 @@
         />
 
         <link rel="stylesheet" href="css/brand.css" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
     </head>
     <body>
         <!-- 섹션1 -->
@@ -50,7 +54,7 @@
                     Own Your Essence
                 </h1>
                 <br />
-                <p style="color: #838181; font-size: 18px">
+                <p class="brMp" style="color: #838181; font-size: 18px">
                     VYOR은 단순히 화장품을 넘어,<br />
                     당신의 빛을 찾고 자신만의 아름다움을<br />
                     발견하는 여정을 의미합니다.
@@ -148,7 +152,7 @@
                 <h1 style="color: #1a1a1a; font-size: 53px">
                     What is the VYOR story?
                 </h1>
-                <p style="color: #838181; font-size: 17px">
+                <p class="b4p" style="color: #838181; font-size: 17px">
                     마치 물 위로 떠오른 듯한 그 땅은 사계절의 결실이 모두 그
                     자태를 드러내고 있습니다.<br />
                     수줍은 듯 달려 있는 유자와 레몬, 발밑에는 잘 마른 삼나무
@@ -273,8 +277,22 @@
 
         <!-- 섹션1 -->
         <script>
+            // brandText 스크롤 애니메이션 비활성화
+
             const brand_sec = document.getElementById("brand");
-            const brand_text = brand_sec.querySelector(".brandText");
+            const brand_text = brand_sec
+                ? brand_sec.querySelector(".brandText")
+                : null;
+
+            if (window.innerWidth <= 768 && brand_text) {
+                window.removeEventListener("scroll", brand_onScroll);
+
+                // 중앙 배치
+                brand_text.style.left = "50%";
+                brand_text.style.top = "50%";
+                brand_text.style.transform = "translate(-50%, -50%)";
+                brand_text.style.opacity = "1";
+            }
 
             let brand_ready = false;
             let brand_rafId = null;
@@ -332,35 +350,6 @@
             window.addEventListener("resize", brand_onScroll, {
                 passive: true,
             });
-
-            //섹션2
-
-            (function () {
-                const target = document.querySelector(".brandLeftbox_2");
-                if (!target) return;
-
-                // 1) 스크롤해서 보이면 on-show
-                function checkVisible() {
-                    const rect = target.getBoundingClientRect();
-                    const vh =
-                        window.innerHeight ||
-                        document.documentElement.clientHeight;
-
-                    // 화면 안에 조금이라도 들어오면 보이게
-                    if (rect.top < vh * 0.85 && rect.bottom > 0) {
-                        target.classList.add("on-show");
-                        window.removeEventListener("scroll", onScroll);
-                    }
-                }
-
-                function onScroll() {
-                    checkVisible();
-                }
-
-                // 2) 로드되자마자 한 번 체크
-                window.addEventListener("load", checkVisible);
-                window.addEventListener("scroll", onScroll);
-            })();
 
             //섹션3
             //왼쪽이미지상자
