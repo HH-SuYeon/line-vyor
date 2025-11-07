@@ -203,7 +203,7 @@
    gap: 10px;
    margin-top: 100px;
 }
-.outImg, .innerImg {
+.grid_container .grid .outImg, .innerImg {
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;
@@ -551,7 +551,64 @@
    .grid_container .grid4 {
       width: 100%;
    }
+   .outImg { min-height: 40vh; background-size: contain;}
+   .outImg .innerImg {
+      height: 100%;
+      background-size: cover;
+   }
+   /* grid1 */
+   .grid_container .grid1 .text_area {
+      width: 95%;
+   }
+   .grid_container .grid1 .text_area h1 {
+      font-size: 2.5rem;
+      margin-top: 20px !important;
+   }
+   .grid_container .grid1 .text_area h2 {
+      font-size: 1.5rem;
+   }
+   .grid_container .grid1 .text_area h4 {
+      font-size: 1.1rem;
+   }
+   .grid_container .grid1 .text_area h5 {
+      font-size: 0.8rem;
+      width: 80%;
+      margin: 0 auto;
+   }
+   /* grid2 */
    .grid_container .grid2 .text_desc {
       padding: 0 20px !important;
+      width: 95%;
+   }
+   .grid2 .text_desc > div:last-child {padding-bottom: 40px;}
+   .grid2 .text_desc > div > h4, .grid6 .text_desc > div > h4 {
+      font-size: 1.2rem;
+      font-weight: 500;
+   }
+   .grid2 .text_desc > div > p, .grid6 .text_desc > div > p {
+      font-size: 0.8rem;
+   }
+   /* grid3 */
+   .grid3Img {
+      height: auto;
+      background-size: contain;
+      height: auto;
+   }
+   .grid3Img > img:first-child {
+      height: auto;
+   }
+   .grid3Img > img:last-child {
+      height: auto;
+      
+   }
+   .grid_container .grid3 {
+      order: 2;
+      background-color: aqua;
+   }
+   /* grid4 */
+   .grid_container .grid4 {
+      order: 1;
+      background-color: aqua;
+      float: left;
    }
 }
