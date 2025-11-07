@@ -262,12 +262,12 @@ $(document).ready(function () {
           else entry.target.classList.remove("home_active");
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
     setTimeout(() => {
       document
         .querySelectorAll(
-          ".home_fade-item, #home_intro .home_intro-left, #home_intro .home_intro-right"
+          ".home_fade-item, .home_fade-text, .home_slide-item, #home_intro .home_intro-left, #home_intro .home_intro-right"
         )
         .forEach((el) => observer.observe(el));
     }, 500);
@@ -314,6 +314,14 @@ $(document).ready(function () {
             if (entry.isIntersecting) {
               homeProductText.classList.add("home_active");
               productImage.classList.add("active");
+              homeProductText
+                .querySelectorAll(".home_slide-item")
+                .forEach((el, i) => {
+                  setTimeout(() => {
+                    el.classList.add("home_active");
+                  }, i * 200);
+                });
+
               console.log(" home_active 클래스 추가됨!");
             }
           });
