@@ -1,58 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <!-- con섹션1 -->
-    <section id="contact">
-        <video autoplay muted loop playsinline>
-            <source src="img/contact/pn5_video.mp4" type="video/mp4" />
-        </video>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <!-- con섹션1 -->
+        <section id="contact">
+            <video autoplay muted loop playsinline>
+                <source src="img/contact/pn5_video.mp4" type="video/mp4" />
+            </video>
 
-        <div class="contactText">
-            <h1>CONTACT</h1>
-            <p style="font-size: 22px">CONTACT</p>
-        </div>
-    </section>
-    
-    <section id="contactUs">
-        <div>
-            <div class="contactUs_text">
-                <h1>CONTACT US</h1>
-                <p>If you have any questions about Freqty, don't hesitate to reach out to us!</p>
+            <div class="contactText">
+                <h1>CONTACT</h1>
+                <p style="font-size: 22px">CONTACT</p>
             </div>
-            <div id="map" class="contactUs_map">
-            </div>
-            <div class="contactUs_grid">
-                <div class="grid1 grid">
-                    <h5>LOCATION</h5>
-                    <p>서울시 서초구 논현로 87</p>
+        </section>
+
+        <section id="contactUs">
+            <div>
+                <div class="contactUs_text">
+                    <h1>CONTACT US</h1>
+                    <p>
+                        If you have any questions about Freqty, don't hesitate
+                        to reach out to us!
+                    </p>
                 </div>
-                <div id="weather" class="grid2 grid">
-                    <h5>대한민국 서울</h5>
-                    <div class="weather_info">
-                        <img id="icon" alt="날씨 아이콘" />
-                        <div class="weather_temp"></div>
+                <div id="map" class="contactUs_map"></div>
+                <div class="contactUs_grid">
+                    <div class="grid1 grid">
+                        <h5>LOCATION</h5>
+                        <p>서울시 서초구 논현로 87</p>
+                    </div>
+                    <div id="weather" class="grid2 grid">
+                        <h5>대한민국 서울</h5>
+                        <div class="weather_info">
+                            <img id="icon" alt="날씨 아이콘" />
+                            <div class="weather_temp"></div>
+                        </div>
+                    </div>
+                    <div class="grid3 grid">
+                        <h5>E-MAIL</h5>
+                        <p>vyor@vyor.co.kr</p>
+                    </div>
+                    <div class="grid4 grid">
+                        <h5>TEL</h5>
+                        <p>02-123-4567</p>
+                    </div>
+                    <div class="grid5 grid">
+                        <h5>TIME</h5>
+                        <p id="timezone"></p>
                     </div>
                 </div>
-                <div class="grid3 grid">
-                    <h5>E-MAIL</h5>
-                    <p>vyor@vyor.co.kr</p>
-                </div>
-                <div class="grid4 grid">
-                    <h5>TEL</h5>
-                    <p>02-123-4567</p>
-                </div>
-                <div class="grid5 grid">
-                    <h5>TIME</h5>
-                    <p id="timezone"></p>
-                </div>
             </div>
-        </div>
-    </section>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cc276c8e4982a4daa6075e4c1b7f6991&libraries=services,clusterer,drawing"></script>
-</body>
+        </section>
+        <script
+            type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cc276c8e4982a4daa6075e4c1b7f6991&libraries=services,clusterer,drawing"
+        ></script>
+    </body>
 </html>

@@ -1042,25 +1042,37 @@ body {
     body {
         overflow-x: hidden;
     }
+    @keyframes fadeUp {
+        0% {
+            opacity: 0;
+            transform: translate(-50%, 30%);
+        }
+        100% {
+            opacity: 1;
+            transform: translate(-50%, 0);
+        }
+    }
 
     #brand {
         height: 100svh !important;
         min-height: 100svh !important;
+        position: relative;
     }
 
     .brandText {
-        animation: none !important;
-        transform: translateX(-50%) !important;
-        left: 40% !important;
-        top: 80%;
-        opacity: 1 !important;
-        width: auto;
+        position: absolute;
+        left: 80%;
+        top: 70%;
+        transform: translate(-50%, 30%);
+        opacity: 0;
+
+        animation: fadeUp 1.2s ease-out forwards;
 
         /* text-align: center; */
     }
 
     .brandText h1 {
-        font-size: 95px;
+        font-size: 65px;
     }
 
     .brandText p {
@@ -1702,3 +1714,5 @@ body {
         line-height: 1.6;
     }
 }
+
+/* 테블릿 */
