@@ -596,7 +596,7 @@ html {
   display: inline-flex;
   gap: 5rem;
   font-family: "Cormorant", sans-serif;
-  font-size: 16rem  !important;
+  font-size: 16rem;  
   font-weight: 500;
   letter-spacing: 0.25rem;
   color: #1a1a1a;
@@ -781,47 +781,144 @@ html {
   }
   #home_product {
     flex-direction: column;
-    padding: 6rem 0;
+    align-items: center;
+    padding: 5rem 0;
   }
-  #home_product-inner {
+  .home_product-inner {
+    display: flex;
     flex-direction: column;
-    gap: 5rem;
+    align-items: center;
+    gap: 3rem;
   }
   .home_product-text{
     margin-left: 0;
     text-align: center;
+    order: 1;
   }
   .home_product-text h2{
-    font-size: 2.3rem;
+    font-size: 2rem;
+    line-height: 1.3;
   }
   .home_gallery-wrap {
-    width: 100%;
+    width: 90%;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+    order: 2;
+  }
+  .home_product-gallery{
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    animation: mobileslide 15s linear infinite;
+  }
+  @keyframes mobileslide {
+    0%{
+      transform: translateX(0);
+    }
+    100%{
+      transform: translateX(-50%);
+    }
+  }
+  .home_product-gallery:hover{
+    animation-play-state: paused;
   }
   .home_card{
+    min-width: 60%;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    padding-bottom: 1.5rem;
+  }
+  .home_card img{
     min-width: 100%;
+    height: 380px;
+    object-fit: cover;
+  }
+  .home_card p{
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+  .home_price{
+    font-size: 0.8rem;
+  }
+  .home_rnd{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 0;
   }
   .home_rnd-inner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding-left: 0;
     text-align: center;
+    gap:4rem;
   }
   .home_rnd-right{
-    padding-left: 0;
-    text-align: center;
+    
+    order:2;
+    padding: 0 2rem;
+    text-align: left
   }
+  
   .home_rnd-right h2{
-    font-size: 2.1rem;
+    font-size: 2.8rem;
+    line-height: 1.3;
+  }
+  .home_rnd-right h4{
+    font-size: 1.0rem;
+    line-height: 1.3;
   }
   .home_rnd-right p{
     font-size: 1rem;
   }
+  .home_rnd-left{
+    order:1;
+    width: 100%;
+    overflow: hidden;
+  }
+  .home_rnd-left video{
+    height: 100%;
+  }
   .home_text-line{
-    font-size: 6rem ;
+    font-size: 6.6rem ;
   }
   .home_press-text h2{
     font-size: 2rem;
   }
   .home_press-text p{
     font-size: 1rem;
+  }
+  #home_contact{
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+  }
+   .home_contact-inner{
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+   }
+  .home_contact-inner video {
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 120%;
+    height: 90%;
+    object-fit: cover;
+    filter: blur(8px);
+    transform: scale(1.1);
+    transition: all 1s ease;
+  } 
+  home_product-text .home_subtitle{
+    font-size: 0.5rem;
   }
   
 }
