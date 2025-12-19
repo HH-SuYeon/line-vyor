@@ -6,8 +6,8 @@ $(document).ready(function () {
   const footer = $("#footer");
 
   // =========== 공통 헤더/푸터 로드 ============
-  header.load("/vyor/components/header.html", function () {
-    $.getScript("/vyor/js/header.js")
+  header.load("components/header.html", function () {
+    $.getScript("js/header.js")
       .done(function () {
         console.log("header.js loaded!");
         if (typeof initHeader === "function") initHeader();
@@ -15,7 +15,7 @@ $(document).ready(function () {
       .fail(function (jqxhr, settings, exception) {
         console.error("header.js load failed", exception);
       });
-    footer.load("/vyor/components/footer.html", function () {
+    footer.load("components/footer.html", function () {
       console.log("푸터 로드 완료");
     });
   });
@@ -23,116 +23,116 @@ $(document).ready(function () {
   // 페이지별 설정
   const pageSettings = {
     home: {
-      css: "/vyor/css/style.css",
+      css: "css/style.css",
       init: function () {
         console.log("home 초기화 완료");
       },
     },
     brand: {
-      css: "/vyor/css/brand.css",
+      css: "css/brand.css",
       init: function () {
         console.log("brand 초기화 완료");
       },
     },
     brand_bi: {
-      css: "/vyor/css/brand.css",
+      css: "css/brand.css",
       init: function () {
         console.log("brand 초기화 완료");
       },
     },
     product: {
-      css: "/vyor/css/product.css",
+      css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
         initProduct();
       },
     },
     product_body: {
-      css: "/vyor/css/product.css",
+      css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
         initProduct();
       },
     },
     product_body_lotion: {
-      css: "/vyor/css/product.css",
+      css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
         initProduct();
       },
     },
     product_hair: {
-      css: "/vyor/css/product.css",
+      css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
         initProduct();
       },
     },
     product_body_shampoo: {
-      css: "/vyor/css/product.css",
+      css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
         initProduct();
       },
     },
     product_facial: {
-      css: "/vyor/css/product.css",
+      css: "css/product.css",
       init: function () {
         console.log("product 초기화 중...");
         initProduct();
       },
     },
     rndTechnology: {
-      css: "/vyor/css/rnd.css",
+      css: "css/rnd.css",
       init: function () {
         console.log("rnd 초기화 중...");
         initRnd();
       },
     },
     rndResearch: {
-      css: "/vyor/css/rnd.css",
+      css: "css/rnd.css",
       init: function () {
         console.log("rnd 초기화 중...");
         initRnd();
       },
     },
     rndProduction: {
-      css: "/vyor/css/rnd.css",
+      css: "css/rnd.css",
       init: function () {
         console.log("rnd 초기화 중...");
         initRnd();
       },
     },
     press: {
-      css: "/vyor/css/press.css",
+      css: "css/press.css",
       init: function () {
         console.log("press 초기화 중...");
         initPress();
       },
     },
     press_news: {
-      css: "/vyor/css/press.css",
+      css: "css/press.css",
       init: function () {
         console.log("press 초기화 중...");
         initPress();
       },
     },
     contact: {
-      css: "/vyor/css/contact.css",
+      css: "css/contact.css",
       init: function () {
         console.log("contact 초기화 중...");
         initContact();
       },
     },
     contact_address: {
-      css: "/vyor/css/contact.css",
+      css: "css/contact.css",
       init: function () {
         console.log("contact 초기화 중...");
         initContact();
       },
     },
     sitemap: {
-      css: "/vyor/css/sitemap.css",
+      css: "css/sitemap.css",
       init: function () {
         console.log("sitemap 초기화 중...");
         initSitemap();
@@ -171,7 +171,7 @@ $(document).ready(function () {
     main.fadeOut(100, async function () {
       // 각페이지의 css 화일 로드
       await loadPageCSS(settings.css);
-      main.load(`/vyor/pages/${pageName}.html`, function () {
+      main.load(`pages/${pageName}.html`, function () {
         // 페이지 이동 후 항상 top 0
         $(window).scrollTop(0);
         main.fadeIn(200, function () {
@@ -785,7 +785,7 @@ $(document).ready(function () {
             <div class="info_map">
               <div class="company_map">
                 <div class="img_map">
-                 <img src="/vyor/img/etc/logo/logo1.png" width="50" height="25" />
+                 <img src="img/etc/logo/logo1.png" width="50" height="25" />
 
                 </div>
                 <div class="title_map">비오르</div>
